@@ -1,4 +1,10 @@
 import styled from 'styled-components'
+import { Input } from 'antd'
+import CodeEditor from 'react-simple-code-editor';
+const { TextArea } = Input;
+import { highlight, languages } from 'prismjs';
+import 'prismjs/components/prism-markdown';
+import 'prismjs/themes/prism.css'; //Example style, you can use another
 
 const Editor = ({
   problem,
@@ -9,12 +15,12 @@ const Editor = ({
 }) => {
 
   return (
-    <div className='editor'>
+    <div>
       <EditorLayout>
         <form>
-          <div>
+          <FormBox>
             <label>문항번호</label>
-            <TextInput
+            <Input
               type="text"
               value={problem.problemNumber}
               onChange={(e) => setProblem({
@@ -22,60 +28,140 @@ const Editor = ({
                 problemNumber: e.target.value,
               })}
             />
-          </div>
-          <div>
-            <label>제시문</label>
-            <TextArea
+          </FormBox>
+          <FormBox>
+            <label>상단 제시문</label>
+            <StyledCodeEditor
+              highlight={(code) => highlight(
+                code,
+                languages.markdown,
+                'markdown'
+              )}
               value={problem.question}
-              onChange={(e) => setProblem({
+              onValueChange={(value) => setProblem({
                 ...problem,
-                question: e.target.value,
+                question: value,
               })}
+              // font
+              padding={10}
             />
-          </div>
-          <div>
+          </FormBox>
+          <FormBox>
+            <label>조건 (가)</label>
+            <StyledCodeEditor
+              highlight={(code) => highlight(
+                code,
+                languages.markdown,
+                'markdown'
+              )}
+              value={problem.conditions[0]}
+              onValueChange={(value) => setProblem({
+                ...problem,
+                conditions: [
+                  value,
+                  problem.conditions[1],
+                ],
+              })}
+              padding={10}
+            />
+          </FormBox>
+          <FormBox>
+            <label>조건 (나)</label>
+            <StyledCodeEditor
+              highlight={(code) => highlight(
+                code,
+                languages.markdown,
+                'markdown'
+              )}
+              value={problem.conditions[1]}
+              onValueChange={(value) => setProblem({
+                ...problem,
+                conditions: [
+                  problem.conditions[0],
+                  value,
+                ],
+              })}
+              padding={10}
+            />
+          </FormBox>
+          <FormBox>
+            <label>하단 제시문</label>
+            <StyledCodeEditor
+              highlight={(code) => highlight(
+                code,
+                languages.markdown,
+                'markdown'
+              )}
+              value={problem.question2}
+              onValueChange={(value) => setProblem({
+                ...problem,
+                question2: value,
+              })}
+              // font
+              padding={10}
+            />
+          </FormBox>
+          <FormBox>
             <label>보기 ㄱ</label>
-            <TextInput
+            <StyledCodeEditor
+              highlight={(code) => highlight(
+                code,
+                languages.markdown,
+                'markdown'
+              )}
               value={problem.examples.first}
-              onChange={(e) => setProblem({
+              onValueChange={(value) => setProblem({
                 ...problem,
                 examples: {
                   ...problem.examples,
-                  first: e.target.value,
+                  first: value,
                 },
               })}
+              padding={10}
             />
-          </div>
-          <div>
+          </FormBox>
+          <FormBox>
             <label>보기 ㄴ</label>
-            <TextInput
+            <StyledCodeEditor
+              highlight={(code) => highlight(
+                code,
+                languages.markdown,
+                'markdown'
+              )}
               value={problem.examples.second}
-              onChange={(e) => setProblem({
+              onValueChange={(value) => setProblem({
                 ...problem,
                 examples: {
                   ...problem.examples,
-                  second: e.target.value,
+                  second: value,
                 },
               })}
+              padding={10}
             />
-          </div>
-          <div>
+          </FormBox>
+          <FormBox>
             <label>보기 ㄷ</label>
-            <TextInput
+            <StyledCodeEditor
+              highlight={(code) => highlight(
+                code,
+                languages.markdown,
+                'markdown'
+              )}
               value={problem.examples.third}
-              onChange={(e) => setProblem({
+              onValueChange={(value) => setProblem({
                 ...problem,
                 examples: {
                   ...problem.examples,
-                  third: e.target.value,
+                  third: value,
                 },
               })}
+              padding={10}
             />
-          </div>
+          </FormBox>
           <ChoiceLayout>
-            <div>
+            <FormBox>
               <label>선택지 1</label>
-              <TextInput
+              <Input
                 value={problem.choices[0]}
                 onChange={(e) => setProblem({
                   ...problem,
@@ -88,10 +174,10 @@ const Editor = ({
                   ],
                 })}
               />
-            </div>
-            <div>
+            </FormBox>
+            <FormBox>
               <label>선택지 2</label>
-              <TextInput
+              <Input
                 value={problem.choices[1]}
                 onChange={(e) => setProblem({
                   ...problem,
@@ -104,10 +190,10 @@ const Editor = ({
                   ],
                 })}
               />
-            </div>
-            <div>
+            </FormBox>
+            <FormBox>
               <label>선택지 3</label>
-              <TextInput
+              <Input
                 value={problem.choices[2]}
                 onChange={(e) => setProblem({
                   ...problem,
@@ -120,10 +206,10 @@ const Editor = ({
                   ],
                 })}
               />
-            </div>
-            <div>
+            </FormBox>
+            <FormBox>
               <label>선택지 4</label>
-              <TextInput
+              <Input
                 value={problem.choices[3]}
                 onChange={(e) => setProblem({
                   ...problem,
@@ -136,10 +222,10 @@ const Editor = ({
                   ],
                 })}
               />
-            </div>
-            <div>
+            </FormBox>
+            <FormBox>
               <label>선택지 5</label>
-              <TextInput
+              <Input
                 value={problem.choices[4]}
                 onChange={(e) => setProblem({
                   ...problem,
@@ -152,7 +238,7 @@ const Editor = ({
                   ],
                 })}
               />
-            </div>
+            </FormBox>
           </ChoiceLayout>
         </form>
       </EditorLayout>
@@ -163,6 +249,8 @@ const Editor = ({
 export default Editor;
 
 const EditorLayout = styled.div`
+  flex-grow: 1;
+
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -170,40 +258,22 @@ const EditorLayout = styled.div`
   width: 100%;
   height: 100%;
 
+  box-sizing: border-box;
+
   padding: 1em;
 `
 
-const TextInput = styled.input`
+const FormBox = styled.div`
+  display: flex;
+  flex-direction: column;
+
   width: 100%;
-  height: 48px;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  padding: 0 16px;
-  font-size: 16px;
 
-  box-sizing: border-box;
+  margin-bottom: 1em;
 
-  &:focus {
-    outline: none;
-    border: 1px solid #000;
-  }
-`
-
-const TextArea = styled.textarea`
-  width: 100%;
-  height: fit-content;
-  min-height: 48px;
-  border: 1px solid #e5e5e5;
-  border-radius: 4px;
-  padding: 0 16px;
-  font-size: 16px;
-
-  /* dont resizing */
-  resize: none;
-
-  &:focus {
-    outline: none;
-    border: 1px solid #000;
+  label {
+    font-size: 14px;
+    margin-bottom: 0.25em;
   }
 `
 
@@ -215,3 +285,12 @@ const ChoiceLayout = styled.div`
   width: 100%;
   gap: 1em;
 `
+
+const StyledCodeEditor = styled(CodeEditor)`
+  font-family: 'Hack', 'Fira code', 'Fira Mono', monospace;
+  width: 100%;
+  min-height: 100px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding: 0.5em;
+`;

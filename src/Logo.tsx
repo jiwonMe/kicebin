@@ -1,8 +1,11 @@
+import styled from 'styled-components';
 import logo from './assets/kicebin-logo.svg';
+import { Image } from 'antd'
+
 
 const Logo = () => {
   return (
-    <img src={logo} className="App-logo" alt="logo" />
+    <Image src={logo} alt="logo" />
   );
 };
 

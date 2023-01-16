@@ -5,6 +5,7 @@ import './index.css'
 
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import GlobalStyle from './GlobalStyle';
 
 const {
   VITE_APP_FIREBASE_API_KEY,
@@ -18,6 +19,7 @@ const {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
+    <GlobalStyle />
     <App />
   </React.StrictMode>,
 )
