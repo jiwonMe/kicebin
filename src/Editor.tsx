@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import { Input } from 'antd'
 import CodeEditor from 'react-simple-code-editor';
-const { TextArea } = Input;
 import { highlight, languages } from 'prismjs';
 import 'prismjs/components/prism-markdown';
-import 'prismjs/themes/prism.css'; //Example style, you can use another
+import 'prismjs/components/prism-latex';
+import 'prismjs/themes/prism-solarizedlight.css'; //Example style, you can use another
 
 const Editor = ({
   problem,
@@ -13,7 +13,6 @@ const Editor = ({
   problem: ProblemSchema;
   setProblem: (problem: ProblemSchema) => void;
 }) => {
-
   return (
     <div>
       <EditorLayout>
@@ -34,8 +33,8 @@ const Editor = ({
             <StyledCodeEditor
               highlight={(code) => highlight(
                 code,
-                languages.markdown,
-                'markdown'
+                languages.latex,
+                'latex'
               )}
               value={problem.question}
               onValueChange={(value) => setProblem({
@@ -47,12 +46,28 @@ const Editor = ({
             />
           </FormBox>
           <FormBox>
+            <label>박스</label>
+            <StyledCodeEditor
+              highlight={(code) => highlight(
+                code,
+                languages.latex,
+                'latex',
+              )}
+              value={problem.boxed}
+              onValueChange={(value) => setProblem({
+                ...problem,
+                boxed: value,
+              })}
+              padding={10}
+            />
+          </FormBox>
+          <FormBox>
             <label>조건 (가)</label>
             <StyledCodeEditor
               highlight={(code) => highlight(
                 code,
-                languages.markdown,
-                'markdown'
+                languages.latex,
+                'latex',
               )}
               value={problem.conditions[0]}
               onValueChange={(value) => setProblem({
@@ -70,8 +85,8 @@ const Editor = ({
             <StyledCodeEditor
               highlight={(code) => highlight(
                 code,
-                languages.markdown,
-                'markdown'
+                languages.latex,
+                'latex',
               )}
               value={problem.conditions[1]}
               onValueChange={(value) => setProblem({
@@ -89,8 +104,8 @@ const Editor = ({
             <StyledCodeEditor
               highlight={(code) => highlight(
                 code,
-                languages.markdown,
-                'markdown'
+                languages.latex,
+                'latex',
               )}
               value={problem.question2}
               onValueChange={(value) => setProblem({
@@ -106,8 +121,8 @@ const Editor = ({
             <StyledCodeEditor
               highlight={(code) => highlight(
                 code,
-                languages.markdown,
-                'markdown'
+                languages.latex,
+                'latex',
               )}
               value={problem.examples.first}
               onValueChange={(value) => setProblem({
@@ -125,8 +140,8 @@ const Editor = ({
             <StyledCodeEditor
               highlight={(code) => highlight(
                 code,
-                languages.markdown,
-                'markdown'
+                languages.latex,
+                'latex',
               )}
               value={problem.examples.second}
               onValueChange={(value) => setProblem({
@@ -144,8 +159,8 @@ const Editor = ({
             <StyledCodeEditor
               highlight={(code) => highlight(
                 code,
-                languages.markdown,
-                'markdown'
+                languages.latex,
+                'latex',
               )}
               value={problem.examples.third}
               onValueChange={(value) => setProblem({
@@ -249,8 +264,6 @@ const Editor = ({
 export default Editor;
 
 const EditorLayout = styled.div`
-  flex-grow: 1;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

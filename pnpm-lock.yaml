@@ -9,6 +9,7 @@ specifiers:
   '@types/react-frame-component': ^4.1.3
   '@types/react-katex': ^3.0.0
   '@types/styled-components': ^5.1.26
+  '@types/uuid': ^9.0.0
   '@vitejs/plugin-react': ^3.0.0
   antd: ^5.1.4
   firebase: ^9.15.0
@@ -24,6 +25,7 @@ specifiers:
   remark-math: ^5.1.1
   styled-components: ^5.3.6
   typescript: ^4.9.3
+  uuid: ^9.0.0
   vite: ^4.0.0
 
 dependencies:
@@ -40,6 +42,7 @@ dependencies:
   rehype-katex: 6.0.2
   remark-math: 5.1.1
   styled-components: 5.3.6_biqbaboplfbrettd7655fr4n2y
+  uuid: 9.0.0
 
 devDependencies:
   '@types/antd': 1.0.0_biqbaboplfbrettd7655fr4n2y
@@ -50,6 +53,7 @@ devDependencies:
   '@types/react-frame-component': 4.1.3
   '@types/react-katex': 3.0.0
   '@types/styled-components': 5.1.26
+  '@types/uuid': 9.0.0
   '@vitejs/plugin-react': 3.0.0_vite@4.0.3
   typescript: 4.9.4
   vite: 4.0.3_@types+node@18.11.18
@@ -1288,6 +1292,10 @@ packages:
   /@types/unist/2.0.6:
     resolution: {integrity: sha512-PBjIUxZHOuj0R15/xuwJYjFi+KZdNFrehocChv4g5hu6aFroHue8m0lBP0POdK2nKzbw0cgV1mws8+V/JAcEkQ==}
     dev: false
+
+  /@types/uuid/9.0.0:
+    resolution: {integrity: sha512-kr90f+ERiQtKWMz5rP32ltJ/BtULDI5RVO0uavn1HQUOwjx0R1h0rnDYNL0CepF1zL5bSY6FISAfd9tOdDhU5Q==}
+    dev: true
 
   /@vitejs/plugin-react/3.0.0_vite@4.0.3:
     resolution: {integrity: sha512-1mvyPc0xYW5G8CHQvJIJXLoMjl5Ct3q2g5Y2s6Ccfgwm45y48LBvsla7az+GkkAtYikWQ4Lxqcsq5RHLcZgtNQ==}
@@ -3116,6 +3124,11 @@ packages:
       escalade: 3.1.1
       picocolors: 1.0.0
     dev: true
+
+  /uuid/9.0.0:
+    resolution: {integrity: sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==}
+    hasBin: true
+    dev: false
 
   /uvu/0.5.6:
     resolution: {integrity: sha512-+g8ENReyr8YsOc6fv/NVJs2vFdHBnBNdfE49rshrTzDWOlUx4Gq7KOS2GD8eqhy2j+Ejq29+SbKH8yjkAqXqoA==}

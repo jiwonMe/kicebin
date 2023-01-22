@@ -11,7 +11,12 @@ const _mapProps = (props: any) => ({
     remarkMath
   ],
   rehypePlugins: [
-    rehypeKatex
+    [ rehypeKatex, {
+      output: 'htmlAndMathml',
+      displayMode: true,
+      minRuleThickness: 0.01,
+      strict: false,
+    }]
   ],
 });
 
