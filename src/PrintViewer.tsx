@@ -301,7 +301,7 @@ const ProblemChoices = styled.div`
   font-family: 'Times New Roman', "SM신명조03";
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   width: 100%;
   height: 100%;
@@ -311,6 +311,9 @@ const ProblemChoices = styled.div`
     padding: 0 1.5em;
     margin: 0;
     display: flex;
+
+    justify-content: center;
+    align-items: center;
     width: 100%;
   }
 
