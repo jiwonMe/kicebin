@@ -1,10 +1,14 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from 'react-router-dom';
+import App from './App';
+import './index.css';
 
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
 import GlobalStyle from './GlobalStyle';
 
 const {
@@ -15,14 +19,14 @@ const {
   VITE_APP_FIREBASE_MESSAGING_SENDER_ID,
   VITE_APP_FIREBASE_APP_ID,
   VITE_APP_FIREBASE_MEASUREMENT_ID,
-} = import.meta.env
+} = import.meta.env;
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <GlobalStyle />
     <App />
   </React.StrictMode>,
-)
+);
 
 const firebaseConfig = {
   apiKey: VITE_APP_FIREBASE_API_KEY,

@@ -1,20 +1,19 @@
-import { useContext, useEffect, useRef, useState } from 'react'
-import styled, { StyleSheetManager } from 'styled-components'
-import Editor from './Editor'
-import Viewer from './Viewer'
-import { Button } from 'antd'
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import styled, { StyleSheetManager } from 'styled-components';
+import Editor from './Editor';
+import Viewer from './Viewer';
 import { v4 as uuid } from 'uuid';
-import ProblemListContainer from './ProblemListContainer'
-import TopBar from './TopBar'
-import GlobalStyle from './GlobalStyle'
-import Frame, { FrameContext } from 'react-frame-component'
-import PrintViewer from './PrintViewer'
+import ProblemListContainer from './ProblemListContainer';
+import TopBar from './TopBar';
+import GlobalStyle from './GlobalStyle';
+import Frame, { FrameContext } from 'react-frame-component';
+import PrintViewer from './PrintViewer';
 
 const sampleProblem: ProblemSchema = {
   id: uuid(),
   problemNumber: '16',
-  question: 
-`첫째항이 $1$인 수열 $\\{a_n\\}$의 첫째항부터 제 $n$항까지의 합을 
+  question:
+`첫째항이 $1$인 수열 $\\{a_n\\}$의 첫째항부터 제 $n$항까지의 합을
 $S_n$이라 하자. 다음은 모든 자연수 $n$에 대하여
 
 $$
@@ -22,10 +21,10 @@ $$
 $$
 
 가 성립할 때, $\\displaystyle\\sum_{k=1}^{n} ka_{k}$ 를 구하는 과정이다.`,
-question2: `위의 (가), (나), (다)에 알맞은 식을 각각 $f(n)$, $g(n)$, $h(n)$이라 
+  question2: `위의 (가), (나), (다)에 알맞은 식을 각각 $f(n)$, $g(n)$, $h(n)$이라
 할 때, $f(8)-g(8)+h(8)$의 값은? [4점]`,
-    conditions: ['', '', ''],
-    boxed: `
+  conditions: ['', '', ''],
+  boxed: `
 주어진 식 $(*)$에 의하여
 $$
   nS_n=\\log_2(n+1) + \\sum_{k=1}^{n-1}S_k\\ (n\\ge2) \\cdots \\text{㉠}
@@ -59,7 +58,7 @@ $$
     third: '',
   },
   choices: ['$12$', '$13$', '$14$', '$15$', '$16$'],
-}
+};
 
 const createNewProblem = ({ index }: { index? : number }) => {
   return {
@@ -75,8 +74,8 @@ const createNewProblem = ({ index }: { index? : number }) => {
       third: '',
     },
     choices: [],
-  }
-}
+  };
+};
 
 const InjectFrameStyles = (props: any) => {
   const { document } = useContext(FrameContext);
@@ -86,7 +85,7 @@ const InjectFrameStyles = (props: any) => {
 const App = () => {
   const [problemList, setProblemList] = useState<ProblemSchema[]>([sampleProblem]);
   const [index, _setIndex] = useState<number>(0);
-  
+
   const printViewerRef = useRef<HTMLIFrameElement>(null);
 
   const print = () => {
@@ -97,7 +96,7 @@ const App = () => {
         win.print();
       }
     }
-  }
+  };
 
   const setIndex = (index: number) => {
     if (index < 0) {
@@ -109,11 +108,11 @@ const App = () => {
       setProblemList(newProblemList);
     }
     _setIndex(index);
-  }
+  };
 
   useEffect(() => {
     console.log(index);
-  },[index])
+  },[index]);
 
   return (
     <EntireLayout>
@@ -156,16 +155,16 @@ const App = () => {
               setProblemList(newProblemList);
             }}
           />
-          <Button
+          <button
             onClick={() => {
               setIndex(index - 1);
             }}
-          >이전</Button>
-          <Button
+          >이전</button>
+          <button
             onClick={() => {
               setIndex(index + 1);
             }}
-          >다음</Button>
+          >다음</button>
         </EditorContainerLayout>
         <ViewerContainerLayout>
           <Viewer
@@ -225,10 +224,10 @@ const App = () => {
         </InjectFrameStyles>
       </Frame>
     </EntireLayout>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
 const EntireLayout = styled.div`
   display: flex;
@@ -252,7 +251,7 @@ const MainLayout = styled.div`
   height: calc(100vh - 50px);
 
   box-sizing: border-box;
-`
+`;
 
 const EditorContainerLayout = styled.div`
   display: flex;
@@ -267,7 +266,7 @@ const EditorContainerLayout = styled.div`
   overflow: scroll;
 
   box-sizing: border-box;
-`
+`;
 
 const ViewerContainerLayout = styled.div`
   flex-wrap: 1;
