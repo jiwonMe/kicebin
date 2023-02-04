@@ -123,7 +123,6 @@ const ProblemLayout = styled.div`
   align-items: flex-start;
   width: 100%;
   height: fit-content;
-  min-height: 300px;
 
   padding: 32px;
 
