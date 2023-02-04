@@ -1,17 +1,14 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import styled, { StyleSheetManager } from 'styled-components'
 import Editor from './Editor'
-import Logo from './Logo'
 import Viewer from './Viewer'
-import { Layout, Col, Row, Menu, Button } from 'antd'
+import { Button } from 'antd'
 import { v4 as uuid } from 'uuid';
 import ProblemListContainer from './ProblemListContainer'
 import TopBar from './TopBar'
 import GlobalStyle from './GlobalStyle'
 import Frame, { FrameContext } from 'react-frame-component'
 import PrintViewer from './PrintViewer'
-
-const { Header, Footer, Sider, Content } = Layout;
 
 const sampleProblem: ProblemSchema = {
   id: uuid(),
@@ -179,7 +176,7 @@ const App = () => {
       </MainLayout>
       <Frame
         style={{
-          display: 'none',
+          // display: 'none',
           backgroundColor: 'white',
         }}
         ref={printViewerRef}
@@ -214,15 +211,17 @@ const App = () => {
           </>
         }
       >
-        <GlobalStyle />
         <InjectFrameStyles>
-          <PrintViewer
-            problems={problemList}
-            meta={{
-              title: '수능 오답노트',
-              pagination: true,
-            }}
-          />
+          <>
+            <GlobalStyle />
+            <PrintViewer
+              problems={problemList}
+              meta={{
+                title: '수능 오답노트',
+                pagination: true,
+              }}
+            />
+          </>
         </InjectFrameStyles>
       </Frame>
     </EntireLayout>

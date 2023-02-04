@@ -84,7 +84,6 @@ const Viewer = ({ problems, index } : { problems: ProblemSchema[], index: number
           </ol>
         </ProblemChoices>
       </ProblemLayout>
-      
     </ViewerLayout>
   )
 }

@@ -300,7 +300,7 @@ const ChoiceLayout = styled.div`
 `
 
 const StyledCodeEditor = styled(CodeEditor)`
-  font-family: 'Hack', 'Fira code', 'Fira Mono', monospace;
+  font-family: 'D2Coding', 'Hack', 'Fira code', 'Fira Mono', monospace;
   width: 100%;
   min-height: 100px;
   border: 1px solid #d9d9d9;

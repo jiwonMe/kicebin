@@ -42,6 +42,9 @@ const ProblemListContainerLayout = styled.div`
   flex-direction: column;
   gap: 8px;
   flex-wrap: 1;
+
+  overflow-y: scroll;
+  overflow-x: auto;
 `;
 
 const ProblemListCell = ({
@@ -82,7 +85,7 @@ const ProblemListCellLayout = styled.div<{
     border: 1px solid #d9d9d9;
     background-color: white;
   `}
-  width: 200px;
+  /* width: 200px; */
   height: fit-content;
   min-height: 50px;
   padding: 8px;
@@ -105,7 +108,6 @@ const CreateNewProblemButton = ({
 const CreateNewProblemButtonLayout = styled.div`
   border: 1px solid #d9d9d9;
   background-color: white;
-  width: 200px;
   height: 20px;
   padding: 8px;
   text-align: center;

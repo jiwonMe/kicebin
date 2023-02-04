@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Markdown from './components/Markdown'
 import 'katex/dist/katex.min.css'
-import SM신명조 from './assets/SM3신명조-03.woff'
+import GlobalStyle from './GlobalStyle'
 
 const PrintViewer = ({ problems, meta }: { 
   problems: ProblemSchema[],
@@ -28,6 +28,7 @@ const PrintViewer = ({ problems, meta }: {
   return (
     <DocumentLayout
     >
+      <GlobalStyle />
       {chunk<ProblemSchema>(problems,2).map((problemSet, problemSetIndex) => (
         <PageLayout>
           <TwoColumnLayout>
@@ -134,18 +135,6 @@ const PrintViewer = ({ problems, meta }: {
 export default PrintViewer
 
 const DocumentLayout = styled.div`
-  @font-face {
-    font-family: 'SM신명조03';
-    src: local('SM신명조03'), url(${SM신명조});
-  }
-
-  @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-  }
-
   @media print {
     @page {
       size: A4;
