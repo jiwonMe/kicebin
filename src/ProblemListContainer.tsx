@@ -1,26 +1,27 @@
-import React from 'react'
-import styled from 'styled-components'
+import React from 'react';
+import styled from 'styled-components';
+import { FiPlusSquare } from 'react-icons/fi';
 
 const ProblemListContainer = ({
   problems,
-  currentProblemIndex,
+  currentProblemId,
   createNewProblem,
   onClick,
 }: {
-  problems: ProblemSchema[],
-  currentProblemIndex: number,
+  problems: ProblemScheme[],
+  currentProblemId: string,
   createNewProblem: () => void,
-  onClick: (index: number) => void,
-}) => { 
+  onClick: (problemId: string) => void,
+}) => {
   return (
     <ProblemListContainerLayout>
       {
-        problems.map((problem, index) => (
+        problems.map((problem) => (
           <ProblemListCell
+            key={problem.id}
             problem={problem}
-            index={index}
             onClick={onClick}
-            isActivated={index === currentProblemIndex}
+            isActivated={problem.id === currentProblemId}
           />
         ))
       }
@@ -30,65 +31,84 @@ const ProblemListContainer = ({
         }}
       />
     </ProblemListContainerLayout>
-  )
-}
+  );
+};
 
-export default ProblemListContainer
+export default ProblemListContainer;
 
 const ProblemListContainerLayout = styled.div`
-  border: 1px solid #a1a1a1;
-  padding: 8px;
+  border-right: 0.5px solid #484848;
+  /* padding: 8px; */
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  flex-wrap: 1;
+  /* gap: 8px; */
+  /* flex-wrap: 1; */
+  /* flex-grow: 1; */
+  width: 20%;
 
+  /* min-width: 200px; */
   overflow-y: scroll;
   overflow-x: auto;
 `;
 
 const ProblemListCell = ({
   problem,
-  index,
   onClick,
   isActivated,
 }: {
-  problem: ProblemSchema,
-  index: number,
-  onClick: (index: number) => void,
+  problem: ProblemScheme,
+  onClick: (problemId: string) => void,
   isActivated?: boolean,
 }) => {
   return (
     <ProblemListCellLayout
-      key={index}
+      key={problem.id}
       onClick={() => {
-        onClick(index);
+        onClick(problem.id);
       }}
       isActivated={isActivated}
     >
-      <div>{problem.problemNumber}</div>
-      <div>{
+      <ProblemListCellTitle>
+        {problem.meta.title}
+      </ProblemListCellTitle>
+      <ProblemListCellID>{problem.id}</ProblemListCellID>
+      <ProblemListCellDescription>{
         // problem.question length limit to 20
-        problem.question.length > 20 ? problem.question.slice(0, 20) + '...' : problem.question
-      }</div>
+        problem.meta.description.length > 20 ? problem.meta.description.slice(0, 20) + '...' : problem.meta.description
+      }</ProblemListCellDescription>
     </ProblemListCellLayout>
-  )
-}
+  );
+};
+
+const ProblemListCellTitle = styled.div`
+  font-size: 16px;
+  color: #aaa;
+`;
+
+const ProblemListCellID = styled.div`
+  font-size: 12px;
+  color: #aaa5;
+`;
+
+const ProblemListCellDescription = styled.div`
+  font-size: 14px;
+`;
 
 const ProblemListCellLayout = styled.div<{
   isActivated?: boolean,
 }>`
   ${props => props.isActivated ? `
-    border: 1px solid #00aeff;
-    background-color: #c8eeff;
+    border-bottom: 1px solid #37373A;
+    background-color: #232327;
   ` : `
-    border: 1px solid #d9d9d9;
-    background-color: white;
+    border-bottom: 1px solid #37373A;
+    background-color: #1A1A1C;
   `}
   /* width: 200px; */
+  color: #7E7E8C;
   height: fit-content;
   min-height: 50px;
-  padding: 8px;
+  padding: 12px;
 `;
 
 const CreateNewProblemButton = ({
@@ -100,15 +120,30 @@ const CreateNewProblemButton = ({
     <CreateNewProblemButtonLayout
       onClick={onClick}
     >
-      +
+      <FiPlusSquare size={16} />
+      문항 추가
     </CreateNewProblemButtonLayout>
-  )
-}
+  );
+};
 
 const CreateNewProblemButtonLayout = styled.div`
-  border: 1px solid #d9d9d9;
-  background-color: white;
+  /* border: 1px solid #d9d9d9; */
+  background-color: #232327;
   height: 20px;
   padding: 8px;
   text-align: center;
+  margin: 8px;
+  border-radius: 4px;
+  color: #aaa;
+
+  font-size: 14px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  :hover {
+    background-color: #86868613;
+  }
 `;

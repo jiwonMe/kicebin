@@ -1,94 +1,99 @@
-import styled from 'styled-components'
+import React, { useMemo } from 'react';
+import styled from 'styled-components';
 import Markdown from './components/Markdown';
 
-const Viewer = ({ problems, index } : { problems: ProblemSchema[], index: number }) => {
+const Viewer = ({ problems, currentProblemId } : { problems: ProblemScheme[], currentProblemId: string }) => {
+
+  const currentProblem = useMemo(() => {
+    return problems.find((problem) => problem.id === currentProblemId) as ProblemScheme;
+  }, [problems, currentProblemId]);
+
+  const currentProblemNumber = useMemo(() => {
+    return problems.findIndex((problem) => problem.id === currentProblemId) + 1;
+  }, [problems, currentProblemId]);
+
   return (
     <ViewerLayout>
       <ProblemLayout>
         <ProblemNumber>
-          {problems[index].problemNumber}
+          {currentProblemNumber.toString().padStart(2, '0')}
         </ProblemNumber>
-        <ProblemStatement>
-          <Markdown>
-            {problems[index].question}
-          </Markdown>
-        </ProblemStatement>
         {
-          (problems[index].boxed === '') ? null : (
-            <ProblemBoxed>
-              <Markdown>
-                {problems[index].boxed}
-              </Markdown>
-            </ProblemBoxed>
-          )
-        }
-        {
-          (problems[index].conditions[0] === '' && problems[index].conditions[1] === '') ? null : (
-            <ProblemConditions>
-              <ol>
-                <li>
+          currentProblem.content.map((block, blockIndex) => {
+            switch (block.type) {
+            case 'STATEMENT':
+              return (
+                <ProblemStatement key={blockIndex}>
                   <Markdown>
-                    {problems[index].conditions[0]}
+                    {block.content}
                   </Markdown>
-                </li>
-                <li>
+                </ProblemStatement>
+              );
+            case 'CONDITIONS':
+              return (
+                <ProblemConditions key={blockIndex}>
+                  <ol>
+                    {
+                      (block.content as string[]).map((condition, conditionIndex) => (
+                        <li key={conditionIndex}>
+                          <Markdown>
+                            {condition}
+                          </Markdown>
+                        </li>
+                      ))
+                    }
+                  </ol>
+                </ProblemConditions>
+              );
+            case 'BOXED':
+              return (
+                <ProblemBoxed key={blockIndex}>
                   <Markdown>
-                    {problems[index].conditions[1]}
+                    {block.content}
                   </Markdown>
-                </li>
-              </ol>
-            </ProblemConditions>
-          )
-        }
-        <ProblemStatement>
-          <Markdown>
-            {problems[index].question2}
-          </Markdown>
-        </ProblemStatement>
-        {
-          (problems[index].examples.first === '' && problems[index].examples.second === '' && problems[index].examples.third === '') ? null : (
-            <ProblemExample>
-              <ol>
-                <li>
-                  <Markdown>
-                    {problems[index].examples.first}
-                  </Markdown>
-                </li>
-                <li>
-                  <Markdown>
-                    {problems[index].examples.second}
-                  </Markdown>
-                </li>
-                <li>
-                  <Markdown>
-                    {problems[index].examples.third}
-                  </Markdown>
-                </li>
-              </ol>
-            </ProblemExample>
-          )
-        }
-        <ProblemChoices>
-          <ol>
-            {
-              problems[index].choices.map((choice, index) => {
-                return (
-                <li key={index}>
-                  <Markdown>
-                      {choice}
-                  </Markdown>
-                </li>
-                )
-              })
+                </ProblemBoxed>
+              );
+            case 'EXAMPLES':
+              return (
+                <ProblemExample key={blockIndex}>
+                  <ol>
+                    {
+                      (block.content as string[]).map((example, exampleIndex) => (
+                        <li key={exampleIndex}>
+                          <Markdown>
+                            {example}
+                          </Markdown>
+                        </li>
+                      ))
+                    }
+                  </ol>
+                </ProblemExample>
+              );
+            case 'CHOICES':
+              return (
+                <ProblemChoices key={blockIndex}>
+                  <ol>
+                    {
+                      (block.content as string[]).map((choice, choiceIndex) => (
+                        <li key={choiceIndex}>
+                          <Markdown>
+                            {choice}
+                          </Markdown>
+                        </li>
+                      ))
+                    }
+                  </ol>
+                </ProblemChoices>
+              );
             }
-          </ol>
-        </ProblemChoices>
+          })
+        }
       </ProblemLayout>
     </ViewerLayout>
-  )
-}
+  );
+};
 
-export default Viewer
+export default Viewer;
 
 const ViewerLayout = styled.div`
   display: flex;
@@ -96,15 +101,19 @@ const ViewerLayout = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 100%;
+
+  width: 40%;
   height: 100%;
 
-  padding: 1em;
+  padding: 16px;
 
-  background-color: #dfe1e8;
+  background-color: #17171A;
+  border-left: 1px solid #37373A;
 
   font-size: 12px;
-`
+
+  overflow-y: scroll;
+`;
 
 const ProblemLayout = styled.div`
   display: flex;
@@ -113,9 +122,10 @@ const ProblemLayout = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 100%;
+  height: fit-content;
+  min-height: 300px;
 
-  padding: 1em;
+  padding: 32px;
 
   background-color: white;
 
@@ -145,14 +155,14 @@ const ProblemLayout = styled.div`
     margin-left: 2em;
     text-align: left;
   }
-`
+`;
 
 const ProblemNumber = styled.h2`
   font-family: 'Pretendard-bold';
   font-size: 1.5rem;
   margin: 0;
   margin-bottom: 0.5em;
-`
+`;
 
 const ProblemConditions = styled.div`
   /* font-family: 'Times New Roman', "SM신명조03"; */
@@ -185,7 +195,7 @@ const ProblemConditions = styled.div`
   li:nth-child(2) {
     list-style-type: "(나) ";
   }
-`
+`;
 
 const ProblemStatement = styled.div`
   /* font-family: 'Times New Roman', "SM신명조03"; */
@@ -198,19 +208,19 @@ const ProblemStatement = styled.div`
   /* height: 100%; */
 
   margin-bottom: 1em;
-`
+`;
 
 const ProblemBoxed = styled.div`
   /* font-family: 'Times New Roman', "SM신명조03"; */
   padding: 1em;
   width: 100%;
-  
+
   border: 1px solid black;
-  
+
   margin-bottom: 1em;
 
   box-sizing: border-box;
-  `
+  `;
 
 const ProblemExample = styled.div`
   /* font-family: 'Times New Roman', "SM신명조03"; */
@@ -221,6 +231,8 @@ const ProblemExample = styled.div`
   width: 100%;
   padding-left: 1em;
   /* height: 100%; */
+
+  box-sizing: border-box;
 
   border: 1px solid black;
 
@@ -246,7 +258,7 @@ const ProblemExample = styled.div`
   li:nth-child(3) {
     list-style-type: "ㄷ. ";
   }
-`
+`;
 
 const ProblemChoices = styled.div`
   /* font-family: 'Times New Roman', "SM신명조03"; */
@@ -266,7 +278,7 @@ const ProblemChoices = styled.div`
   ol > li {
     margin-bottom: 0.5em;
   }
-  
+
   li:nth-child(1) {
     list-style-type: "① ";
   }
@@ -286,4 +298,4 @@ const ProblemChoices = styled.div`
   li:nth-child(5) {
     list-style-type: "⑤ ";
   }
-`
+`;

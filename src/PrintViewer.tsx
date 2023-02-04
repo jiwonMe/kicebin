@@ -1,17 +1,11 @@
-import React from 'react'
-import styled from 'styled-components'
-import Markdown from './components/Markdown'
-import 'katex/dist/katex.min.css'
-import GlobalStyle from './GlobalStyle'
+import React from 'react';
+import styled from 'styled-components';
+import Markdown from './components/Markdown';
+import 'katex/dist/katex.min.css';
+import GlobalStyle from './GlobalStyle';
 
-const PrintViewer = ({ problems, meta }: { 
-  problems: ProblemSchema[],
-  meta?: {
-    title?: string,
-    header?: string,
-    footer?: string,
-    pagination?: boolean,
-  } 
+const PrintViewer = ({ document }: {
+  document: DocumentScheme,
 }) => {
 
   // [a, b, c, d, ...] => [[a, b], [c, d], ...]
@@ -23,116 +17,112 @@ const PrintViewer = ({ problems, meta }: {
       index += size;
     }
     return chunked_arr;
-  }
+  };
 
   return (
     <DocumentLayout
     >
       <GlobalStyle />
-      {chunk<ProblemSchema>(problems,2).map((problemSet, problemSetIndex) => (
-        <PageLayout>
+      {chunk<ProblemScheme>(document.problems,2).map((problemSet, problemSetIndex) => (
+        <PageLayout key={problemSetIndex}>
           <TwoColumnLayout>
-          {
-            problemSet.map((problem, problemIndex) => (
-              <ProblemLayout>
+            {
+              problemSet.map((problem, problemIndex) => (
+                <ProblemLayout key={problemIndex}>
                   <ProblemNumber>
-                    {problem.problemNumber}
+                    {(
+                      problemSetIndex * 2
+                      + problemIndex + 1
+                    ).toString().padStart(2, '0')}
                   </ProblemNumber>
-                  <ProblemStatement>
-                    <Markdown>
-                      {problem.question}
-                    </Markdown>
-                  </ProblemStatement>
                   {
-                    (problem.boxed === '') ? null : (
-                      <ProblemBoxed>
-                        <Markdown>
-                          {problem.boxed}
-                        </Markdown>
-                      </ProblemBoxed>
-                    )
-                  }
-                  {
-                  (problem.conditions[0] === '' && problem.conditions[1] === '') ? null : (
-                    <ProblemConditions>
-                      <ol>
-                        <li>
-                          <Markdown>
-                            {problem.conditions[0]}
-                          </Markdown>
-                        </li>
-                        <li>
-                          <Markdown>
-                            {problem.conditions[1]}
-                          </Markdown>
-                        </li>
-                      </ol>
-                    </ProblemConditions>
-                  )
-                }
-                <ProblemStatement>
-                  <Markdown>
-                    {problem.question2}
-                  </Markdown>
-                </ProblemStatement>
-                  {
-                  (problem.examples.first === '' && problem.examples.second === '' && problem.examples.third === '') ? null : (
-                    <ProblemExample>
-                      <ol>
-                        <li>
-                          <Markdown>
-                            {problem.examples.first}
-                          </Markdown>
-                        </li>
-                        <li>
-                          <Markdown>
-                            {problem.examples.second}
-                          </Markdown>
-                        </li>
-                        <li>
-                          <Markdown>
-                            {problem.examples.third}
-                          </Markdown>
-                        </li>
-                      </ol>
-                    </ProblemExample>
-                  )
-                }
-                <ProblemChoices>
-                  <ol>
-                    {
-                      problem.choices.map((choice, choiceIndex) => {
+                    problem.content.map((block, blockIndex) => {
+                      switch (block.type) {
+                      case 'STATEMENT':
                         return (
-                          choice !== '' && (
-                            <li key={choiceIndex}>
-                              <Markdown>
-                                {choice}
-                              </Markdown>
-                            </li>
-                          )
-                        )
-                      })
-                    }
-                  </ol>
-                </ProblemChoices>
-              </ProblemLayout>
-            ))
-          }
+                          <ProblemStatement key={blockIndex}>
+                            <Markdown>
+                              {block.content}
+                            </Markdown>
+                          </ProblemStatement>
+                        );
+                      case 'CONDITIONS':
+                        return (
+                          <ProblemConditions key={blockIndex}>
+                            <ol>
+                              {
+                                (block.content as string[]).map((condition, conditionIndex) => (
+                                  <li key={conditionIndex}>
+                                    <Markdown>
+                                      {condition}
+                                    </Markdown>
+                                  </li>
+                                ))
+                              }
+                            </ol>
+                          </ProblemConditions>
+                        );
+                      case 'BOXED':
+                        return (
+                          <ProblemBoxed key={blockIndex}>
+                            <Markdown>
+                              {block.content}
+                            </Markdown>
+                          </ProblemBoxed>
+                        );
+                      case 'EXAMPLES':
+                        return (
+                          <ProblemExample key={blockIndex}>
+                            <ol>
+                              {
+                                (block.content as string[]).map((example, exampleIndex) => (
+                                  <li key={exampleIndex}>
+                                    <Markdown>
+                                      {example}
+                                    </Markdown>
+                                  </li>
+                                ))
+                              }
+                            </ol>
+                          </ProblemExample>
+                        );
+                      case 'CHOICES':
+                        return (
+                          <ProblemChoices key={blockIndex}>
+                            <ol>
+                              {
+                                (block.content as string[]).map((choice, choiceIndex) => (
+                                  <li key={choiceIndex}>
+                                    <Markdown>
+                                      {choice}
+                                    </Markdown>
+                                  </li>
+                                ))
+                              }
+                            </ol>
+                          </ProblemChoices>
+                        );
+                      }
+                    })
+                  }
+                </ProblemLayout>
+              ))
+            }
           </TwoColumnLayout>
-        {
-          (meta?.pagination) ? (
-            <ProblemPagination isEven={problemSetIndex % 2 === 1}>
-              {problemSetIndex + 1}
-            </ProblemPagination>
-          ) : null
-        }
+          {
+            (document.meta.pagination) ? (
+              <ProblemPagination isEven={problemSetIndex % 2 === 1}>
+                {problemSetIndex + 1}
+              </ProblemPagination>
+            ) : null
+          }
         </PageLayout>
       ))}
     </DocumentLayout>
-  )
-}
+  );
+};
 
-export default PrintViewer
+export default PrintViewer;
 
 const DocumentLayout = styled.div`
   @media print {
@@ -172,7 +162,7 @@ const DocumentLayout = styled.div`
   p {
     margin: 0;
   }
-`
+`;
 
 const PageLayout = styled.div`
   break-inside: avoid !important;
@@ -188,7 +178,7 @@ const PageLayout = styled.div`
 
   width: 595pt !important;
   height: 840pt !important;
-`
+`;
 
 const ProblemLayout  = styled.div`
   width: 48%;
@@ -217,11 +207,11 @@ const ProblemNumber = styled.div`
   font-size: 15pt;
   font-weight: bold;
   margin-bottom: 0.5em;
-`
+`;
 
 const ProblemStatement = styled.div`
   margin-bottom: 1em;
-`
+`;
 
 const ProblemBoxed = styled.div`
   font-family: 'Times New Roman', "SM신명조03";
@@ -231,7 +221,7 @@ const ProblemBoxed = styled.div`
   margin-bottom: 1em;
 
   box-sizing: border-box;
-`
+`;
 
 const ProblemConditions = styled.div`
   font-family: 'Times New Roman', "SM신명조03";
@@ -263,7 +253,7 @@ const ProblemConditions = styled.div`
   li:nth-child(2) {
     list-style-type: "(나) ";
   }
-`
+`;
 
 const ProblemExample = styled.div`
   font-family: 'Times New Roman', "SM신명조03";
@@ -299,7 +289,7 @@ const ProblemExample = styled.div`
   li:nth-child(3) {
     list-style-type: "ㄷ. ";
   }
-`
+`;
 
 const ProblemChoices = styled.div`
   font-family: 'Times New Roman', "SM신명조03";
@@ -323,7 +313,7 @@ const ProblemChoices = styled.div`
     position: inline;
     flex-grow: 1;
   }
-  
+
   li:nth-child(1) {
     list-style-type: "① ";
   }
@@ -343,7 +333,7 @@ const ProblemChoices = styled.div`
   li:nth-child(5) {
     list-style-type: "⑤ ";
   }
-`
+`;
 
 const ProblemPagination = styled.div<{ isEven? : boolean }>`
   position: absolute;
@@ -351,4 +341,4 @@ const ProblemPagination = styled.div<{ isEven? : boolean }>`
   ${props => props.isEven ? 'left: 1cm;' : 'right: 1cm;'}
   font-family: 'Times New Roman', "SM신명조03";
   font-size: 10pt;
-`
+`;

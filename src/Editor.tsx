@@ -1,265 +1,90 @@
-import styled from 'styled-components'
-import { Input } from 'antd'
+import React from 'react';
+import styled from 'styled-components';
 import CodeEditor from 'react-simple-code-editor';
-import { highlight, languages } from 'prismjs';
-import 'prismjs/components/prism-markdown';
-import 'prismjs/components/prism-latex';
-import 'prismjs/themes/prism-solarizedlight.css'; //Example style, you can use another
+// import { highlight, languages } from 'prismjs';
+// import 'prismjs/components/prism-markdown';
+// import 'prismjs/components/prism-latex';
+// import 'prismjs/themes/prism-solarizedlight.css'; //Example style, you can use another
+import { useEditorStore } from './store/editorStore';
+import EditorBlock from './components/EditorBlock';
+import { v4 as uuid } from 'uuid';
 
-const Editor = ({
-  problem,
-  setProblem,
-}: {
-  problem: ProblemSchema;
-  setProblem: (problem: ProblemSchema) => void;
-}) => {
+import { FiPlus } from 'react-icons/fi';
+import { InputWithLabel } from './components/Input';
+
+const Editor = () => {
+  const { document, setDocument, currentProblemId: _currProbId } = useEditorStore();
+
+  const currentProblemId = _currProbId || document.problems[0].id;
+
+  const currentProblem = document.problems.find((p) => p.id === currentProblemId);
+
+  if (!currentProblem) {
+    return <div>Problem not found</div>;
+  }
   return (
-    <div>
-      <EditorLayout>
-        <form>
-          <FormBox>
-            <label>문항번호</label>
-            <Input
-              type="text"
-              value={problem.problemNumber}
-              onChange={(e) => setProblem({
-                ...problem,
-                problemNumber: e.target.value,
-              })}
-            />
-          </FormBox>
-          <FormBox>
-            <label>상단 제시문</label>
-            <StyledCodeEditor
-              highlight={(code) => highlight(
-                code,
-                languages.latex,
-                'latex'
-              )}
-              value={problem.question}
-              onValueChange={(value) => setProblem({
-                ...problem,
-                question: value,
-              })}
-              // font
-              padding={10}
-            />
-          </FormBox>
-          <FormBox>
-            <label>박스</label>
-            <StyledCodeEditor
-              highlight={(code) => highlight(
-                code,
-                languages.latex,
-                'latex',
-              )}
-              value={problem.boxed}
-              onValueChange={(value) => setProblem({
-                ...problem,
-                boxed: value,
-              })}
-              padding={10}
-            />
-          </FormBox>
-          <FormBox>
-            <label>조건 (가)</label>
-            <StyledCodeEditor
-              highlight={(code) => highlight(
-                code,
-                languages.latex,
-                'latex',
-              )}
-              value={problem.conditions[0]}
-              onValueChange={(value) => setProblem({
-                ...problem,
-                conditions: [
-                  value,
-                  problem.conditions[1],
-                ],
-              })}
-              padding={10}
-            />
-          </FormBox>
-          <FormBox>
-            <label>조건 (나)</label>
-            <StyledCodeEditor
-              highlight={(code) => highlight(
-                code,
-                languages.latex,
-                'latex',
-              )}
-              value={problem.conditions[1]}
-              onValueChange={(value) => setProblem({
-                ...problem,
-                conditions: [
-                  problem.conditions[0],
-                  value,
-                ],
-              })}
-              padding={10}
-            />
-          </FormBox>
-          <FormBox>
-            <label>하단 제시문</label>
-            <StyledCodeEditor
-              highlight={(code) => highlight(
-                code,
-                languages.latex,
-                'latex',
-              )}
-              value={problem.question2}
-              onValueChange={(value) => setProblem({
-                ...problem,
-                question2: value,
-              })}
-              // font
-              padding={10}
-            />
-          </FormBox>
-          <FormBox>
-            <label>보기 ㄱ</label>
-            <StyledCodeEditor
-              highlight={(code) => highlight(
-                code,
-                languages.latex,
-                'latex',
-              )}
-              value={problem.examples.first}
-              onValueChange={(value) => setProblem({
-                ...problem,
-                examples: {
-                  ...problem.examples,
-                  first: value,
-                },
-              })}
-              padding={10}
-            />
-          </FormBox>
-          <FormBox>
-            <label>보기 ㄴ</label>
-            <StyledCodeEditor
-              highlight={(code) => highlight(
-                code,
-                languages.latex,
-                'latex',
-              )}
-              value={problem.examples.second}
-              onValueChange={(value) => setProblem({
-                ...problem,
-                examples: {
-                  ...problem.examples,
-                  second: value,
-                },
-              })}
-              padding={10}
-            />
-          </FormBox>
-          <FormBox>
-            <label>보기 ㄷ</label>
-            <StyledCodeEditor
-              highlight={(code) => highlight(
-                code,
-                languages.latex,
-                'latex',
-              )}
-              value={problem.examples.third}
-              onValueChange={(value) => setProblem({
-                ...problem,
-                examples: {
-                  ...problem.examples,
-                  third: value,
-                },
-              })}
-              padding={10}
-            />
-          </FormBox>
-          <ChoiceLayout>
-            <FormBox>
-              <label>선택지 1</label>
-              <Input
-                value={problem.choices[0]}
-                onChange={(e) => setProblem({
-                  ...problem,
-                  choices: [
-                    e.target.value,
-                    problem.choices[1],
-                    problem.choices[2],
-                    problem.choices[3],
-                    problem.choices[4],
-                  ],
-                })}
-              />
-            </FormBox>
-            <FormBox>
-              <label>선택지 2</label>
-              <Input
-                value={problem.choices[1]}
-                onChange={(e) => setProblem({
-                  ...problem,
-                  choices: [
-                    problem.choices[0],
-                    e.target.value,
-                    problem.choices[2],
-                    problem.choices[3],
-                    problem.choices[4],
-                  ],
-                })}
-              />
-            </FormBox>
-            <FormBox>
-              <label>선택지 3</label>
-              <Input
-                value={problem.choices[2]}
-                onChange={(e) => setProblem({
-                  ...problem,
-                  choices: [
-                    problem.choices[0],
-                    problem.choices[1],
-                    e.target.value,
-                    problem.choices[3],
-                    problem.choices[4],
-                  ],
-                })}
-              />
-            </FormBox>
-            <FormBox>
-              <label>선택지 4</label>
-              <Input
-                value={problem.choices[3]}
-                onChange={(e) => setProblem({
-                  ...problem,
-                  choices: [
-                    problem.choices[0],
-                    problem.choices[1],
-                    problem.choices[2],
-                    e.target.value,
-                    problem.choices[4],
-                  ],
-                })}
-              />
-            </FormBox>
-            <FormBox>
-              <label>선택지 5</label>
-              <Input
-                value={problem.choices[4]}
-                onChange={(e) => setProblem({
-                  ...problem,
-                  choices: [
-                    problem.choices[0],
-                    problem.choices[1],
-                    problem.choices[2],
-                    problem.choices[3],
-                    e.target.value,
-                  ],
-                })}
-              />
-            </FormBox>
-          </ChoiceLayout>
-        </form>
-      </EditorLayout>
-    </div>
-  ) 
-}
+    <EditorLayout>
+      <FormBox>
+        <InputWithLabel
+          label="title"
+          type="text"
+          value={currentProblem.meta.title}
+          onChange={(e) => {
+            setDocument.setProblems.update(currentProblemId).setMeta({
+              ...currentProblem.meta,
+              title: e.target.value,
+            });
+          }}
+        />
+        <InputWithLabel
+          label="description"
+          type='text'
+          value={currentProblem.meta.description || ''}
+          onChange={(e) => {
+            setDocument.setProblems.update(currentProblemId).setMeta({
+              ...document.meta,
+              description: e.target.value,
+            });
+          }}
+        />
+      </FormBox>
+      {
+        currentProblem.content.map((block) => (
+          <EditorBlock
+            key={block.id}
+            {...block}
+            setBlock={(newBlock) => {
+              setDocument.setProblems.update(currentProblemId).setContent(
+                currentProblem.content.map((b) => (b.id === newBlock.id ? newBlock : b)),
+              );
+            }}
+            id={block.id}
+            type={block.type}
+            content={block.content}
+          />
+        ))
+      }
+      {
+        <AddBlockButton
+          type="button"
+          onClick={() => {
+            setDocument.setProblems.update(currentProblemId).setContent([
+              ...currentProblem.content,
+              {
+                id: uuid(),
+                type: 'STATEMENT',
+                content: '',
+              }
+            ]);
+          }}
+        >
+          <FiPlus size={16}/>
+            add block
+        </AddBlockButton>
+      }
+    </EditorLayout>
+  );
+};
 
 export default Editor;
 
@@ -268,13 +93,19 @@ const EditorLayout = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  width: 100%;
+  width: 40%;
   height: 100%;
+
+  gap: 16px;
 
   box-sizing: border-box;
 
   padding: 1em;
-`
+
+  background-color: #1A1A1C;
+
+  overflow-y: scroll;
+`;
 
 const FormBox = styled.div`
   display: flex;
@@ -282,28 +113,33 @@ const FormBox = styled.div`
 
   width: 100%;
 
-  margin-bottom: 1em;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #353535;
 
   label {
     font-size: 14px;
     margin-bottom: 0.25em;
   }
-`
+`;
 
-const ChoiceLayout = styled.div`
+const AddBlockButton = styled.button`
+  background-color: #232327;
+  border: none;
+  color: #aaa;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 16px;
+  text-align: center;
+  border-radius: 4px;
+
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100%;
-  gap: 1em;
-`
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
 
-const StyledCodeEditor = styled(CodeEditor)`
-  font-family: 'D2Coding', 'Hack', 'Fira code', 'Fira Mono', monospace;
-  width: 100%;
-  min-height: 100px;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-  padding: 0.5em;
+  :hover {
+    background-color: #86868613;
+  }
 `;

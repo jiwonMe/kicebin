@@ -21,10 +21,21 @@ const {
   VITE_APP_FIREBASE_MEASUREMENT_ID,
 } = import.meta.env;
 
+const router = createBrowserRouter([
+  {
+    path: '/login',
+    element: <div>Login</div>,
+  },
+  {
+    path: '/',
+    element: <App />,
+  }
+]);
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <GlobalStyle />
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 );
 
