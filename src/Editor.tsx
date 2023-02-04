@@ -19,6 +19,26 @@ const Editor = () => {
 
   const currentProblem = document.problems.find((p) => p.id === currentProblemId);
 
+  const deleteBlock = (blockId: string) => {
+    setDocument.setProblems.update(currentProblemId).setContent((currentProblem as ProblemScheme).content.filter((block) => block.id !== blockId)
+    );
+  };
+
+  const addBlockAfter = (blockId: string) => {
+    if (!currentProblem) {
+      return;
+    }
+    setDocument.setProblems.update(currentProblemId).setContent([
+      ...currentProblem.content.splice(0, currentProblem.content.findIndex((block) => block.id === blockId) + 1),
+      {
+        id: uuid(),
+        type: 'STATEMENT',
+        content: '',
+      },
+      ...currentProblem.content.splice(currentProblem.content.findIndex((block) => block.id === blockId) + 1),
+    ]);
+  };
+
   if (!currentProblem) {
     return <div>Problem not found</div>;
   }
@@ -42,7 +62,7 @@ const Editor = () => {
           value={currentProblem.meta.description || ''}
           onChange={(e) => {
             setDocument.setProblems.update(currentProblemId).setMeta({
-              ...document.meta,
+              ...currentProblem.meta,
               description: e.target.value,
             });
           }}
@@ -58,6 +78,8 @@ const Editor = () => {
                 currentProblem.content.map((b) => (b.id === newBlock.id ? newBlock : b)),
               );
             }}
+            deleteBlock={deleteBlock}
+            addBlockAfter={addBlockAfter}
             id={block.id}
             type={block.type}
             content={block.content}

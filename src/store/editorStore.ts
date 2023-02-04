@@ -148,7 +148,7 @@ export const useEditorStore = create<EditorState>()(
         pagination: true,
       },
       problems: [
-        sampleProblem,
+        // sampleProblem,
         dummyProblem,
       ],
     },

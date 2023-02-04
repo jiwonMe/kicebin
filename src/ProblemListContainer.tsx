@@ -1,16 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
-import { FiPlusSquare } from 'react-icons/fi';
+import { FiPlusSquare, FiX } from 'react-icons/fi';
 
 const ProblemListContainer = ({
   problems,
   currentProblemId,
   createNewProblem,
+  deleteProblem,
   onClick,
 }: {
   problems: ProblemScheme[],
   currentProblemId: string,
   createNewProblem: () => void,
+  deleteProblem: (problemId: string) => void,
   onClick: (problemId: string) => void,
 }) => {
   return (
@@ -22,6 +24,9 @@ const ProblemListContainer = ({
             problem={problem}
             onClick={onClick}
             isActivated={problem.id === currentProblemId}
+            deleteProblem={() => {
+              deleteProblem(problem.id);
+            }}
           />
         ))
       }
@@ -55,10 +60,12 @@ const ProblemListCell = ({
   problem,
   onClick,
   isActivated,
+  deleteProblem,
 }: {
   problem: ProblemScheme,
   onClick: (problemId: string) => void,
   isActivated?: boolean,
+  deleteProblem: () => void,
 }) => {
   return (
     <ProblemListCellLayout
@@ -68,9 +75,19 @@ const ProblemListCell = ({
       }}
       isActivated={isActivated}
     >
-      <ProblemListCellTitle>
-        {problem.meta.title}
-      </ProblemListCellTitle>
+      <ProblemListCellHeader>
+        <ProblemListCellTitle>
+          {problem.meta.title}
+        </ProblemListCellTitle>
+        <ProblemListCellDeleteButton
+          onClick={(e) => {
+            e.stopPropagation();
+            deleteProblem();
+          }}
+        >
+          <FiX size={16} />
+        </ProblemListCellDeleteButton>
+      </ProblemListCellHeader>
       <ProblemListCellID>{problem.id}</ProblemListCellID>
       <ProblemListCellDescription>{
         // problem.question length limit to 20
@@ -79,6 +96,20 @@ const ProblemListCell = ({
     </ProblemListCellLayout>
   );
 };
+
+const ProblemListCellHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ProblemListCellDeleteButton = styled.div`
+  color: #aaa0;
+  cursor: pointer;
+  transition: 0.2s;
+  :hover {
+    color: #aaa;
+  }
+`;
 
 const ProblemListCellTitle = styled.div`
   font-size: 16px;
@@ -107,7 +138,7 @@ const ProblemListCellLayout = styled.div<{
   /* width: 200px; */
   color: #7E7E8C;
   height: fit-content;
-  min-height: 50px;
+  /* min-height: 50px; */
   padding: 12px;
 `;
 

@@ -2,17 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 import { InputWithLabel } from './Input';
 import LatexCodeEditor from './LatexCodeEditor';
+import { FiX, FiPlus } from 'react-icons/fi';
 
 interface EditorBlockProps extends BlockScheme {
   setBlock: (block: BlockScheme) => void;
+  deleteBlock: (blockId: string) => void;
+  addBlockAfter: (blockId: string) => void;
 }
 
 const EditorBlock = ({
-  type, id, content, setBlock,
+  type, id, content, setBlock, deleteBlock, addBlockAfter,
 }: EditorBlockProps) => {
   return (
     <EditorBlockLayout>
-      <div>
+      <BlockHeaderLayout>
         <Select
           value={type}
           onChange={(e) => {
@@ -36,7 +39,21 @@ const EditorBlock = ({
           <option value="EXAMPLES">examples</option>
           <option value="CHOICES">choices</option>
         </Select>
-      </div>
+        <BlockButton
+          onClick={() => {
+            addBlockAfter(id);
+          }}
+        >
+          <FiPlus size={16} />
+        </BlockButton>
+        <BlockButton
+          onClick={() => {
+            deleteBlock(id);
+          }}
+        >
+          <FiX size={16} />
+        </BlockButton>
+      </BlockHeaderLayout>
       <div>
         {['STATEMENT', 'BOXED'].includes(type) && (
           <LatexCodeEditor
@@ -161,6 +178,30 @@ const EditorBlockLayout = styled.div`
 
 `;
 
+const BlockHeaderLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #464646;
+`;
+
+const BlockButton = styled.button`
+  background-color: #0000;
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  color: #d4d4d4;
+  :hover {
+    background-color: #86868613;
+  }
+`;
+
 const Select = styled.select`
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -173,11 +214,12 @@ const Select = styled.select`
 
   padding: 8px 4px;
 
+  height: 40px;
+
   width: 100%;
 
   &:focus {
     outline: none;
   }
 
-  border-bottom: 1px solid #464646;
 `;

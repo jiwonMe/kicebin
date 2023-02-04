@@ -133,7 +133,7 @@ const DocumentLayout = styled.div`
 
   line-height: 150%;
 
-  font-family: 'Times New Roman', "SM신명조03";
+  font-family: 'Times New Roman', 'MaruBuri' /* ,"SM신명조03"*/;
   font-size: 9pt;
 
   font-stretch: 0.95em;
@@ -169,7 +169,7 @@ const PageLayout = styled.div`
   position: relative;
   /* page-break-before: always !important; */
   /* break-before: page; */
-  padding: 2cm 1.5cm 2cm 1.5cm;
+  padding: 2cm 1.5cm 2.5cm 1.5cm;
   margin: 0;
 
   overflow: hidden;
@@ -190,6 +190,12 @@ const TwoColumnLayout = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
+  height: 100%;
+
+  border-top: 0.5pt solid black;
+  border-bottom: 0.5pt solid black;
+
+  padding-top: 0.5cm;
 
   ${ProblemLayout}:nth-child(2)::before {
     content: '';
@@ -197,7 +203,7 @@ const TwoColumnLayout = styled.div`
     left: 50%;
     top: 2cm;
     width: 0.5pt;
-    height: 85%;
+    height: calc(100% - 4cm);
     background-color: black;
   }
 `;
@@ -338,7 +344,7 @@ const ProblemChoices = styled.div`
 const ProblemPagination = styled.div<{ isEven? : boolean }>`
   position: absolute;
   bottom: 1cm;
-  ${props => props.isEven ? 'left: 1cm;' : 'right: 1cm;'}
+  ${props => props.isEven ? 'left: 1.5cm;' : 'right: 1.5cm;'}
   font-family: 'Times New Roman', "SM신명조03";
   font-size: 10pt;
 `;

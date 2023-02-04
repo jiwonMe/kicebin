@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import KicebinLogo from './assets/kicebin-logo.svg';
+import { FiPrinter } from 'react-icons/fi';
+import { BsQuestionLg } from 'react-icons/bs';
 
 const TopBar = ({ actions }: {
   actions: {
@@ -20,7 +21,16 @@ const TopBar = ({ actions }: {
         /> */}
       </Title>
       <ActionButtonsContainerLayout>
+        <ActionButton onClick={() => {
+          alert(`
+            개발자: 박지원
+            이메일: park@jiwon.me
+          `);
+        }}>
+          <BsQuestionLg size={16}/>
+        </ActionButton>
         <ActionButton onClick={actions.printDocument}>
+          <FiPrinter size={16}/>
           프린트
         </ActionButton>
       </ActionButtonsContainerLayout>
@@ -56,6 +66,7 @@ const ActionButtonsContainerLayout = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  gap: 8px;
 `;
 
 const ActionButton = ({ children, onClick }: {
@@ -78,6 +89,7 @@ const ActionButtonLayout = styled.button`
   border: none;
   border-radius: 4px;
   color: #BABAC2;
+  gap: 8px;
 
   cursor: pointer;
   :hover {

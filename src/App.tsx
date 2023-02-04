@@ -33,6 +33,11 @@ const App = () => {
     return _currProbId || document.problems[0].id;
   }, [_currProbId, document.problems]);
 
+  const deleteProblem = (problemId: string) => {
+    setDocument.setProblems.remove(problemId);
+    setCurrentProblemId(document.problems[0].id);
+  };
+
   const printViewerRef = useRef<HTMLIFrameElement>(null);
 
   const print = () => {
@@ -66,6 +71,7 @@ const App = () => {
           onClick={(problemId) => {
             setCurrentProblemId(problemId);
           }}
+          deleteProblem={deleteProblem}
         />
         <Editor/>
         <Viewer
