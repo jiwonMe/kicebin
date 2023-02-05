@@ -9,6 +9,11 @@ import GlobalStyle from './GlobalStyle';
 import Frame, { FrameContext } from 'react-frame-component';
 import PrintViewer from './PrintViewer';
 import { useEditorStore } from './store/editorStore';
+import { useAuthStore } from './store/AuthStore';
+import { useNavigate } from 'react-router-dom';
+
+import { collection, addDoc, getDoc, updateDoc, getDocs, setDoc, doc } from 'firebase/firestore';
+import { db } from './service/firebase';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -33,6 +38,10 @@ const App = () => {
     return _currProbId || document.problems[0].id;
   }, [_currProbId, document.problems]);
 
+  const [isDocumentLoaded, setIsDocumentLoaded] = useState(false);
+
+  const firestoreDocRef = useState();
+
   const deleteProblem = (problemId: string) => {
     setDocument.setProblems.remove(problemId);
     setCurrentProblemId(document.problems[0].id);
@@ -49,6 +58,82 @@ const App = () => {
       }
     }
   };
+
+  const { user, removeUser } = useAuthStore();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    } else {
+      console.log('user is logged in', user);
+    }
+  }, [user]);
+
+  const getDocument = async () => {
+    if (!user?.email) {
+      console.log('user is not logged in');
+      return;
+    }
+    console.log('user', user?.email);
+    const querySnapshot = await getDocs(collection(db, 'users', user?.email, 'docs'));
+
+    setDocument.setAll(
+      querySnapshot.docs[0]?.data() as DocumentScheme || {
+        id: uuid(),
+        title: '새 문제집',
+        description: '새 문제집입니다.',
+        problems: [createNewProblem()],
+      },
+    );
+
+    if (querySnapshot.empty) {
+      await setDoc(doc(db, 'users', user?.email), {});
+      await setDoc(doc(db, 'users', user?.email, 'docs', document.id), document);
+    }
+
+    setIsDocumentLoaded(true);
+    console.log('get');
+  };
+
+  const setDocumentToFirestore = async () => {
+    if (!isDocumentLoaded) {
+      return;
+    }
+    if (!user?.email) {
+      console.log('user is not logged in');
+      return;
+    }
+    const docRef = await getDocs(collection(db, 'users', user?.email, 'docs'));
+    if (docRef.empty) {
+      await setDoc(doc(db, 'users', user?.email), {});
+      await setDoc(doc(db, 'users', user?.email, 'docs', uuid()), document);
+    } else {
+      await updateDoc(docRef.docs[0].ref, {
+        ...document,
+      });
+    }
+  };
+
+  useEffect(() => {
+    // load datas
+    if (!isDocumentLoaded) {
+      getDocument();
+    }
+  }, [user?.email]);
+
+  useEffect(() => {
+    // save datas
+    setDocumentToFirestore();
+
+    console.log('updated', document);
+  }, [document]);
+
+  useEffect(() => {
+    console.log('isLoaded', isDocumentLoaded);
+  }, [isDocumentLoaded]);
+
 
   return (
     <EntireLayout>

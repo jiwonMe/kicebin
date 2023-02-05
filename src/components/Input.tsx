@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import LatexCodeEditor from './LatexCodeEditor';
 
 const Input = styled.input`
   border: 1px solid #353535;
@@ -27,6 +28,16 @@ const InputWithLabel = ({ label, type, value, onChange }: { label: string, type:
       value={value}
       onChange={onChange}
     />
+    {/* <LatexCodeEditor
+      value={value}
+      onValueChange={(v) => {
+        onChange({
+          target: {
+            value: v,
+          },
+        } as any);
+      }}
+    /> */}
   </InputWithLabelLayout>
 );
 

@@ -124,6 +124,7 @@ $$
 interface EditorState {
   document: DocumentScheme;
   setDocument: {
+    setAll: (document: DocumentScheme | null) => void;
     setMeta: (meta: DocumentScheme['meta']) => void;
     setProblems: {
       add: (problem: ProblemScheme) => void;
@@ -143,8 +144,8 @@ export const useEditorStore = create<EditorState>()(
     document: {
       id: uuid(),
       meta: {
-        title: 'Untitled',
-        description: '',
+        title: 'KICEBIN Sample Document',
+        description: 'This is a sample document.',
         pagination: true,
       },
       problems: [
@@ -153,6 +154,15 @@ export const useEditorStore = create<EditorState>()(
       ],
     },
     setDocument: {
+      setAll: (document) => set((state) => ({ document: document ?? {
+        id: uuid(),
+        meta: {
+          title: 'KICEBIN Sample Document',
+          description: 'This is a sample document.',
+          pagination: true,
+        },
+        problems: [sampleProblem],
+      } })),
       setMeta: (meta) => set((state) => ({ document: { ...state.document, meta } })),
       setProblems: {
         add: (problem) => set((state) => ({ document: { ...state.document, problems: [...state.document.problems, problem] } })),

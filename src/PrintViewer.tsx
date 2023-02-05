@@ -25,6 +25,17 @@ const PrintViewer = ({ document }: {
       <GlobalStyle />
       {chunk<ProblemScheme>(document.problems,2).map((problemSet, problemSetIndex) => (
         <PageLayout key={problemSetIndex}>
+          {
+            problemSetIndex % 2 === 0 ? (
+              <PageHeader align='left'>
+                {document.meta?.title || 'Untitled'}
+              </PageHeader>
+            ) : (
+              <PageHeader align='right'>
+                {document.meta.description}
+              </PageHeader>
+            )
+          }
           <TwoColumnLayout>
             {
               problemSet.map((problem, problemIndex) => (
@@ -133,7 +144,7 @@ const DocumentLayout = styled.div`
 
   line-height: 150%;
 
-  font-family: 'Times New Roman', 'MaruBuri' /* ,"SM신명조03"*/;
+  font-family: 'Times New Roman', /* 'MaruBuri'*/"SM3중명조";
   font-size: 9pt;
 
   font-stretch: 0.95em;
@@ -180,6 +191,22 @@ const PageLayout = styled.div`
   height: 840pt !important;
 `;
 
+const PageHeader = styled.div<{ align: 'left' | 'right' }>`
+  position: absolute;
+  top: 1.5cm;
+  left: 1.5cm;
+  height: 0.5cm;
+  color: #524dd9;
+  font-family: 'Pretendard-Regular';
+  font-size: 10pt;
+
+  width: calc(100% - 3cm);
+
+  display: flex;
+  align-items: center;
+  justify-content: ${props => props.align === 'left' ? 'flex-start' : 'flex-end'};
+`;
+
 const ProblemLayout  = styled.div`
   width: 48%;
 `;
@@ -192,8 +219,8 @@ const TwoColumnLayout = styled.div`
   width: 100%;
   height: 100%;
 
-  border-top: 0.5pt solid black;
-  border-bottom: 0.5pt solid black;
+  border-top: 0.5pt solid #524dd9;
+  border-bottom: 0.5pt solid #524dd9;
 
   padding-top: 0.5cm;
 
@@ -204,7 +231,7 @@ const TwoColumnLayout = styled.div`
     top: 2cm;
     width: 0.5pt;
     height: calc(100% - 4cm);
-    background-color: black;
+    background-color: #524dd9;
   }
 `;
 
@@ -213,6 +240,7 @@ const ProblemNumber = styled.div`
   font-size: 15pt;
   font-weight: bold;
   margin-bottom: 0.5em;
+  color: #2721d8;
 `;
 
 const ProblemStatement = styled.div`
@@ -220,7 +248,7 @@ const ProblemStatement = styled.div`
 `;
 
 const ProblemBoxed = styled.div`
-  font-family: 'Times New Roman', "SM신명조03";
+  font-family: 'Times New Roman', "SM3중명조";
   width: 100%;
   padding: 1em;
   border: 1px solid black;
@@ -230,16 +258,16 @@ const ProblemBoxed = styled.div`
 `;
 
 const ProblemConditions = styled.div`
-  font-family: 'Times New Roman', "SM신명조03";
+  font-family: 'Times New Roman', "SM3중명조";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding: 0.5em 1em;
+  padding: 0.2em;
 
   box-sizing: border-box;
-  border: 1px solid black;
+  border: 0.5pt solid black;
 
   margin-bottom: 1em;
 
@@ -249,7 +277,7 @@ const ProblemConditions = styled.div`
   }
 
   ol > li {
-    margin-bottom: 0.5em;
+    margin: 0.5em;
   }
 
   li:nth-child(1) {
@@ -262,7 +290,7 @@ const ProblemConditions = styled.div`
 `;
 
 const ProblemExample = styled.div`
-  font-family: 'Times New Roman', "SM신명조03";
+  font-family: 'Times New Roman', "SM3중명조";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -298,7 +326,7 @@ const ProblemExample = styled.div`
 `;
 
 const ProblemChoices = styled.div`
-  font-family: 'Times New Roman', "SM신명조03";
+  font-family: 'Times New Roman', "SM3중명조";
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -346,8 +374,9 @@ const ProblemChoices = styled.div`
 
 const ProblemPagination = styled.div<{ isEven? : boolean }>`
   position: absolute;
-  bottom: 1cm;
+  bottom: 1.2cm;
   ${props => props.isEven ? 'left: 1.5cm;' : 'right: 1.5cm;'}
-  font-family: 'Times New Roman', "SM신명조03";
-  font-size: 10pt;
+  font-family: 'Pretendard-Regular';
+  color: #524dd9;
+  font-size: 11pt;
 `;

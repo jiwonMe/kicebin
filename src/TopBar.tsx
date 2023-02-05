@@ -2,25 +2,42 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiPrinter } from 'react-icons/fi';
 import { BsQuestionLg } from 'react-icons/bs';
+import { useAuthStore } from './store/AuthStore';
+import { signOut } from 'firebase/auth';
+import { auth } from './service/firebase';
+import { useEditorStore } from './store/editorStore';
 
 const TopBar = ({ actions }: {
   actions: {
     printDocument: () => void,
   }
 }) => {
+
+  const { user, removeUser } = useAuthStore();
+  const { setDocument } = useEditorStore();
   return (
     <TopBarLayout>
       <Title>
-        {/* <img
-          src={KicebinLogo}
-          alt="kicebin-logo"
-          style={{
-            height: '0.8em',
-            marginRight: '0.5em',
-          }}
-        /> */}
+        <b>KICE</b>ditor
       </Title>
+
       <ActionButtonsContainerLayout>
+        {
+          user && (
+            <>
+              <UserName>
+                {user?.email}
+              </UserName>
+              <ActionButton onClick={() => {
+                signOut(auth);
+                removeUser();
+                setDocument.setAll(null);
+              }}>
+                Logout
+              </ActionButton>
+            </>
+          )
+        }
         <ActionButton onClick={() => {
           alert(`
             개발자: 박지원
@@ -41,8 +58,16 @@ const TopBar = ({ actions }: {
 export default TopBar;
 
 const Title = styled.div`
-  font-size: 1.5em;
-  font-weight: bold;
+  font-family: 'Pretendard';
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+const UserName = styled.div`
+  font-size: 14px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,12 +76,14 @@ const Title = styled.div`
 
 const TopBarLayout = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   height: 3em;
   padding: 0 1em;
   box-sizing: border-box;
 
+  color: #BABAC2;
   border-bottom: 1px solid #393939;
 `;
 
