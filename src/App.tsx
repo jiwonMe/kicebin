@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { collection, addDoc, getDoc, updateDoc, getDocs, setDoc, doc } from 'firebase/firestore';
 import { db } from './service/firebase';
+import { dummyProblem } from './store/dummy';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -84,7 +85,7 @@ const App = () => {
         id: uuid(),
         title: '새 문제집',
         description: '새 문제집입니다.',
-        problems: [createNewProblem()],
+        problems: [dummyProblem],
       },
     );
 

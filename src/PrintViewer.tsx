@@ -32,7 +32,7 @@ const PrintViewer = ({ document }: {
               </PageHeader>
             ) : (
               <PageHeader align='right'>
-                {document.meta.description}
+                {document.meta?.description || ''}
               </PageHeader>
             )
           }
@@ -121,7 +121,7 @@ const PrintViewer = ({ document }: {
             }
           </TwoColumnLayout>
           {
-            (document.meta.pagination) ? (
+            (document.meta && document.meta.pagination) ? (
               <ProblemPagination isEven={problemSetIndex % 2 === 1}>
                 {problemSetIndex + 1}
               </ProblemPagination>

@@ -113,7 +113,7 @@ const EditorBlock = ({
                     setBlock({
                       type,
                       id,
-                      content: [e.target.value, content[1]],
+                      content: [e.target.value, content[1], content[2]],
                     });
                   }}
                 />
@@ -127,7 +127,21 @@ const EditorBlock = ({
                     setBlock({
                       type,
                       id,
-                      content: [content[0], e.target.value],
+                      content: [content[0], e.target.value, content[2]],
+                    });
+                  }}
+                />
+              </div>
+              <div>
+                <InputWithLabel
+                  label='보기 ㄷ'
+                  type="text"
+                  value={content[2]}
+                  onChange={(e) => {
+                    setBlock({
+                      type,
+                      id,
+                      content: [content[0], content[1], e.target.value],
                     });
                   }}
                 />
