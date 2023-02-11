@@ -2,7 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { InputWithLabel } from './Input';
 import LatexCodeEditor from './LatexCodeEditor';
-import { FiX, FiPlus } from 'react-icons/fi';
+import { FiX, FiPlus, FiUpload } from 'react-icons/fi';
+
+import { storage } from '../service/firebase';
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+
 
 interface EditorBlockProps extends BlockScheme {
   setBlock: (block: BlockScheme) => void;
@@ -29,6 +33,7 @@ const EditorBlock = ({
                 BOXED: '',
                 EXAMPLES: [''],
                 CHOICES: ['','','','',''],
+                IMAGE: '',
               }[blockType]
             });
           }}
@@ -38,6 +43,7 @@ const EditorBlock = ({
           <option value="BOXED">boxed</option>
           <option value="EXAMPLES">examples</option>
           <option value="CHOICES">choices</option>
+          <option value="IMAGE">image</option>
         </Select>
         <BlockButton
           onClick={() => {
@@ -49,6 +55,10 @@ const EditorBlock = ({
         <BlockButton
           onClick={() => {
             deleteBlock(id);
+            if (type === 'IMAGE') {
+              const imageRef = ref(storage, `images/${id}`);
+              deleteObject(imageRef);
+            }
           }}
         >
           <FiX size={16} />
@@ -170,6 +180,64 @@ const EditorBlock = ({
             }</div>
           )
         }
+        {
+          type === 'IMAGE' && (
+            <div>
+              {
+                content ? (
+                  <PreviewImage src={content as string} alt="uploaded" />
+                ) : (
+                  <ImagePlaceholder
+                    htmlFor={`image-input-${id}`}
+                  >
+                    <FiUpload size={16} />
+                    <span>Upload</span>
+                  </ImagePlaceholder>
+                )
+              }
+              <ImageInput
+                id={`image-input-${id}`}
+                type="file"
+                accept="image/*"
+                onChange={(e) => {
+                  // upload image to firebase storage
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    const storageRef = ref(storage, `images/${id}`);
+                    const response = uploadBytes(storageRef, file);
+                    console.log(response);
+                    response.then((snapshot) => {
+                      getDownloadURL(snapshot.ref).then((url) => {
+                        setBlock({
+                          type,
+                          id,
+                          content: url,
+                        });
+                      });
+                    });
+                  }
+                }}
+              />
+              {
+                content && (
+                  <ImageDeleteButton
+                    onClick={() => {
+                      setBlock({
+                        type,
+                        id,
+                        content: '',
+                      });
+                      const imageRef = ref(storage, `images/${id}`);
+                      deleteObject(imageRef);
+                    }}
+                  >
+                    <FiX size={16} />
+                  </ImageDeleteButton>
+                )
+              }
+            </div>
+          )
+        }
       </div>
     </EditorBlockLayout>
   );
@@ -178,6 +246,8 @@ const EditorBlock = ({
 export default EditorBlock;
 
 const EditorBlockLayout = styled.div`
+  font-family: 'Pretendard';
+
   display: flex;
   flex-direction: column;
 
@@ -236,4 +306,74 @@ const Select = styled.select`
     outline: none;
   }
 
+`;
+
+const ImageInput = styled.input`
+  display: none;
+`;
+
+const ImageInputLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  width: 100%;
+  height: 40px;
+
+  border: 1px solid #868686;
+  border-radius: 4px;
+
+  font-size: 14px;
+
+  color: #d4d4d4;
+
+  cursor: pointer;
+
+  margin-bottom: 8px;
+
+  :hover {
+    background-color: #86868613;
+  }
+`;
+
+const ImageDeleteButton = styled.button`
+  background-color: #0000;
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  color: #d4d4d4;
+  :hover {
+    background-color: #86868613;
+  }
+`;
+
+const PreviewImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+const ImagePlaceholder = styled.label`
+  width: 100%;
+  height: 100px;
+
+  border: 1px solid #868686;
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 14px;
+
+  color: #d4d4d4;
+
+  margin-bottom: 8px;
 `;

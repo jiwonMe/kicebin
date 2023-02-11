@@ -4,6 +4,7 @@ type BlockType =
   | 'BOXED'
   | 'EXAMPLES'
   | 'CHOICES'
+  | 'IMAGE'
 
 interface BlockContent {
   STATEMENT: string;
@@ -11,6 +12,7 @@ interface BlockContent {
   BOXED: string;
   EXAMPLES: string[];
   CHOICES: string[];
+  IMAGE: string;
 }
 
 interface BlockScheme {

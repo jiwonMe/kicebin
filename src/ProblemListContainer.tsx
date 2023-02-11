@@ -42,6 +42,8 @@ const ProblemListContainer = ({
 export default ProblemListContainer;
 
 const ProblemListContainerLayout = styled.div`
+  font-family: 'Pretendard';
+
   border-right: 0.5px solid #484848;
   /* padding: 8px; */
   display: flex;
@@ -54,6 +56,12 @@ const ProblemListContainerLayout = styled.div`
   /* min-width: 200px; */
   overflow-y: scroll;
   overflow-x: auto;
+
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;
 
 const ProblemListCell = ({

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiPrinter } from 'react-icons/fi';
-import { BsQuestionLg } from 'react-icons/bs';
+import { RiKakaoTalkFill } from 'react-icons/ri';
 import { useAuthStore } from './store/AuthStore';
 import { signOut } from 'firebase/auth';
 import { auth } from './service/firebase';
@@ -39,12 +39,9 @@ const TopBar = ({ actions }: {
           )
         }
         <ActionButton onClick={() => {
-          alert(`
-            개발자: 박지원
-            이메일: park@jiwon.me
-          `);
+          window.open('https://open.kakao.com/o/gP28At3e');
         }}>
-          <BsQuestionLg size={16}/>
+          <RiKakaoTalkFill size={16}/> 사용자 모임
         </ActionButton>
         <ActionButton onClick={actions.printDocument}>
           <FiPrinter size={16}/>
@@ -75,6 +72,8 @@ const UserName = styled.div`
 `;
 
 const TopBarLayout = styled.div`
+  font-family: 'Pretendard';
+
   display: flex;
   align-items: center;
   justify-content: space-between;

@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import SM신명조03 from './assets/SM3신명조-03.woff';
 import SM3중명조 from './assets/SM3중명조.woff';
+import HYHwpEQ from './assets/HYHWPEQ.otf';
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -59,7 +60,35 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
-  font-family: 'Pretendard-Regular';
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunss.otf');
+  }
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsx.otf');
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunsi.otf');
+    font-style: italic, oblique;
+  }
+  @font-face {
+    font-family: "Computer Modern";
+    src: url('http://mirrors.ctan.org/fonts/cm-unicode/fonts/otf/cmunbxo.otf');
+    font-weight: bold;
+    font-style: italic, oblique;
+  }
+
+  @font-face {
+    font-family: 'HYHwpEQ';
+    src: url(${HYHwpEQ}) format('otf');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  font-family: 'Pretendard';
 `;
 
 export default GlobalStyle;

@@ -87,6 +87,16 @@ const Viewer = ({ problems, currentProblemId } : { problems: ProblemScheme[], cu
                   </ol>
                 </ProblemChoices>
               );
+            case 'IMAGE':
+              return (
+                block.content && (
+                  <ProblemImage
+                    key={blockIndex}
+                    src={block.content as string}
+                    alt="uploaded"
+                  />
+                )
+              );
             }
           })
         }
@@ -115,6 +125,11 @@ const ViewerLayout = styled.div`
   font-size: 12px;
 
   overflow-y: scroll;
+
+  scrollbar-width: none; /* Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;
 
 const ProblemLayout = styled.div`
@@ -143,8 +158,10 @@ const ProblemLayout = styled.div`
     margin: 0;
   }
 
-  .katex {
+  .math {
     zoom: 82.6%;
+  }
+  .katex {
     font-stretch: 1em;
     letter-spacing: 0em;
     line-height: 100%;
@@ -152,9 +169,14 @@ const ProblemLayout = styled.div`
 
   .katex-display {
     display: flex;
-    margin: 0.5em 0;
-    margin-left: 2em;
+    margin: 0.5em 0 !important;
+    margin-left: 1em !important;
     text-align: left;
+
+  }
+
+  .math {
+    /* transform: scale(0.826);  */
   }
 `;
 
@@ -172,7 +194,7 @@ const ProblemConditions = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding-left: 1em;
+  padding: 0.2em;
 
   border: 1px solid black;
 
@@ -186,7 +208,7 @@ const ProblemConditions = styled.div`
   }
 
   ol > li {
-    margin-bottom: 0.5em;
+    margin: 0.5em;
   }
 
   li:nth-child(1) {
@@ -274,10 +296,17 @@ const ProblemChoices = styled.div`
   ol {
     padding: 0 1.5em;
     margin: 0;
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    width: 100%;
   }
 
   ol > li {
     margin-bottom: 0.5em;
+    position: inline;
+    flex-grow: 1;
   }
 
   li:nth-child(1) {
@@ -299,4 +328,10 @@ const ProblemChoices = styled.div`
   li:nth-child(5) {
     list-style-type: "⑤ ";
   }
+`;
+
+const ProblemImage = styled.img`
+  width: 100%;
+  height: auto;
+  margin-bottom: 1em;
 `;

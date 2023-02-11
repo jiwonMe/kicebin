@@ -15,7 +15,7 @@ import { InputWithLabel } from './components/Input';
 const Editor = () => {
   const { document, setDocument, currentProblemId: _currProbId } = useEditorStore();
 
-  const currentProblemId = _currProbId || document.problems[0].id;
+  const currentProblemId = _currProbId || document.problems[0]?.id;
 
   const currentProblem = document.problems.find((p) => p.id === currentProblemId);
 
@@ -40,7 +40,7 @@ const Editor = () => {
   };
 
   if (!currentProblem) {
-    return <div>Problem not found</div>;
+    return <EditorLayout></EditorLayout>;
   }
   return (
     <EditorLayout>
@@ -127,6 +127,12 @@ const EditorLayout = styled.div`
   background-color: #1A1A1C;
 
   overflow-y: scroll;
+
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera*/
+  }
 `;
 
 const FormBox = styled.div`

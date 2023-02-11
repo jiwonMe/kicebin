@@ -23,16 +23,25 @@ const PrintViewer = ({ document }: {
     <DocumentLayout
     >
       <GlobalStyle />
+      <CoverPage>
+        <CoverPageTitle>
+          {document.meta?.title || 'KICEditor'}
+        </CoverPageTitle>
+        <CoverPageDescription>
+          {document.meta?.description || ''}
+        </CoverPageDescription>
+      </CoverPage>
       {chunk<ProblemScheme>(document.problems,2).map((problemSet, problemSetIndex) => (
         <PageLayout key={problemSetIndex}>
           {
             problemSetIndex % 2 === 0 ? (
               <PageHeader align='left'>
-                {document.meta?.title || 'Untitled'}
+                {/* {document.meta?.title || 'Untitled'} */}
+                KICEditor Beta
               </PageHeader>
             ) : (
               <PageHeader align='right'>
-                {document.meta?.description || ''}
+                {/* {document.meta?.description || ''} */}
               </PageHeader>
             )
           }
@@ -113,6 +122,19 @@ const PrintViewer = ({ document }: {
                             </ol>
                           </ProblemChoices>
                         );
+                      case 'IMAGE':
+                        return (
+                          block.content && (
+                            <ProblemImageContainer
+                              key={blockIndex}
+                            >
+                              <ProblemImage
+                                src={block.content as string}
+                                alt="uploaded"
+                              />
+                            </ProblemImageContainer>
+                          )
+                        );
                       }
                     })
                   }
@@ -122,8 +144,8 @@ const PrintViewer = ({ document }: {
           </TwoColumnLayout>
           {
             (document.meta && document.meta.pagination) ? (
-              <ProblemPagination isEven={problemSetIndex % 2 === 1}>
-                {problemSetIndex + 1}
+              <ProblemPagination isEven={problemSetIndex % 2 === 0}>
+                {problemSetIndex + 2}
               </ProblemPagination>
             ) : null
           }
@@ -151,21 +173,32 @@ const DocumentLayout = styled.div`
   word-spacing: 0.05em;
   letter-spacing: -0.05em;
 
+  .math {
+    /* zoom: 82.6%; */
+    word-break: keep-all;
+    white-space: nowrap;
+    break-inside: avoid;
+    line-break: strict;
+  }
+
   .katex {
+    /* transform: scale(0.826); */
     zoom: 82.6%;
     font-stretch: 1em;
     letter-spacing: 0em;
     line-height: 100%;
+
   }
 
   .katex-display {
+    /* zoom: 82.6%; */
     display: flex;
     margin: 0.5em 0;
-    margin-left: 2em;
+    margin-left: 0.5cm;
     text-align: left;
   }
 
-  word-break: keep-all;
+  /* word-break: keep-all; */
   padding: 0;
 
   position: absolute;
@@ -173,6 +206,53 @@ const DocumentLayout = styled.div`
   p {
     margin: 0;
   }
+
+  text-align: justify;
+`;
+
+const CoverPage = styled.div`
+  break-inside: avoid !important;
+  position: relative;
+  /* page-break-before: always !important; */
+  /* break-before: page; */
+  padding: 2cm 1.5cm 2.5cm 1.5cm;
+  margin: 0;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  background-color: #524dd9;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: left;
+
+  width: 595pt !important;
+  height: 840pt !important;
+`;
+
+const CoverPageTitle = styled.div`
+  color: #fff;
+  font-family: 'Pretendard';
+  font-weight: bold;
+  font-size: 36pt;
+  margin-bottom: 0.5cm;
+  width: 60%;
+  word-break: keep-all;
+
+  line-height: 110%;
+`;
+
+const CoverPageDescription = styled.div`
+  color: #fff;
+  font-family: 'Pretendard';
+  font-size: 12pt;
+
+  width: 60%;
 `;
 
 const PageLayout = styled.div`
@@ -379,4 +459,19 @@ const ProblemPagination = styled.div<{ isEven? : boolean }>`
   font-family: 'Pretendard-Regular';
   color: #524dd9;
   font-size: 11pt;
+`;
+
+const ProblemImageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1em;
+`;
+
+const ProblemImage = styled.img`
+  width: 60%;
+  height: auto;
+  margin-bottom: 1em;
 `;

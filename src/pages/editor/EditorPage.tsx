@@ -1,20 +1,21 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import styled, { StyleSheetManager } from 'styled-components';
-import Editor from './Editor';
-import Viewer from './Viewer';
+import Editor from '../../Editor';
+import Viewer from '../../Viewer';
 import { v4 as uuid } from 'uuid';
-import ProblemListContainer from './ProblemListContainer';
-import TopBar from './TopBar';
-import GlobalStyle from './GlobalStyle';
+import ProblemListContainer from '../../ProblemListContainer';
+import TopBar from '../../TopBar';
+import GlobalStyle from '../../GlobalStyle';
 import Frame, { FrameContext } from 'react-frame-component';
-import PrintViewer from './PrintViewer';
-import { useEditorStore } from './store/editorStore';
-import { useAuthStore } from './store/AuthStore';
+import PrintViewer from '../../PrintViewer';
+import { useEditorStore } from '../../store/editorStore';
+import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
 
 import { collection, addDoc, getDoc, updateDoc, getDocs, setDoc, doc } from 'firebase/firestore';
-import { db } from './service/firebase';
-import { dummyProblem } from './store/dummy';
+import { db, storage } from '../../service/firebase';
+import { dummyProblem } from '../../store/dummy';
+import { deleteObject, ref } from 'firebase/storage';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -32,11 +33,11 @@ const InjectFrameStyles = (props: any) => {
   return <StyleSheetManager target={document?.head}>{props.children}</StyleSheetManager>;
 };
 
-const App = () => {
+const EditorPage = () => {
   const { document, setDocument, currentProblemId: _currProbId, setCurrentProblemId } = useEditorStore();
 
   const currentProblemId = useMemo(() => {
-    return _currProbId || document.problems[0].id;
+    return _currProbId || document.problems[0]?.id;
   }, [_currProbId, document.problems]);
 
   const [isDocumentLoaded, setIsDocumentLoaded] = useState(false);
@@ -45,6 +46,17 @@ const App = () => {
 
   const deleteProblem = (problemId: string) => {
     setDocument.setProblems.remove(problemId);
+
+    const problem = document.problems.find((p) => p.id === problemId);
+    if (problem) {
+      problem.content.forEach((block) => {
+        if (block.type === 'IMAGE') {
+          const imageRef = ref(storage, `images/${block.id}`);
+          deleteObject(imageRef);
+        }
+      });
+    }
+
     setCurrentProblemId(document.problems[0].id);
   };
 
@@ -215,7 +227,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default EditorPage;
 
 const EntireLayout = styled.div`
   height: 100vh;
