@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import styled, { StyleSheetManager } from 'styled-components';
 import Editor from '../../Editor';
-import Viewer from '../../Viewer';
+import Viewer from '../../components/Viewer';
 import { v4 as uuid } from 'uuid';
-import ProblemListContainer from '../../ProblemListContainer';
-import TopBar from '../../TopBar';
+import ProblemListContainer from '../../components/ProblemListContainer';
+import TopBar from '../../components/TopBar';
 import GlobalStyle from '../../GlobalStyle';
 import Frame, { FrameContext } from 'react-frame-component';
-import PrintViewer from '../../PrintViewer';
+import PrintViewer from '../../components/PrintViewer';
 import { useEditorStore } from '../../store/editorStore';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';

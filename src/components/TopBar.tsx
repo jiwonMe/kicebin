@@ -2,13 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiPrinter } from 'react-icons/fi';
 import { RiKakaoTalkFill } from 'react-icons/ri';
-import { useAuthStore } from './store/AuthStore';
+import { useAuthStore } from '../store/AuthStore';
 import { signOut } from 'firebase/auth';
-import { auth } from './service/firebase';
-import { useEditorStore } from './store/editorStore';
+import { auth } from '../service/firebase';
+import { useEditorStore } from '../store/editorStore';
 
 const TopBar = ({ actions }: {
-  actions: {
+  actions?: {
     printDocument: () => void,
   }
 }) => {
@@ -43,7 +43,7 @@ const TopBar = ({ actions }: {
         }}>
           <RiKakaoTalkFill size={16}/> 사용자 모임
         </ActionButton>
-        <ActionButton onClick={actions.printDocument}>
+        <ActionButton onClick={actions?.printDocument}>
           <FiPrinter size={16}/>
           프린트
         </ActionButton>
@@ -97,7 +97,7 @@ const ActionButtonsContainerLayout = styled.div`
 
 const ActionButton = ({ children, onClick }: {
   children: React.ReactNode,
-  onClick: () => void,
+  onClick?: () => void,
 }) => {
   return (
     <ActionButtonLayout onClick={onClick}>

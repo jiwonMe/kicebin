@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import Markdown from './components/Markdown';
+import Markdown from './Markdown';
 import 'katex/dist/katex.min.css';
-import GlobalStyle from './GlobalStyle';
+import GlobalStyle from '../GlobalStyle';
 
 const PrintViewer = ({ document }: {
   document: DocumentScheme,
