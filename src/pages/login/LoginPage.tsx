@@ -7,6 +7,14 @@ import styled from 'styled-components';
 
 import { BsGoogle } from 'react-icons/bs';
 
+import { db, storage } from '../../service/firebase';
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, Timestamp } from 'firebase/firestore';
+import { dummyProblem } from '../../store/dummy';
+import { useEditorStore } from '../../store/editorStore';
+import { DocumentScheme } from '../../types/Document';
+import { createDocument } from '../../utils/documentCRUD';
+
+
 const provider = new GoogleAuthProvider();
 
 auth.onAuthStateChanged((user) => {
@@ -18,7 +26,8 @@ auth.onAuthStateChanged((user) => {
 });
 
 const LoginPage = () => {
-  const { user, setUser, removeUser } = useAuthStore();
+  const { user, setUser } = useAuthStore();
+  const { setDocument } = useEditorStore();
 
   const navigate = useNavigate();
 
@@ -27,7 +36,7 @@ const LoginPage = () => {
       // redirect to main page
       navigate('/');
     }
-  });
+  }, [user]);
 
   return (
     <LoginPageLayout>
@@ -45,6 +54,49 @@ const LoginPage = () => {
           console.log({ token, user });
 
           setUser(user);
+
+          // if first login, create user data
+
+          if (user) {
+            if (!user.email) {
+              return;
+            }
+            const userDoc = doc(db, 'users', user.email);
+            const userDocSnapshot = await getDoc(userDoc);
+
+            if (!userDocSnapshot.exists()) {
+              console.log('boom');
+              await setDoc(userDoc, {
+                email: user.email,
+                displayName: user.displayName,
+                photoURL: user.photoURL,
+                registeredAt: new Date(),
+              });
+
+              const newDocument: DocumentScheme = {
+                id: 'it will be replaced',
+                meta: {
+                  title: 'KICEditor Sample Document',
+                  description: 'This is a sample document for KICEditor.',
+                  createdAt: new Timestamp(new Date().getTime() / 1000, 0),
+                  updatedAt: new Timestamp(new Date().getTime() / 1000, 0),
+                  pagination: true,
+                },
+                problems: [
+                  dummyProblem,
+                ],
+              };
+
+
+              // create user's document collection
+              createDocument(user, newDocument);
+
+              setDocument.setAll(newDocument);
+            }
+          }
+
+          // redirect to main page
+          navigate('/');
         }}
       >
         <BsGoogle size={16} />

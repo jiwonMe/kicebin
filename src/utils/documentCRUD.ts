@@ -1,6 +1,6 @@
 import { db, storage } from '../service/firebase';
 import { DocumentScheme } from '../types/Document';
-import { collection, deleteDoc, doc, getDoc, getDocs, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, Timestamp } from 'firebase/firestore';
 import { v4 as uuid } from 'uuid';
 import { User } from 'firebase/auth';
 import { ProblemScheme } from '../types/Problem';
@@ -69,6 +69,52 @@ export const deleteDocument = async (
   }
 };
 
+const documentIntegrityCorrection = (
+  user: User | null,
+  document: DocumentScheme
+) => {
+  // user check
+  if (!user || !user?.email) {
+    throw Error('User is not logged in');
+  }
+
+  // meta information check
+  if (!document.meta) {
+    document.meta = {
+      title: 'Untitled',
+      description: '',
+      createdAt:  new Timestamp(new Date().getTime() / 1000, 0),
+      updatedAt:  new Timestamp(new Date().getTime() / 1000, 0),
+      pagination: true,
+    };
+
+  }
+  if (!document.meta.createdAt || !document.meta.updatedAt) {
+    document.meta.createdAt = new Timestamp(new Date().getTime() / 1000, 0);
+    document.meta.updatedAt = new Timestamp(new Date().getTime() / 1000, 0);
+  }
+
+  if (document.meta.pagination === undefined) {
+    document.meta.pagination = true;
+  }
+
+  if (!document.meta.title) {
+    document.meta.title = 'Untitled';
+  }
+
+  if (!document.meta.description) {
+
+    document.meta.description = '';
+  }
+
+  // update document to firebase
+
+  const docRef = doc(db, 'users', user.email, 'docs', document.id);
+
+  setDoc(docRef, document);
+  return document;
+};
+
 export const getDocument = async (
   user: User | null,
   documentId: string,
@@ -83,8 +129,10 @@ export const getDocument = async (
 
     const document = await getDoc(docRef);
 
+    const correctedDocument = documentIntegrityCorrection(user, document.data() as DocumentScheme);
+
     if (document.exists()) {
-      return document.data() as DocumentScheme;
+      return correctedDocument;
     } else {
       throw Error('Document does not exist');
     }
@@ -106,8 +154,10 @@ export const getDocuments = async (
 
     const documents = await getDocs(collectionRef);
 
+    const correctedDocuments = documents.docs.map((document) => documentIntegrityCorrection(user, document.data() as DocumentScheme));
+
     if (!documents.empty) {
-      return documents.docs.map((document) => document.data()) as DocumentScheme[];
+      return correctedDocuments;
     } else {
       throw Error('No documents exist');
     }
@@ -134,7 +184,7 @@ export const updateDocument = async (
         ...document.meta,
         updatedAt: new Date(),
         // if createdAt is not defined, set it to the current date
-        createdAt: document.meta.createdAt || new Date(),
+        createdAt: document.meta.createdAt || new Timestamp(new Date().getTime() / 1000, 0)
       },
     });
   } catch (error) {

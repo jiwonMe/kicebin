@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import DocumentListContainer from '../../components/DocumentListContainer';
 import { useAuthStore } from '../../store/AuthStore';
 import TopBar from '../../components/TopBar';
-import { v4 as uuid } from 'uuid';
 
 import { Timestamp } from 'firebase/firestore';
 import { ActionButton } from '../../components/ActionButton';
@@ -94,7 +93,14 @@ const HomePage = () => {
         <TopBar />
       </TopLayout>
       <NoticeLayout>
-        [Notice] 새로운 문제집 만들기 기능이 추가되었습니다.
+        <NoticeContent>
+          <NoticeTitle>
+            [Update] 새로운 문제집 만들기 기능이 추가되었습니다.
+          </NoticeTitle>
+          <NoticeDescription>
+            기존 문제집은 <b>KICEBIN Sample Document</b>에 저장되어있습니다.
+          </NoticeDescription>
+        </NoticeContent>
       </NoticeLayout>
       <MainLayout>
         <ContentLayout>
@@ -142,7 +148,27 @@ const NoticeLayout = styled.div`
   justify-content: center;
 
   height: 50px;
-  background-color: #88cc28;
+  background-color: #0b477c;
+`;
+
+const NoticeContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: flex-start;
+
+  width: 50%;
+`;
+
+const NoticeTitle = styled.div`
+  font-weight: 700;
+  color: #ffffff;
+`;
+
+const NoticeDescription = styled.div`
+  font-size: 12px;
+
+  color: #ffffff;
 `;
 
 const MainLayout = styled.div`
