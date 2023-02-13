@@ -12,15 +12,13 @@ import { useEditorStore } from '../../store/editorStore';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { collection, addDoc, getDoc, updateDoc, getDocs, setDoc, doc } from 'firebase/firestore';
-import { db, storage } from '../../service/firebase';
-import { dummyProblem } from '../../store/dummy';
+import { storage } from '../../service/firebase';
 import { deleteObject, ref } from 'firebase/storage';
 import { ActionButton } from '../../components/ActionButton';
 import { RiKakaoTalkFill } from 'react-icons/ri';
 import { FiPrinter } from 'react-icons/fi';
-import { DocumentScheme } from '../../types/Document';
 import { ProblemScheme } from '../../types/Problem';
+import { getDocument as getDocumentFromFirestore, updateDocument } from '../../utils/documentCRUD';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -89,33 +87,17 @@ const EditorPage = () => {
   }, [user]);
 
   const getDocument = async () => {
-    if (!user?.email) {
-      console.log('user is not logged in');
-      return;
-    }
     if (!documentId) {
-      console.log('document id is not provided');
       return;
     }
-    console.log('user', user?.email);
-    const querySnapshot = await getDocs(collection(db, 'users', user?.email, 'docs'));
+    const document = await getDocumentFromFirestore(user, documentId);
 
-    const querySnapShotDoc = await getDoc(doc(db, 'users', user?.email, 'docs', documentId));
-
-    setDocument.setAll(
-      querySnapShotDoc?.data() as DocumentScheme || {
-        id: uuid(),
-        title: '새 문제집',
-        description: '새 문제집입니다.',
-        problems: [dummyProblem],
-      },
-    );
-
-    if (querySnapshot.empty) {
-      await setDoc(doc(db, 'users', user?.email), {});
-      await setDoc(doc(db, 'users', user?.email, 'docs', document.id), document);
+    if (!document) {
+      console.log('document is not found');
+      return;
     }
 
+    setDocument.setAll(document);
     setIsDocumentLoaded(true);
     console.log('get');
   };
@@ -124,26 +106,7 @@ const EditorPage = () => {
     if (!isDocumentLoaded) {
       return;
     }
-    if (!user?.email) {
-      console.log('user is not logged in');
-      return;
-    }
-    if (!documentId) {
-      console.log('document id is not provided');
-      return;
-    }
-
-    const docRef = await getDoc(doc(db, 'users', user?.email, 'docs', documentId));
-
-    await updateDoc(docRef.ref, {
-      ...document,
-      meta: {
-        ...document.meta,
-        updatedAt: new Date(),
-        // if createdAt is not set, set it
-        createdAt: docRef.data()?.meta?.createdAt || new Date(),
-      }
-    });
+    updateDocument(user, document);
   };
 
   useEffect(() => {
@@ -156,14 +119,7 @@ const EditorPage = () => {
   useEffect(() => {
     // save datas
     setDocumentToFirestore();
-
-    console.log('updated', document);
   }, [document]);
-
-  useEffect(() => {
-    console.log('isLoaded', isDocumentLoaded);
-  }, [isDocumentLoaded]);
-
 
   return (
     <EntireLayout>

@@ -1,6 +1,7 @@
 import { User } from 'firebase/auth';
 import { create } from 'zustand';
 import { devtools, persist, createJSONStorage } from 'zustand/middleware';
+import { createStore } from 'zustand/vanilla';
 
 interface AuthState {
   user: User | null;

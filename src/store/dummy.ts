@@ -1,4 +1,5 @@
 import { v4 as uuid } from 'uuid';
+import { ProblemScheme } from '../types/Problem';
 
 export const dummyProblem: ProblemScheme = {
   id: uuid(),

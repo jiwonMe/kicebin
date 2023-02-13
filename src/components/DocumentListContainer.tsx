@@ -11,8 +11,12 @@ import { collection, getDoc, updateDoc, deleteDoc, doc } from 'firebase/firestor
 import { useAuthStore } from '../store/AuthStore';
 
 const DocumentListContainer = ({
+  updateDocument,
+  deleteDocument,
   documentList,
 }: {
+  updateDocument: (document: DocumentScheme) => void;
+  deleteDocument: (documentId: string) => void;
   documentList: DocumentScheme[];
 }) => {
   const navigate = useNavigate();
@@ -26,11 +30,10 @@ const DocumentListContainer = ({
           return (
             <DocumentListCell
               key={document.id}
+              document={document}
+              updateDocument={updateDocument}
+              deleteDocument={deleteDocument}
               onClick={() => navigate(`/editor/${document.id}`)}
-              documentId={document.id}
-              documentName={document.meta.title}
-              documentDescription={document.meta.description ?? ''}
-              documentModifiedAt={document.meta.updatedAt}
             />
           );
         })
@@ -58,65 +61,43 @@ const DocumentListContainerLayout = styled.div`
 
 const DocumentListCell = ({
   onClick,
-  documentId,
-  documentName,
-  documentDescription,
-  documentModifiedAt,
+  updateDocument,
+  deleteDocument,
+  document,
 }: {
   onClick: () => void;
-  documentId: string;
-  documentName: string;
-  documentDescription: string;
-  documentModifiedAt?: Timestamp;
+  updateDocument: (document: DocumentScheme) => void;
+  deleteDocument: (documentId: string) => void;
+  document: DocumentScheme;
 }) => {
   const { user } = useAuthStore();
 
   const [isOptionDropdownOpen, setIsOptionDropdownOpen] = useState(false);
 
-  const deleteDocument = async (documentId: string) => {
-    const confirmDelete = confirm('정말로 삭제하시겠습니까?');
-    if (!confirmDelete) return;
-
-    if (!user?.email) return;
-    // delete document
-    const querySnapShot = await getDoc(doc(db, 'users', user?.email, 'docs', documentId));
-
-    if (querySnapShot.exists()) {
-      await deleteDoc(doc(db, 'users', user?.email, 'docs', documentId));
-    }
-  };
-
-  const renameDocument = async (documentId: string) => {
+  const _renameDocument = async () => {
     // prompt
 
-    const newDocumentName = prompt('새로운 제목을 입력해주세요.', documentName);
-    const newDocumentDescription = prompt('새로운 설명을 입력해주세요.', documentDescription);
+    const newDocumentName = prompt('새로운 제목을 입력해주세요.', document.meta.title);
+    const newDocumentDescription = prompt('새로운 설명을 입력해주세요.', document.meta.description);
 
     if (!newDocumentName || !newDocumentDescription) return;
 
     if (!user?.email) return;
 
     // update document
-    const querySnapShot = await getDoc(doc(db, 'users', user?.email, 'docs', documentId));
-
-    const document = querySnapShot.data() as DocumentScheme;
-
-    if (querySnapShot.exists()) {
-      await updateDoc(doc(db, 'users', user?.email, 'docs', documentId), {
-        ...document,
-        meta: {
-          ...document.meta,
-          title: newDocumentName,
-          description: newDocumentDescription,
-        },
-      });
-    }
+    updateDocument({
+      ...document,
+      meta: {
+        ...document.meta,
+        title: newDocumentName,
+        description: newDocumentDescription,
+        updatedAt: new Timestamp(new Date().getTime() / 1000, 0),
+      },
+    });
   };
-
-  console.log(documentModifiedAt, new Date().getTime());
   return (
     <DocumentListCellLayout
-      key={documentId}
+      key={document.id}
       onClick={onClick}
     >
       <OptionButton
@@ -133,7 +114,7 @@ const DocumentListCell = ({
           <OptionsDropdownItem
             onClick={(e) => {
               e.stopPropagation();
-              deleteDocument(documentId);
+              deleteDocument(document.id);
             }}
           >
             <OptionsDropdownItemText
@@ -142,7 +123,7 @@ const DocumentListCell = ({
           <OptionsDropdownItem
             onClick={(e) => {
               e.stopPropagation();
-              renameDocument(documentId);
+              _renameDocument();
             }}
           >
             <OptionsDropdownItemText
@@ -151,13 +132,13 @@ const DocumentListCell = ({
         </OptionsDropdown>
       )}
       <DocumentCellTitleAndDescription>
-        <DocumentListCellTitle>{documentName}</DocumentListCellTitle>
-        <DocumentListCellDescription>{documentDescription}</DocumentListCellDescription>
+        <DocumentListCellTitle>{document.meta.title}</DocumentListCellTitle>
+        <DocumentListCellDescription>{document.meta.description}</DocumentListCellDescription>
       </DocumentCellTitleAndDescription>
       <DocumentListCellDescription>{
-        documentModifiedAt && `${differenceInAppropriateUnits(
+        document.meta.updatedAt && `${differenceInAppropriateUnits(
           new Date(),
-          new Timestamp(documentModifiedAt.seconds, documentModifiedAt.nanoseconds).toDate(),
+          new Timestamp(document.meta.updatedAt.seconds, document.meta.updatedAt.nanoseconds).toDate(),
         )} 전`}</DocumentListCellDescription>
     </DocumentListCellLayout>
   );

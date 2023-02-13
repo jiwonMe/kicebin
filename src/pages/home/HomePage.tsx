@@ -11,6 +11,10 @@ import { ActionButton } from '../../components/ActionButton';
 import { FiPlus } from 'react-icons/fi';
 import { DocumentScheme } from '../../types/Document';
 import { createDocument, getDocuments } from '../../utils/documentCRUD';
+import {
+  updateDocument as updateDocumentToFirestore,
+  deleteDocument as deleteDocumentFromFirestore,
+} from '../../utils/documentCRUD';
 
 
 const HomePage = () => {
@@ -25,21 +29,21 @@ const HomePage = () => {
     if (!user) {
       navigate('/login');
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     getDocumentList();
   }, []);
 
   const getDocumentList = async () => {
-    const documents = await getDocuments();
+    const documents = await getDocuments(user);
     if (!documents) return;
     setDocumentList(documents);
   };
 
   const createNewDocument = async () => {
     const newDocument: DocumentScheme = {
-      id: uuid(),
+      id: 'it will be replaced',
       meta: {
         title: '새 문제집',
         description: '새 문제집입니다.',
@@ -50,9 +54,38 @@ const HomePage = () => {
       problems: [],
     };
 
-    await createDocument(newDocument);
+    const createdDocument = await createDocument(user, newDocument);
 
-    setDocumentList([...documentList, newDocument]);
+    if (!createdDocument) return;
+
+    setDocumentList([...documentList, createdDocument]);
+  };
+
+  const updateDocument = async (document: DocumentScheme) => {
+    updateDocumentToFirestore(user, document);
+
+    const newDocumentList = documentList.map((doc) => {
+      if (doc.id === document.id) {
+        return document;
+      }
+      return doc;
+    });
+
+    setDocumentList(newDocumentList);
+  };
+
+  const deleteDocument = async (documentId: DocumentScheme['id']) => {
+    const confirmString = prompt('정말로 삭제하시겠습니까? (삭제하려면 "삭제"를 입력하세요.)');
+
+    if (confirmString !== '삭제') {
+      alert('삭제가 취소되었습니다.');
+      return;
+    }
+
+    deleteDocumentFromFirestore(user, documentId);
+
+    const newDocumentList = documentList.filter((doc) => doc.id !== documentId);
+    setDocumentList(newDocumentList);
   };
 
   return (
@@ -60,6 +93,9 @@ const HomePage = () => {
       <TopLayout>
         <TopBar />
       </TopLayout>
+      <NoticeLayout>
+        [Notice] 새로운 문제집 만들기 기능이 추가되었습니다.
+      </NoticeLayout>
       <MainLayout>
         <ContentLayout>
           <HeaderLayout>
@@ -71,6 +107,8 @@ const HomePage = () => {
             </ActionButton>
           </HeaderLayout>
           <DocumentListContainer
+            updateDocument={updateDocument}
+            deleteDocument={deleteDocument}
             documentList={documentList}
           />
         </ContentLayout>
@@ -92,6 +130,19 @@ const TopLayout = styled.div`
   display: flex;
   height: 64px;
   background-color: #232327;
+`;
+
+const NoticeLayout = styled.div`
+  display: flex;
+
+  font-family: Pretendard;
+  font-size: 14px;
+
+  align-items: center;
+  justify-content: center;
+
+  height: 50px;
+  background-color: #88cc28;
 `;
 
 const MainLayout = styled.div`

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { collection, getDocs, doc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, setDoc } from 'firebase/firestore';
 import { db } from '../../service/firebase';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
@@ -25,6 +25,43 @@ const AdminPage = () => {
     });
   };
 
+  const correctDocumentId = async () => {
+    const userQuerySnapshot = await getDocs(collection(db, 'users'));
+
+    userQuerySnapshot.docs.forEach(async (userDoc) => {
+      const documentQuerySnapshot = await getDocs(collection(db, 'users', userDoc.id, 'docs'));
+
+      documentQuerySnapshot.docs.forEach(async (documentDoc) => {
+        const document = documentDoc.data();
+        const newDocument = {
+          ...document,
+          id: documentDoc.id,
+        };
+        await updateDoc(documentDoc.ref, newDocument);
+      });
+    });
+  };
+
+  const createBackup = async () => {
+    const backupDateString = new Date().getTime().toString();
+
+    const userQuerySnapshot = await getDocs(collection(db, 'users'));
+
+    userQuerySnapshot.docs.forEach(async (userDoc) => {
+      const documentQuerySnapshot = await getDocs(collection(db, 'users', userDoc.id, 'docs'));
+
+      documentQuerySnapshot.docs.forEach(async (documentDoc) => {
+        const document = documentDoc.data();
+        const newDocument = {
+          ...document,
+          id: documentDoc.id,
+        };
+
+        await setDoc(doc(db, `backup-${backupDateString}`, userDoc.id, 'docs', documentDoc.id), newDocument);
+      });
+    });
+  };
+
   return (
     <div>
       <button onClick={getUsers}>get users</button>
@@ -35,6 +72,12 @@ const AdminPage = () => {
           </div>
         ))}
       </div>
+      <button onClick={correctDocumentId}>
+        correct document id
+      </button>
+      <button onClick={createBackup}>
+        create backup
+      </button>
     </div>
   );
 };

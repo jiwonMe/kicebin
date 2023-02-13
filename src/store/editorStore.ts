@@ -85,7 +85,7 @@ export const useEditorStore = create<EditorState>()(
       },
       problems: [
         // sampleProblem,
-        dummyProblem,
+        // dummyProblem,
       ],
     },
     setDocument: {
@@ -98,7 +98,7 @@ export const useEditorStore = create<EditorState>()(
           createdAt: new Timestamp(new Date().getTime() / 1000, 0),
           updatedAt: new Timestamp(new Date().getTime() / 1000, 0),
         },
-        problems: [dummyProblem],
+        problems: [],
       } })),
       setMeta: (meta) => set((state) => ({ document: { ...state.document, meta } })),
       setProblems: {
