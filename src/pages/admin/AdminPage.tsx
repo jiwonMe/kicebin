@@ -1,15 +1,20 @@
 import React, { useEffect } from 'react';
 
-import { collection, getDocs, doc, updateDoc, setDoc } from 'firebase/firestore';
+import { collection, getDocs, doc, updateDoc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from '../../service/firebase';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
+import { User } from 'firebase/auth';
+import { UserScheme } from '../../types/User';
+import { DocumentScheme } from '../../types/Document';
 
 const AdminPage = () => {
   const { user } = useAuthStore();
   const navigate = useNavigate();
 
-  const [users, setUsers] = React.useState<any[]>([]);
+  const [users, setUsers] = React.useState<UserScheme[]>([]);
+
+  const [docsByUser, setDocsByUser] = React.useState<{ [key: string]: DocumentScheme[] }>({});
 
   useEffect(() => {
     if (user?.email !== 'park@jiwon.me') {
@@ -18,32 +23,26 @@ const AdminPage = () => {
   });
   const getUsers = async () => {
     const querySnapshot = await getDocs(collection(db, 'users'));
-    // setUsers(querySnapshot.docs.map((doc) => doc.data()));
-    querySnapshot.docs.forEach(async (doc) => {
-      const querySnapshot = await getDocs(collection(db, 'users', doc.id, 'docs'));
-      console.log(doc.id, querySnapshot.docs.map((doc) => doc.data())[0].problems);
-    });
-  };
 
-  const correctDocumentId = async () => {
-    const userQuerySnapshot = await getDocs(collection(db, 'users'));
+    querySnapshot.docs.forEach(async (userDoc) => {
+      // console.log(userDoc.data() as UserScheme);
+      const docsQuerySnapshot = await getDocs(collection(db, 'users', userDoc.id, 'docs'));
 
-    userQuerySnapshot.docs.forEach(async (userDoc) => {
-      const documentQuerySnapshot = await getDocs(collection(db, 'users', userDoc.id, 'docs'));
+      // console.log(userDoc.id, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
 
-      documentQuerySnapshot.docs.forEach(async (documentDoc) => {
-        const document = documentDoc.data();
-        const newDocument = {
-          ...document,
-          id: documentDoc.id,
-        };
-        await updateDoc(documentDoc.ref, newDocument);
+      // console.log(userDoc.id, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
+      const id = userDoc.id;
+      setDocsByUser({
+        ...docsByUser,
+        as: docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme),
       });
     });
+
+    console.log(docsByUser);
   };
 
   const createBackup = async () => {
-    const backupDateString = new Date().getTime().toString();
+    const backupDateString = new Date().toISOString();
 
     const userQuerySnapshot = await getDocs(collection(db, 'users'));
 
@@ -57,7 +56,7 @@ const AdminPage = () => {
           id: documentDoc.id,
         };
 
-        await setDoc(doc(db, `backup-${backupDateString}`, userDoc.id, 'docs', documentDoc.id), newDocument);
+        await setDoc(doc(db, 'backup', backupDateString, 'users', userDoc.id, 'docs', documentDoc.id), newDocument);
       });
     });
   };
@@ -67,14 +66,21 @@ const AdminPage = () => {
       <button onClick={getUsers}>get users</button>
       <div>
         {users.map((user) => (
-          <div key={user.id}>
-            {/* <div>{user}</div> */}
+          <div key={user.uid}>
+            <div>{user.email}</div>
+            <div>{user.uid}</div>
+            {
+              user.email && docsByUser[user.email] && docsByUser[user.email].map((doc) => (
+                <div key={doc.id}>
+                  <div>{doc.meta.title}</div>
+                  <div>{doc.meta.description}</div>
+                  <div>{doc.problems.length}</div>
+                </div>
+              ))
+            }
           </div>
         ))}
       </div>
-      <button onClick={correctDocumentId}>
-        correct document id
-      </button>
       <button onClick={createBackup}>
         create backup
       </button>

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { FiPlusSquare, FiX } from 'react-icons/fi';
+import { ProblemScheme } from '../types/Problem';
 
 const ProblemListContainer = ({
   problems,

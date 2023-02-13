@@ -6,6 +6,7 @@ import { FiX, FiPlus, FiUpload } from 'react-icons/fi';
 
 import { storage } from '../service/firebase';
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { BlockScheme, BlockType } from '../types/Block';
 
 
 interface EditorBlockProps extends BlockScheme {

@@ -38,8 +38,7 @@ const PrintViewer = ({ document }: {
           {
             problemSetIndex % 2 === 0 ? (
               <PageHeader align='left'>
-                {/* {document.meta?.title || 'Untitled'} */}
-                KICEditor Beta
+                {document.meta?.title || 'Untitled'}
               </PageHeader>
             ) : (
               <PageHeader align='right'>

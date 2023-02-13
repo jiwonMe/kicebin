@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 
 import { FiPlus } from 'react-icons/fi';
 import { InputWithLabel } from './components/Input';
+import { ProblemScheme } from './types/Problem';
 
 const Editor = () => {
   const { document, setDocument, currentProblemId: _currProbId } = useEditorStore();

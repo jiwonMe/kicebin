@@ -95,7 +95,7 @@ const HomePage = () => {
       <NoticeLayout>
         <NoticeContent>
           <NoticeTitle>
-            [Update] 새로운 문제집 만들기 기능이 추가되었습니다.
+            [Update] 2023-02-13 새로운 문제집 만들기 기능이 추가되었습니다.
           </NoticeTitle>
           <NoticeDescription>
             기존 문제집은 <b>KICEBIN Sample Document</b>에 저장되어있습니다.

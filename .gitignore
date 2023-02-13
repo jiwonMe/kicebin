@@ -27,3 +27,6 @@ dist-ssr
 
 *.cache
 .firebase
+
+kicebin21-firebase-adminsdk-*.json
+hosting.*
