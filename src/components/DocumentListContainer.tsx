@@ -141,7 +141,9 @@ const DocumentListCell = ({
         document.meta.updatedAt && `${differenceInAppropriateUnits(
           new Date(),
           new Timestamp(document.meta.updatedAt.seconds, document.meta.updatedAt.nanoseconds).toDate(),
-        )} 전`}</DocumentListCellDescription>
+        )} 전 · ${
+          document.problems.length
+        }문항`}</DocumentListCellDescription>
     </DocumentListCellLayout>
   );
 };
