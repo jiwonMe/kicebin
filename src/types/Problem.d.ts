@@ -1,4 +1,6 @@
-interface ProblemScheme {
+import { BlockScheme } from './Block';
+
+export interface ProblemScheme {
   id: string;
   meta: {
     title: string;

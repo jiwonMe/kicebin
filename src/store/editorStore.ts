@@ -1,7 +1,10 @@
+import { Timestamp } from 'firebase/firestore';
 import { v4 as uuid } from 'uuid';
 
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import { DocumentScheme } from '../types/Document';
+import { ProblemScheme } from '../types/Problem';
 import { dummyProblem } from './dummy';
 // import { immer } from 'zustand/middleware/immer';
 
@@ -77,6 +80,8 @@ export const useEditorStore = create<EditorState>()(
         title: 'KICEBIN Sample Document',
         description: 'This is a sample document.',
         pagination: true,
+        createdAt: new Timestamp(new Date().getTime() / 1000, 0),
+        updatedAt: new Timestamp(new Date().getTime() / 1000, 0),
       },
       problems: [
         // sampleProblem,
@@ -90,6 +95,8 @@ export const useEditorStore = create<EditorState>()(
           title: 'KICEBIN Sample Document',
           description: 'This is a sample document.',
           pagination: true,
+          createdAt: new Timestamp(new Date().getTime() / 1000, 0),
+          updatedAt: new Timestamp(new Date().getTime() / 1000, 0),
         },
         problems: [dummyProblem],
       } })),

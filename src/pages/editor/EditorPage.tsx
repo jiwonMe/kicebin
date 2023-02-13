@@ -10,12 +10,17 @@ import Frame, { FrameContext } from 'react-frame-component';
 import PrintViewer from '../../components/PrintViewer';
 import { useEditorStore } from '../../store/editorStore';
 import { useAuthStore } from '../../store/AuthStore';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { collection, addDoc, getDoc, updateDoc, getDocs, setDoc, doc } from 'firebase/firestore';
 import { db, storage } from '../../service/firebase';
 import { dummyProblem } from '../../store/dummy';
 import { deleteObject, ref } from 'firebase/storage';
+import { ActionButton } from '../../components/ActionButton';
+import { RiKakaoTalkFill } from 'react-icons/ri';
+import { FiPrinter } from 'react-icons/fi';
+import { DocumentScheme } from '../../types/Document';
+import { ProblemScheme } from '../../types/Problem';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -34,6 +39,7 @@ const InjectFrameStyles = (props: any) => {
 };
 
 const EditorPage = () => {
+  const { documentId } = useParams();
   const { document, setDocument, currentProblemId: _currProbId, setCurrentProblemId } = useEditorStore();
 
   const currentProblemId = useMemo(() => {
@@ -41,8 +47,6 @@ const EditorPage = () => {
   }, [_currProbId, document.problems]);
 
   const [isDocumentLoaded, setIsDocumentLoaded] = useState(false);
-
-  const firestoreDocRef = useState();
 
   const deleteProblem = (problemId: string) => {
     setDocument.setProblems.remove(problemId);
@@ -72,7 +76,7 @@ const EditorPage = () => {
     }
   };
 
-  const { user, removeUser } = useAuthStore();
+  const { user } = useAuthStore();
 
   const navigate = useNavigate();
 
@@ -89,11 +93,17 @@ const EditorPage = () => {
       console.log('user is not logged in');
       return;
     }
+    if (!documentId) {
+      console.log('document id is not provided');
+      return;
+    }
     console.log('user', user?.email);
     const querySnapshot = await getDocs(collection(db, 'users', user?.email, 'docs'));
 
+    const querySnapShotDoc = await getDoc(doc(db, 'users', user?.email, 'docs', documentId));
+
     setDocument.setAll(
-      querySnapshot.docs[0]?.data() as DocumentScheme || {
+      querySnapShotDoc?.data() as DocumentScheme || {
         id: uuid(),
         title: '새 문제집',
         description: '새 문제집입니다.',
@@ -118,15 +128,22 @@ const EditorPage = () => {
       console.log('user is not logged in');
       return;
     }
-    const docRef = await getDocs(collection(db, 'users', user?.email, 'docs'));
-    if (docRef.empty) {
-      await setDoc(doc(db, 'users', user?.email), {});
-      await setDoc(doc(db, 'users', user?.email, 'docs', uuid()), document);
-    } else {
-      await updateDoc(docRef.docs[0].ref, {
-        ...document,
-      });
+    if (!documentId) {
+      console.log('document id is not provided');
+      return;
     }
+
+    const docRef = await getDoc(doc(db, 'users', user?.email, 'docs', documentId));
+
+    await updateDoc(docRef.ref, {
+      ...document,
+      meta: {
+        ...document.meta,
+        updatedAt: new Date(),
+        // if createdAt is not set, set it
+        createdAt: docRef.data()?.meta?.createdAt || new Date(),
+      }
+    });
   };
 
   useEffect(() => {
@@ -152,11 +169,23 @@ const EditorPage = () => {
     <EntireLayout>
       <TopLayout>
         <TopBar
-          actions={{
-            printDocument: () => {
-              print();
-            }
-          }}
+          actionButtons={[
+            <ActionButton
+              key={uuid()}
+              onClick={() => {
+                window.open('https://open.kakao.com/o/gP28At3e');
+              }}>
+              <RiKakaoTalkFill size={16}/> 사용자 모임
+            </ActionButton>,
+            <ActionButton
+              key={uuid()}
+              onClick={() => {
+                print();
+              }}>
+              <FiPrinter size={16}/>
+          프린트
+            </ActionButton>
+          ]}
         />
       </TopLayout>
       <MainLayout>
@@ -238,14 +267,14 @@ const EntireLayout = styled.div`
 
 const TopLayout = styled.div`
   display: flex;
-  height: 50px;
+  height: 64px;
   background-color: #232327;
 `;
 
 const MainLayout = styled.div`
   display: flex;
 
-  height: calc(100vh - 50px);
+  height: calc(100vh - 64px);
 
   box-sizing: border-box;
 

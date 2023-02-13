@@ -1,6 +1,6 @@
 import { User } from 'firebase/auth';
 
-interface UserScheme extends User {
+export interface UserScheme extends User {
   uid: string | null;
   displayName?: string;
   photoURL?: string;

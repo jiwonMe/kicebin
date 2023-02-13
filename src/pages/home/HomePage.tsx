@@ -4,9 +4,13 @@ import styled from 'styled-components';
 import DocumentListContainer from '../../components/DocumentListContainer';
 import { useAuthStore } from '../../store/AuthStore';
 import TopBar from '../../components/TopBar';
+import { v4 as uuid } from 'uuid';
 
-import { collection, getDocs, doc } from 'firebase/firestore';
-import { db } from '../../service/firebase';
+import { Timestamp } from 'firebase/firestore';
+import { ActionButton } from '../../components/ActionButton';
+import { FiPlus } from 'react-icons/fi';
+import { DocumentScheme } from '../../types/Document';
+import { createDocument, getDocuments } from '../../utils/documentCRUD';
 
 
 const HomePage = () => {
@@ -28,11 +32,27 @@ const HomePage = () => {
   }, []);
 
   const getDocumentList = async () => {
-    if (!user?.email) return;
+    const documents = await getDocuments();
+    if (!documents) return;
+    setDocumentList(documents);
+  };
 
-    const querySnapshot = await getDocs(collection(db,'users', user?.email, 'docs'));
-    setDocumentList(querySnapshot.docs.map((doc) => doc.data()) as DocumentScheme[]);
-    console.log(documentList);
+  const createNewDocument = async () => {
+    const newDocument: DocumentScheme = {
+      id: uuid(),
+      meta: {
+        title: '새 문제집',
+        description: '새 문제집입니다.',
+        createdAt: new Timestamp(new Date().getTime() / 1000, 0),
+        pagination: true,
+        updatedAt: new Timestamp(new Date().getTime() / 1000, 0),
+      },
+      problems: [],
+    };
+
+    await createDocument(newDocument);
+
+    setDocumentList([...documentList, newDocument]);
   };
 
   return (
@@ -42,7 +62,14 @@ const HomePage = () => {
       </TopLayout>
       <MainLayout>
         <ContentLayout>
-          <Heading1>내 문제집</Heading1>
+          <HeaderLayout>
+            <Heading1>내 문제집</Heading1>
+            <ActionButton
+              onClick={createNewDocument}
+            >
+              <FiPlus size={24} />
+            </ActionButton>
+          </HeaderLayout>
           <DocumentListContainer
             documentList={documentList}
           />
@@ -63,7 +90,7 @@ const EntireLayout = styled.div`
 
 const TopLayout = styled.div`
   display: flex;
-  height: 50px;
+  height: 64px;
   background-color: #232327;
 `;
 
@@ -71,11 +98,26 @@ const MainLayout = styled.div`
   display: flex;
   justify-content: center;
 
-  height: calc(100vh - 50px);
+  height: calc(100vh - 64px);
 
   box-sizing: border-box;
 
   background-color: #1A1A1C;
+`;
+
+const HeaderLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 50px;
+  /* padding: 0 20px; */
+
+  box-sizing: border-box;
+
+  width: 100%;
+
+  margin-bottom: 20px;
 `;
 
 const ContentLayout = styled.div`

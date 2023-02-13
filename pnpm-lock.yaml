@@ -12,6 +12,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.50.0
   '@typescript-eslint/parser': ^5.50.0
   '@vitejs/plugin-react': ^3.0.0
+  date-fns: ^2.29.3
   eslint: ^8.33.0
   eslint-plugin-react: ^7.32.2
   firebase: ^9.15.0
@@ -40,6 +41,7 @@ specifiers:
   zustand: ^4.3.2
 
 dependencies:
+  date-fns: 2.29.3
   firebase: 9.15.0
   framer-motion: 9.0.1_biqbaboplfbrettd7655fr4n2y
   katex: 0.16.4
@@ -1851,6 +1853,11 @@ packages:
       abab: 2.0.6
       whatwg-mimetype: 3.0.0
       whatwg-url: 11.0.0
+    dev: false
+
+  /date-fns/2.29.3:
+    resolution: {integrity: sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==}
+    engines: {node: '>=0.11'}
     dev: false
 
   /debug/4.3.4:

@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
+import { ProblemScheme } from '../types/Problem';
 import Markdown from './Markdown';
 
 const Viewer = ({ problems, currentProblemId } : { problems: ProblemScheme[], currentProblemId: string }) => {

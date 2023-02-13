@@ -15,7 +15,7 @@ interface BlockContent {
   IMAGE: string;
 }
 
-interface BlockScheme {
+export interface BlockScheme {
   id: string;
   type: BlockType;
   content: BlockContent[BlockType];

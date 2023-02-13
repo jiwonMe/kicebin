@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Markdown from './Markdown';
 import 'katex/dist/katex.min.css';
 import GlobalStyle from '../GlobalStyle';
+import { DocumentScheme } from '../types/Document';
+import { ProblemScheme } from '../types/Problem';
 
 const PrintViewer = ({ document }: {
   document: DocumentScheme,
