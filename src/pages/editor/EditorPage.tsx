@@ -19,6 +19,7 @@ import { RiKakaoTalkFill } from 'react-icons/ri';
 import { FiPrinter } from 'react-icons/fi';
 import { ProblemScheme } from '../../types/Problem';
 import { getDocument as getDocumentFromFirestore, updateDocument } from '../../utils/documentCRUD';
+import { User } from 'firebase/auth';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -74,7 +75,14 @@ const EditorPage = () => {
     }
   };
 
-  const { user } = useAuthStore();
+  const { user: _user } = useAuthStore();
+
+  const user = useMemo(() => {
+    return ({
+      ..._user,
+      email: _user?.email || '',
+    });
+  }, [_user]) as User;
 
   const navigate = useNavigate();
 

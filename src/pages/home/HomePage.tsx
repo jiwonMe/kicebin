@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import DocumentListContainer from '../../components/DocumentListContainer';
@@ -14,11 +14,19 @@ import {
   updateDocument as updateDocumentToFirestore,
   deleteDocument as deleteDocumentFromFirestore,
 } from '../../utils/documentCRUD';
+import { User } from 'firebase/auth';
 
 
 const HomePage = () => {
 
-  const { user } = useAuthStore();
+  const { user: _user } = useAuthStore();
+
+  const user = useMemo(() => {
+    return ({
+      ..._user,
+      email: _user?.email || '',
+    });
+  }, [_user]) as User;
 
   const [documentList, setDocumentList] = React.useState<DocumentScheme[]>([]);
 

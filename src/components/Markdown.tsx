@@ -17,9 +17,9 @@ const _mapProps = (props: ReactMarkdownOptions): ReactMarkdownOptions => ({
   // ],
   rehypePlugins: [
     [ rehypeKatex, {
-      output: 'htmlAndMathml',
+      output: 'html',
       displayMode: true,
-      minRuleThickness: 0.001,
+      // minRuleThickness: 0.001,
       strict: false,
       macros: {
         '\\RR': '\\mathbb{R}',

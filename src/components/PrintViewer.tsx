@@ -1,5 +1,5 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useRef, useState } from 'react';
+import styled, { css } from 'styled-components';
 import Markdown from './Markdown';
 import 'katex/dist/katex.min.css';
 import GlobalStyle from '../GlobalStyle';
@@ -109,19 +109,10 @@ const PrintViewer = ({ document }: {
                         );
                       case 'CHOICES':
                         return (
-                          <ProblemChoices key={blockIndex}>
-                            <ol>
-                              {
-                                (block.content as string[]).map((choice, choiceIndex) => (
-                                  <li key={choiceIndex}>
-                                    <Markdown>
-                                      {choice}
-                                    </Markdown>
-                                  </li>
-                                ))
-                              }
-                            </ol>
-                          </ProblemChoices>
+                          <ProblemChoices
+                            key={blockIndex}
+                            choices={block.content as string[]}
+                          />
                         );
                       case 'IMAGE':
                         return (
@@ -159,11 +150,15 @@ const PrintViewer = ({ document }: {
 export default PrintViewer;
 
 const DocumentLayout = styled.div`
-  @media print {
+  @media print and (min-resolution: 600dpi) {
     @page {
-      size: A4;
+      /* size 210mm 297mm; */
+      size: 210mm 297mm;
     }
   }
+
+  print-color-adjust: exact;
+  text-rendering: geometricPrecision;
 
   line-height: 150%;
 
@@ -232,8 +227,8 @@ const CoverPage = styled.div`
 
   text-align: left;
 
-  width: 595pt !important;
-  height: 840pt !important;
+  width: 210mm !important;
+  height: 297mm !important;
 `;
 
 const CoverPageTitle = styled.div`
@@ -406,10 +401,56 @@ const ProblemExample = styled.div`
   }
 `;
 
-const ProblemChoices = styled.div`
+const ProblemChoices = ({
+  choices,
+}: {
+  choices: string[];
+}) => {
+  const [nCols, setNCols] = useState(5);
+  const choiceRef = useRef<HTMLLIElement>(null);
+  const choiceContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (choiceRef.current && choiceContainerRef.current) {
+      const width = 326 - 5*32;
+      console.log(choices[0], width, choiceRef.current.offsetWidth, width/choiceRef.current.offsetWidth);
+      setNCols(
+        [
+          1, 1, 3, 3, 5, 5,
+        ][
+          Math.max(Math.min(
+            Math.floor(width/choiceRef.current.offsetWidth),
+            5),
+          1)
+        ]
+      );
+    }
+  }, [choices, choiceRef.current, choiceContainerRef.current]);
+
+  return (
+    <ProblemChoicesLayout
+      cols={nCols}
+      ref={choiceContainerRef}
+    >
+      <ol>
+        {choices.map((choice, index) => (
+          <li
+            key={index}
+            ref={choiceRef}
+          >
+            <Markdown>
+              {choice}
+            </Markdown>
+          </li>
+        ))}
+      </ol>
+    </ProblemChoicesLayout>
+  );
+};
+
+const ProblemChoicesLayout = styled.div<{ cols: number }>`
   font-family: 'Times New Roman', "SM3중명조";
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   width: 100%;
@@ -419,7 +460,12 @@ const ProblemChoices = styled.div`
   ol {
     padding: 0 1.5em;
     margin: 0;
-    display: flex;
+
+    display: grid;
+    grid-template-columns: repeat(
+      calc(${props => props.cols}),
+      1fr
+    );
 
     justify-content: center;
     align-items: center;
@@ -429,7 +475,12 @@ const ProblemChoices = styled.div`
   ol > li {
     margin-bottom: 0.5em;
     position: inline;
-    flex-grow: 1;
+    width: fit-content;
+    white-space: nowrap;
+
+    /* border: 1px solid black; */
+
+    box-sizing: border-box;
   }
 
   li:nth-child(1) {

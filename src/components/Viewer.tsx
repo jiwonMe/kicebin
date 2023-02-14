@@ -123,7 +123,7 @@ const ViewerLayout = styled.div`
   background-color: #17171A;
   border-left: 1px solid #37373A;
 
-  font-size: 12px;
+  font-size: 14px;
 
   overflow-y: scroll;
 
@@ -160,12 +160,17 @@ const ProblemLayout = styled.div`
   }
 
   .math {
-    zoom: 82.6%;
+    /* transform: scale(0.826) !important; */
+    zoom: 0.826;
+    font-size: 14px;
   }
+
   .katex {
     font-stretch: 1em;
     letter-spacing: 0em;
-    line-height: 100%;
+    line-height: 1.2;
+    text-rendering: auto;
+    font: normal 1.21em KaTeX_Main,Times New Roman,serif;
   }
 
   .katex-display {
@@ -173,11 +178,6 @@ const ProblemLayout = styled.div`
     margin: 0.5em 0 !important;
     margin-left: 1em !important;
     text-align: left;
-
-  }
-
-  .math {
-    /* transform: scale(0.826);  */
   }
 `;
 

@@ -30,11 +30,10 @@ const AdminPage = () => {
 
       // console.log(userDoc.id, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
 
-      // console.log(userDoc.id, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
-      const id = userDoc.id;
+      console.log(userDoc.id, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
       setDocsByUser({
         ...docsByUser,
-        as: docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme),
+        [userDoc.id]: docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme),
       });
     });
 
