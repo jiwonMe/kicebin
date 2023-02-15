@@ -30,14 +30,12 @@ const AdminPage = () => {
 
       // console.log(userDoc.id, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
 
-      console.log(userDoc.id, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
       setDocsByUser({
         ...docsByUser,
         [userDoc.id]: docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme),
       });
     });
 
-    console.log(docsByUser);
   };
 
   const createBackup = async () => {
