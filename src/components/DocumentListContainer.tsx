@@ -163,6 +163,10 @@ const DocumentListCellLayout = styled.div`
 
   border: 1px solid #484848;
   box-sizing: border-box;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const DocumentListCellTitle = styled.div`

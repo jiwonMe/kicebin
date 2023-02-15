@@ -171,7 +171,9 @@ const NoticeContent = styled.div`
   /* justify-content: center; */
   align-items: flex-start;
 
-  width: 50%;
+  box-sizing: border-box;
+
+  width: calc(min(calc(100% - 64px), 800px));
 `;
 
 const NoticeTitle = styled.div`
@@ -216,8 +218,10 @@ const ContentLayout = styled.div`
   display: flex;
   flex-direction: column;
 
+  box-sizing: border-box;
   padding-top: 20px;
-  width: 50%;
+  width: calc(min(calc(100% - 64px), 800px));
+
 `;
 
 const Heading1 = styled.h1`
