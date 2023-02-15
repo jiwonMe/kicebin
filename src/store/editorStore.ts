@@ -65,7 +65,8 @@ interface EditorState {
       update: (problemId: ProblemScheme['id']) => ({
         setMeta: (meta: ProblemScheme['meta']) => void;
         setContent: (content: ProblemScheme['content']) => void;
-      })
+      }),
+      all: (problems: ProblemScheme[]) => void;
     }
   };
   currentProblemId: string | null;
@@ -127,7 +128,8 @@ export const useEditorStore = create<EditorState>()(
               }
               )},
           })),
-        })
+        }),
+        all: (problems) => set((state) => ({ document: { ...state.document, problems } })),
       },
     },
     currentProblemId: null,

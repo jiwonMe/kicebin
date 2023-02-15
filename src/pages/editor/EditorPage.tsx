@@ -155,6 +155,7 @@ const EditorPage = () => {
       <MainLayout>
         <ProblemListContainer
           problems={document.problems}
+          setProblems={setDocument.setProblems.all}
           currentProblemId={currentProblemId}
           createNewProblem={() => {
             setDocument.setProblems.add(createNewProblem());

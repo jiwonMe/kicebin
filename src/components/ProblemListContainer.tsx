@@ -2,22 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiPlusSquare, FiX } from 'react-icons/fi';
 import { ProblemScheme } from '../types/Problem';
+import { motion, Reorder } from 'framer-motion';
 
 const ProblemListContainer = ({
   problems,
+  setProblems,
   currentProblemId,
   createNewProblem,
   deleteProblem,
   onClick,
 }: {
   problems: ProblemScheme[],
+  setProblems: (problems: ProblemScheme[]) => void,
   currentProblemId: string,
   createNewProblem: () => void,
   deleteProblem: (problemId: string) => void,
   onClick: (problemId: string) => void,
 }) => {
   return (
-    <ProblemListContainerLayout>
+    <ProblemListContainerLayout
+      axis="y"
+      values={problems}
+      onReorder={setProblems}
+    >
       {
         problems.map((problem) => (
           <ProblemListCell
@@ -42,8 +49,15 @@ const ProblemListContainer = ({
 
 export default ProblemListContainer;
 
-const ProblemListContainerLayout = styled.div`
+const ProblemListContainerLayout = styled(Reorder.Group)`
   font-family: 'Pretendard';
+
+  /* remove ul dot */
+  list-style: none;
+  /* remove ul margin */
+  margin: 0;
+  /* remove ul padding */
+  padding: 0;
 
   border-right: 0.5px solid #484848;
   /* padding: 8px; */
@@ -79,6 +93,7 @@ const ProblemListCell = ({
   return (
     <ProblemListCellLayout
       key={problem.id}
+      value={problem}
       onClick={() => {
         onClick(problem.id);
       }}
@@ -134,7 +149,7 @@ const ProblemListCellDescription = styled.div`
   font-size: 14px;
 `;
 
-const ProblemListCellLayout = styled.div<{
+const ProblemListCellLayout = styled(Reorder.Item)<{
   isActivated?: boolean,
 }>`
   ${props => props.isActivated ? `
