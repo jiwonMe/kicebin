@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { GoogleAuthProvider, signInWithPopup, signOut } from 'firebase/auth';
-import { auth } from '../../service/firebase';
+import { analytics, auth } from '../../service/firebase';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
@@ -13,6 +13,7 @@ import { dummyProblem } from '../../store/dummy';
 import { useEditorStore } from '../../store/editorStore';
 import { DocumentScheme } from '../../types/Document';
 import { createDocument } from '../../utils/documentCRUD';
+import { logEvent } from 'firebase/analytics';
 
 
 const provider = new GoogleAuthProvider();
@@ -86,6 +87,13 @@ const LoginPage = () => {
                   dummyProblem,
                 ],
               };
+
+              // log event
+
+              logEvent(analytics, 'register', {
+                method: 'google',
+                user: user.email,
+              });
 
 
               // create user's document collection

@@ -12,7 +12,7 @@ import { useEditorStore } from '../../store/editorStore';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { storage } from '../../service/firebase';
+import { analytics, storage } from '../../service/firebase';
 import { deleteObject, ref } from 'firebase/storage';
 import { ActionButton } from '../../components/ActionButton';
 import { RiKakaoTalkFill } from 'react-icons/ri';
@@ -20,6 +20,7 @@ import { FiPrinter } from 'react-icons/fi';
 import { ProblemScheme } from '../../types/Problem';
 import { getDocument as getDocumentFromFirestore, updateDocument } from '../../utils/documentCRUD';
 import { User } from 'firebase/auth';
+import { logEvent } from 'firebase/analytics';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -137,6 +138,10 @@ const EditorPage = () => {
             <ActionButton
               key={uuid()}
               onClick={() => {
+                logEvent(analytics, 'kakao_button_clicked', {
+                  user: user.email,
+                  documentId: documentId,
+                });
                 window.open('https://open.kakao.com/o/gP28At3e');
               }}>
               <RiKakaoTalkFill size={16}/> 사용자 모임
@@ -144,6 +149,11 @@ const EditorPage = () => {
             <ActionButton
               key={uuid()}
               onClick={() => {
+                // log Event
+                logEvent(analytics, 'print_button_clicked', {
+                  user: user.email,
+                  documentId: documentId,
+                });
                 print();
               }}>
               <FiPrinter size={16}/>

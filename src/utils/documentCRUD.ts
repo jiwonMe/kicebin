@@ -1,10 +1,11 @@
-import { db, storage } from '../service/firebase';
+import { analytics, db, storage } from '../service/firebase';
 import { DocumentScheme } from '../types/Document';
 import { collection, deleteDoc, doc, getDoc, getDocs, setDoc, Timestamp } from 'firebase/firestore';
 import { v4 as uuid } from 'uuid';
 import { User } from 'firebase/auth';
 import { ProblemScheme } from '../types/Problem';
 import { deleteObject, ref } from 'firebase/storage';
+import { logEvent } from 'firebase/analytics';
 
 export const createDocument = async (
   user: User | null,
@@ -22,6 +23,13 @@ export const createDocument = async (
     await setDoc(docRef, {
       ...document,
       id: newDocumentId,
+    });
+
+    // log event
+
+    logEvent(analytics, 'create_document', {
+      user: user.email,
+      document_id: newDocumentId,
     });
 
     return {
@@ -52,6 +60,13 @@ export const deleteDocument = async (
     }
 
     const problems = document.data()?.problems;
+
+    // log event
+
+    logEvent(analytics, 'delete_document', {
+      user: user.email,
+      document_id: documentId,
+    });
 
     // Delete images
     problems.forEach(async (problem: ProblemScheme) => {
@@ -156,6 +171,13 @@ export const getDocuments = async (
 
     const correctedDocuments = documents.docs.map((document) => documentIntegrityCorrection(user, document.data() as DocumentScheme));
 
+    // log event
+
+    logEvent(analytics, 'get_documents', {
+      user: user.email,
+      document_count: correctedDocuments.length,
+    });
+
     if (!documents.empty) {
       return correctedDocuments;
     } else {
@@ -177,6 +199,13 @@ export const updateDocument = async (
     }
 
     const docRef = doc(db, 'users', user.email, 'docs', document.id);
+
+    // log event
+
+    logEvent(analytics, 'update_document', {
+      user: user.email,
+      document_id: document.id,
+    });
 
     await setDoc(docRef, {
       ...document,
