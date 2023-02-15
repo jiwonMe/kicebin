@@ -45,8 +45,43 @@ const LoginPage = () => {
         <b>KICE</b>ditor
       </Title>
       <VSpace />
+      {/* <Notice>
+        카카오/에브리타임 인앱브라우저에서는 로그인이 되지 않습니다. <br />
+        PC 브라우저에서 접속해주세요.
+      </Notice>
+      <VSpace /> */}
       <GoogleLoginButton
         onClick={async () => {
+          // check user agent
+          const userAgent = navigator.userAgent;
+          console.log(userAgent);
+
+          if (
+            userAgent.match('KAKAOTALK') ||
+            userAgent.match('NAVER') ||
+            userAgent.match('everytimeApp') ||
+            userAgent.match('FB') ||
+            userAgent.match('INSTAGRAM')
+            // true
+          ) {
+            // copy url to clipboard
+            const url = window.location.href;
+            const textarea = document.createElement('textarea');
+            textarea.value = url;
+            document.body.appendChild(textarea);
+            textarea.select();
+            textarea.setSelectionRange(0, 9999);
+            document.execCommand('copy');
+
+            // remove textarea
+            document.body.removeChild(textarea);
+
+            logEvent(analytics, 'move_to_external_browser');
+
+            alert('인앱브라우저에서는 로그인이 되지 않습니다. 현재 URL이 복사되었으니 외부 브라우저에서 접속해주세요.');
+            return;
+          }
+
           const result = await signInWithPopup(auth, provider);
           const credential = GoogleAuthProvider.credentialFromResult(result);
           const token = credential?.accessToken;
@@ -136,6 +171,13 @@ const Title = styled.div`
   align-items: center;
 
   color: white;
+`;
+
+const Notice = styled.div`
+  font-family: 'Pretendard';
+  font-size: 14px;
+
+  color: #BABAC2;
 `;
 
 const SubTitle = styled.div`

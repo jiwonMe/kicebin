@@ -24,11 +24,17 @@ const AdminPage = () => {
   const getUsers = async () => {
     const querySnapshot = await getDocs(collection(db, 'users'));
 
-    querySnapshot.docs.forEach(async (userDoc) => {
+    querySnapshot.docs.sort().forEach(async (userDoc) => {
       // console.log(userDoc.data() as UserScheme);
       const docsQuerySnapshot = await getDocs(collection(db, 'users', userDoc.id, 'docs'));
 
-      // console.log(userDoc.id, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
+      const numberOfDocs = docsQuerySnapshot.docs.length;
+      const numberOfProblems = docsQuerySnapshot.docs.reduce((acc, cur) => {
+        const data = cur.data() as DocumentScheme;
+        return acc + data.problems.length;
+      }, 0);
+
+      console.log(userDoc.id, numberOfDocs, numberOfProblems, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
 
       setDocsByUser({
         ...docsByUser,
@@ -56,6 +62,8 @@ const AdminPage = () => {
         await setDoc(doc(db, 'backup', backupDateString, 'users', userDoc.id, 'docs', documentDoc.id), newDocument);
       });
     });
+
+    console.log('backup created');
   };
 
   return (
