@@ -21,8 +21,6 @@ const DocumentListContainer = ({
 }) => {
   const navigate = useNavigate();
 
-  console.log(documentList);
-
   return (
     <DocumentListContainerLayout>
       {

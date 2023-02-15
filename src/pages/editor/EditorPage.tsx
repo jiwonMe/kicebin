@@ -108,7 +108,6 @@ const EditorPage = () => {
 
     setDocument.setAll(document);
     setIsDocumentLoaded(true);
-    console.log('get');
   };
 
   const setDocumentToFirestore = async () => {

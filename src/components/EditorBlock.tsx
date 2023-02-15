@@ -225,7 +225,6 @@ const EditorBlock = ({
                   if (file) {
                     const storageRef = ref(storage, `images/${id}`);
                     const response = uploadBytes(storageRef, file);
-                    console.log(response);
                     response.then((snapshot) => {
                       getDownloadURL(snapshot.ref).then((url) => {
                         setBlock({

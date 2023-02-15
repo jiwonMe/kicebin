@@ -52,8 +52,6 @@ const LoginPage = () => {
           const token = credential?.accessToken;
           const user = result.user;
 
-          console.log({ token, user });
-
           setUser(user);
 
           // if first login, create user data
@@ -66,7 +64,6 @@ const LoginPage = () => {
             const userDocSnapshot = await getDoc(userDoc);
 
             if (!userDocSnapshot.exists()) {
-              console.log('boom');
               await setDoc(userDoc, {
                 email: user.email,
                 displayName: user.displayName,

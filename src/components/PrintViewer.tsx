@@ -413,7 +413,6 @@ const ProblemChoices = ({
   useEffect(() => {
     if (choiceRef.current && choiceContainerRef.current) {
       const width = 326 - 5*32;
-      console.log(choices[0], width, choiceRef.current.offsetWidth, width/choiceRef.current.offsetWidth);
       setNCols(
         [
           1, 1, 3, 3, 5, 5,

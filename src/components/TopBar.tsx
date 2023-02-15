@@ -5,6 +5,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../service/firebase';
 import { useEditorStore } from '../store/editorStore';
 import { ActionButton } from './ActionButton';
+import { useNavigate } from 'react-router-dom';
 
 const TopBar = ({ actionButtons }: {
   actionButtons?: React.ReactNode[];
@@ -12,6 +13,7 @@ const TopBar = ({ actionButtons }: {
 
   const { user, removeUser } = useAuthStore();
   const { setDocument } = useEditorStore();
+  const navigate = useNavigate();
   return (
     <TopBarLayout>
       <Title>
@@ -30,6 +32,7 @@ const TopBar = ({ actionButtons }: {
                   signOut(auth);
                   removeUser();
                   setDocument.setAll(null);
+                  navigate('/login');
                 }}>
                   Logout
                 </ActionButton>
