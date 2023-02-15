@@ -7,20 +7,39 @@ import { FiX, FiPlus, FiUpload } from 'react-icons/fi';
 import { storage } from '../service/firebase';
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { BlockScheme, BlockType } from '../types/Block';
+import { motion, Reorder, useDragControls } from 'framer-motion';
+
+import { RxDragHandleDots2 } from 'react-icons/rx';
 
 
 interface EditorBlockProps extends BlockScheme {
+  block: BlockScheme;
   setBlock: (block: BlockScheme) => void;
   deleteBlock: (blockId: string) => void;
   addBlockAfter: (blockId: string) => void;
 }
 
 const EditorBlock = ({
-  type, id, content, setBlock, deleteBlock, addBlockAfter,
+  block, type, id, content, setBlock, deleteBlock, addBlockAfter,
 }: EditorBlockProps) => {
+
+  const controls = useDragControls();
+
   return (
-    <EditorBlockLayout>
+    <EditorBlockLayout
+      key={id}
+      value={block}
+      dragListener={false}
+      dragControls={controls}
+    >
       <BlockHeaderLayout>
+        <DragHandle
+          onPointerDown={(e) => {
+            controls.start(e);
+          }}
+        >
+          <RxDragHandleDots2 />
+        </DragHandle>
         <Select
           value={type}
           onChange={(e) => {
@@ -246,7 +265,7 @@ const EditorBlock = ({
 
 export default EditorBlock;
 
-const EditorBlockLayout = styled.div`
+const EditorBlockLayout = styled(Reorder.Item)`
   font-family: 'Pretendard';
 
   display: flex;
@@ -268,6 +287,20 @@ const BlockHeaderLayout = styled.div`
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #464646;
+`;
+
+const DragHandle = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* width: 40px; */
+  height: 40px;
+
+  color: #d4d4d4;
+  /* :hover {
+    background-color: #86868613;
+  } */
 `;
 
 const BlockButton = styled.button`

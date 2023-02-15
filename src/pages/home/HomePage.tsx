@@ -16,6 +16,8 @@ import {
 } from '../../utils/documentCRUD';
 import { User } from 'firebase/auth';
 
+import { RxDragHandleDots2 } from 'react-icons/rx';
+
 
 const HomePage = () => {
 
@@ -103,10 +105,12 @@ const HomePage = () => {
       <NoticeLayout>
         <NoticeContent>
           <NoticeTitle>
-            [Update] 2023-02-13 새로운 문제집 만들기 기능이 추가되었습니다.
+            [Update] 2023-02-15 문제 / 블록 순서 바꾸기 기능이 추가되었습니다.
           </NoticeTitle>
           <NoticeDescription>
-            기존 문제집은 <b>KICEBIN Sample Document</b>에 저장되어있습니다.
+            편집기의 좌측 목록에서 문제를 드래그하여 순서를 바꿀 수 있습니다. <br/> 또한, 블록의 드래그 핸들
+            (<RxDragHandleDots2 size={12}/>)
+            을 드래그하여 순서를 바꿀 수 있습니다.
           </NoticeDescription>
         </NoticeContent>
       </NoticeLayout>
@@ -155,8 +159,10 @@ const NoticeLayout = styled.div`
   align-items: center;
   justify-content: center;
 
-  height: 50px;
+  /* height: 50px; */
   background-color: #0b477c;
+
+  padding: 8px 0;
 `;
 
 const NoticeContent = styled.div`
@@ -171,6 +177,7 @@ const NoticeContent = styled.div`
 const NoticeTitle = styled.div`
   font-weight: 700;
   color: #ffffff;
+  margin-bottom: 4px;
 `;
 
 const NoticeDescription = styled.div`

@@ -12,6 +12,7 @@ import { v4 as uuid } from 'uuid';
 import { FiPlus } from 'react-icons/fi';
 import { InputWithLabel } from './components/Input';
 import { ProblemScheme } from './types/Problem';
+import { Reorder } from 'framer-motion';
 
 const Editor = () => {
   const { document, setDocument, currentProblemId: _currProbId } = useEditorStore();
@@ -70,22 +71,28 @@ const Editor = () => {
         />
       </FormBox>
       {
-        currentProblem.content.map((block) => (
-          <EditorBlock
-            key={block.id}
-            {...block}
-            setBlock={(newBlock) => {
-              setDocument.setProblems.update(currentProblemId).setContent(
-                currentProblem.content.map((b) => (b.id === newBlock.id ? newBlock : b)),
-              );
-            }}
-            deleteBlock={deleteBlock}
-            addBlockAfter={addBlockAfter}
-            id={block.id}
-            type={block.type}
-            content={block.content}
-          />
-        ))
+        <EditorBlockContainerLayout
+          axis='y'
+          values={currentProblem.content}
+          onReorder={setDocument.setProblems.update(currentProblemId).setContent}
+        >
+          {currentProblem.content.map((block) => (
+            <EditorBlock
+              key={block.id}
+              block={block}
+              setBlock={(newBlock) => {
+                setDocument.setProblems.update(currentProblemId).setContent(
+                  currentProblem.content.map((b) => (b.id === newBlock.id ? newBlock : b)),
+                );
+              }}
+              deleteBlock={deleteBlock}
+              addBlockAfter={addBlockAfter}
+              id={block.id}
+              type={block.type}
+              content={block.content}
+            />
+          ))}
+        </EditorBlockContainerLayout>
       }
       {
         <AddBlockButton
@@ -149,6 +156,17 @@ const FormBox = styled.div`
     font-size: 14px;
     margin-bottom: 0.25em;
   }
+`;
+
+const EditorBlockContainerLayout = styled(Reorder.Group)`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  padding: 0;
+  width: 100%;
+  gap: 16px;
 `;
 
 const AddBlockButton = styled.button`
