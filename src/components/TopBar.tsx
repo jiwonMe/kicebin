@@ -16,7 +16,11 @@ const TopBar = ({ actionButtons }: {
   const navigate = useNavigate();
   return (
     <TopBarLayout>
-      <Title>
+      <Title
+        onClick={() => {
+          navigate('/');
+        }}
+      >
         <b>KICE</b>ditor
       </Title>
 
@@ -78,6 +82,8 @@ const TopBarLayout = styled.div`
 
   color: #BABAC2;
   border-bottom: 1px solid #393939;
+
+  user-select: none;
 `;
 
 const ActionButtonsContainerLayout = styled.div`
