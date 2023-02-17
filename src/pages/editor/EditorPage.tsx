@@ -16,7 +16,7 @@ import { analytics, storage } from '../../service/firebase';
 import { deleteObject, ref } from 'firebase/storage';
 import { ActionButton } from '../../components/ActionButton';
 import { RiKakaoTalkFill } from 'react-icons/ri';
-import { FiPrinter } from 'react-icons/fi';
+import { FiPrinter, FiUploadCloud } from 'react-icons/fi';
 import { ProblemScheme } from '../../types/Problem';
 import { getDocument as getDocumentFromFirestore, updateDocument } from '../../utils/documentCRUD';
 import { User } from 'firebase/auth';
@@ -129,6 +129,23 @@ const EditorPage = () => {
     setDocumentToFirestore();
   }, [document]);
 
+  useEffect(() => {
+    // save datas when command s is pressed
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 's' && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)) {
+        e.preventDefault();
+        setDocumentToFirestore();
+        alert('저장되었습니다.');
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
+
   return (
     <EntireLayout>
       <TopLayout>
@@ -157,7 +174,22 @@ const EditorPage = () => {
               }}>
               <FiPrinter size={16}/>
           프린트
-            </ActionButton>
+            </ActionButton>,
+            <SaveButton
+              key={uuid()}
+              // save
+              onClick={() => {
+                // log Event
+                logEvent(analytics, 'save_button_clicked', {
+                  user: user.email,
+                  documentId: documentId,
+                });
+                setDocumentToFirestore();
+                alert('저장되었습니다.');
+              }}>
+              <FiUploadCloud size={16}/>
+              저장
+            </SaveButton>,
           ]}
         />
       </TopLayout>
@@ -253,4 +285,10 @@ const MainLayout = styled.div`
   box-sizing: border-box;
 
   background-color: #1A1A1C;
+`;
+
+const SaveButton = styled(ActionButton)`
+  /* blue */
+  background-color: #003ee8 !important;
+  color: #FFFFFF !important;
 `;

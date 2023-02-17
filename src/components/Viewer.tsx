@@ -167,10 +167,14 @@ const ProblemLayout = styled.div`
 
   .katex {
     font-stretch: 1em;
-    letter-spacing: 0em;
+    letter-spacing: 0.1em;
     line-height: 1.2;
     text-rendering: auto;
-    font: normal 1.21em KaTeX_Main,Times New Roman,serif;
+    font: normal 1.21em 'Latin Modern Roman', 'Times New Roman', serif;
+  }
+
+  .katex .mathnormal {
+    font-family: 'Latin Modern Roman';
   }
 
   .katex-display {
@@ -218,6 +222,54 @@ const ProblemConditions = styled.div`
 
   li:nth-child(2) {
     list-style-type: "(나) ";
+  }
+
+  li:nth-child(3) {
+    list-style-type: "(다) ";
+  }
+
+  li:nth-child(4) {
+    list-style-type: "(라) ";
+  }
+
+  li:nth-child(5) {
+    list-style-type: "(마) ";
+  }
+
+  li:nth-child(6) {
+    list-style-type: "(바) ";
+  }
+
+  li:nth-child(7) {
+    list-style-type: "(사) ";
+  }
+
+  li:nth-child(8) {
+    list-style-type: "(아) ";
+  }
+
+  li:nth-child(9) {
+    list-style-type: "(자) ";
+  }
+
+  li:nth-child(10) {
+    list-style-type: "(차) ";
+  }
+
+  li:nth-child(11) {
+    list-style-type: "(카) ";
+  }
+
+  li:nth-child(12) {
+    list-style-type: "(타) ";
+  }
+
+  li:nth-child(13) {
+    list-style-type: "(파) ";
+  }
+
+  li:nth-child(14) {
+    list-style-type: "(하) ";
   }
 `;
 
@@ -282,6 +334,50 @@ const ProblemExample = styled.div`
   li:nth-child(3) {
     list-style-type: "ㄷ. ";
   }
+
+  li:nth-child(4) {
+    list-style-type: "ㄹ. ";
+  }
+
+  li:nth-child(5) {
+    list-style-type: "ㅁ. ";
+  }
+
+  li:nth-child(6) {
+    list-style-type: "ㅂ. ";
+  }
+
+  li:nth-child(7) {
+    list-style-type: "ㅅ. ";
+  }
+
+  li:nth-child(8) {
+    list-style-type: "ㅇ. ";
+  }
+
+  li:nth-child(9) {
+    list-style-type: "ㅈ. ";
+  }
+
+  li:nth-child(10) {
+    list-style-type: "ㅊ. ";
+  }
+
+  li:nth-child(11) {
+    list-style-type: "ㅋ. ";
+  }
+
+  li:nth-child(12) {
+    list-style-type: "ㅌ. ";
+  }
+
+  li:nth-child(13) {
+    list-style-type: "ㅍ. ";
+  }
+
+  li:nth-child(14) {
+    list-style-type: "ㅎ. ";
+  }
 `;
 
 const ProblemChoices = styled.div`
@@ -328,6 +424,26 @@ const ProblemChoices = styled.div`
 
   li:nth-child(5) {
     list-style-type: "⑤ ";
+  }
+
+  li:nth-child(6) {
+    list-style-type: "⑥ ";
+  }
+
+  li:nth-child(7) {
+    list-style-type: "⑦ ";
+  }
+
+  li:nth-child(8) {
+    list-style-type: "⑧ ";
+  }
+
+  li:nth-child(9) {
+    list-style-type: "⑨ ";
+  }
+
+  li:nth-child(10) {
+    list-style-type: "⑩ ";
   }
 `;
 

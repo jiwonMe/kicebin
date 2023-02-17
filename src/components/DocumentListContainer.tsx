@@ -25,7 +25,10 @@ const DocumentListContainer = ({
     <DocumentListContainerLayout>
       {
         documentList.sort(
-          (a, b) => b.meta.updatedAt.seconds - a.meta.updatedAt.seconds,
+          (a, b) => {
+            if (!a.meta.updatedAt || !b.meta.updatedAt) return 0;
+            else return b.meta.updatedAt.seconds - a.meta.updatedAt.seconds;
+          },
         ).map((document) => {
           return (
             <DocumentListCell

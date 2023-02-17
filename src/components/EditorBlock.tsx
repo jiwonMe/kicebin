@@ -100,103 +100,180 @@ const EditorBlock = ({
         {
           type === 'CONDITIONS' && (
             <div>
-              <div>
-                <InputWithLabel
-                  label='(가)'
-                  type="text"
-                  value={content[0]}
-                  onChange={(e) => {
-                    setBlock({
-                      type,
-                      id,
-                      content: [e.target.value, content[1]],
-                    });
-                  }}
-                />
-              </div>
-              <div>
-                <InputWithLabel
-                  label='(나)'
-                  type="text"
-                  value={content[1]}
-                  onChange={(e) => {
-                    setBlock({
-                      type,
-                      id,
-                      content: [content[0], e.target.value],
-                    });
-                  }}
-                />
-              </div>
+              {
+                (content as string[]).map((condition, i) => {
+                  return (
+                    <ConditionLayout
+                      key={i}
+                    >
+                      <InputWithLabel
+                        label={['(가)', '(나)', '(다)', '(라)', '(마)', '(바)', '(사)', '(아)', '(자)', '(차)', '(카)', '(타)', '(파)', '(하)'][i]}
+                        type="text"
+                        value={condition}
+                        onChange={(e) => {
+                          setBlock({
+                            type,
+                            id,
+                            content: (content as string[]).map((c, j) => (j === i ? e.target.value : c)),
+                          });
+                        }}
+                      />
+                      <DeleteButton
+                        onClick={() => {
+                          if ((content as string[]).length <= 2) {
+                            alert('최소 2개 이상의 조건이 있어야 합니다.');
+                            return;
+                          }
+                          setBlock({
+                            type,
+                            id,
+                            content: (content as string[]).filter((_, j) => j !== i),
+                          });
+                        }}
+                      >
+                        <FiX size={16} />
+                      </DeleteButton>
+                    </ConditionLayout>
+                  );
+                })
+              }
+              <AddConditionButton
+                onClick={() => {
+                  if ((content as string[]).length >= 14) {
+                    alert('최대 14개까지 추가할 수 있습니다.');
+                    return;
+                  }
+                  setBlock({
+                    type,
+                    id,
+                    content: [...(content as string[]), ''],
+                  });
+                }}
+              >
+                <FiPlus size={16} />
+                보기 추가
+              </AddConditionButton>
             </div>
           )
         }
         {
           type === 'EXAMPLES' && (
             <div>
-              <div>
-                <InputWithLabel
-                  label='보기 ㄱ'
-                  type="text"
-                  value={content[0]}
-                  onChange={(e) => {
-                    setBlock({
-                      type,
-                      id,
-                      content: [e.target.value, content[1], content[2]],
-                    });
-                  }}
-                />
-              </div>
-              <div>
-                <InputWithLabel
-                  label='보기 ㄴ'
-                  type="text"
-                  value={content[1]}
-                  onChange={(e) => {
-                    setBlock({
-                      type,
-                      id,
-                      content: [content[0], e.target.value, content[2]],
-                    });
-                  }}
-                />
-              </div>
-              <div>
-                <InputWithLabel
-                  label='보기 ㄷ'
-                  type="text"
-                  value={content[2]}
-                  onChange={(e) => {
-                    setBlock({
-                      type,
-                      id,
-                      content: [content[0], content[1], e.target.value],
-                    });
-                  }}
-                />
-              </div>
+              {
+                (content as string[]).map((example, i) => {
+                  const ExampleSymbols = ['ㄱ', 'ㄴ', 'ㄷ', 'ㄹ', 'ㅁ', 'ㅂ', 'ㅅ', 'ㅇ', 'ㅈ', 'ㅊ', 'ㅋ', 'ㅌ', 'ㅍ', 'ㅎ'];
+                  return (
+                    <ExampleLayout
+                      key={i}
+                    >
+                      <InputWithLabel
+                        label={`보기 ${ExampleSymbols[i]}`}
+                        type="text"
+                        value={example}
+                        onChange={(e) => {
+                          setBlock({
+                            type,
+                            id,
+                            content: (content as string[]).map((c, j) => (j === i ? e.target.value : c)),
+                          });
+                        }}
+                      />
+                      <DeleteButton
+                        onClick={() => {
+                          if ((content as string[]).length <= 2) {
+                            alert('최소 2개 이상의 보기가 있어야 합니다.');
+                            return;
+                          }
+                          setBlock({
+                            type,
+                            id,
+                            content: (content as string[]).filter((_, j) => j !== i),
+                          });
+                        }}
+                      >
+                        <FiX size={16} />
+                      </DeleteButton>
+                    </ExampleLayout>
+                  );
+                })
+              }
+              <AddExampleButton
+                onClick={() => {
+                  if ((content as string[]).length >= 14) {
+                    alert('최대 14개까지 추가할 수 있습니다.');
+                    return;
+                  }
+                  setBlock({
+                    type,
+                    id,
+                    content: [...(content as string[]), ''],
+                  });
+                }}
+              >
+                <FiPlus size={16} />
+                보기 추가
+              </AddExampleButton>
             </div>
           )
         }
         {
           type === 'CHOICES' && (
             <div>{
-              [1, 2, 3, 4, 5].map((i) => (
-                <InputWithLabel
-                  key={i}
-                  label={['①', '②', '③', '④', '⑤'][i - 1]}
-                  type="text"
-                  value={content[i - 1]}
-                  onChange={(e) => {
-                    setBlock({
-                      type,
-                      id,
-                      content: (content as string[]).map((c, j) => (j === i - 1 ? e.target.value : c)),
-                    });
-                  }}
-                />
-              ))
+              (content as string[]).map((choice, i) => {
+
+                const choiceSymbols = ['①', '②', '③', '④', '⑤', '⑥', '⑦', '⑧', '⑨'];
+
+                return (
+                  <ChoiceLayout
+                    key={i}
+                  >
+                    <InputWithLabel
+                      label={choiceSymbols[i]}
+                      type="text"
+                      value={choice}
+                      onChange={(e) => {
+                        setBlock({
+                          type,
+                          id,
+                          content: (content as string[]).map((c, j) => (j === i ? e.target.value : c)),
+                        });
+                      }}
+                    />
+                    <DeleteButton
+                      onClick={() => {
+                        if ((content as string[]).length <= 2) {
+                          alert('최소 2개의 선택지가 필요합니다.');
+                          return;
+                        }
+                        setBlock({
+                          type,
+                          id,
+                          content: (content as string[]).filter((_, j) => j !== i),
+                        });
+                      }}
+                    >
+                      <FiX size={16} />
+                    </DeleteButton>
+                  </ChoiceLayout>
+                );
+              })}
+            {
+              <AddChoiceButton
+                onClick={() => {
+                  if ((content as string[]).length >= 9) {
+                    alert('최대 9개까지 추가할 수 있습니다.');
+                    return;
+                  }
+                  setBlock({
+                    type,
+                    id,
+                    content: [...(content as string[]), ''],
+                  });
+                }}
+              >
+                <FiPlus size={16} />
+                선택지 추가
+              </AddChoiceButton>
             }</div>
           )
         }
@@ -410,3 +487,62 @@ const ImagePlaceholder = styled.label`
 
   margin-bottom: 8px;
 `;
+
+const DeleteButton = styled.button`
+  background-color: #0000;
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 40px;
+  height: 40px;
+
+  color: #d4d4d4;
+  :hover {
+    background-color: #86868613;
+  }
+`;
+
+const ConditionLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+`;
+
+const AddConditionButton = styled.button`
+  background-color: #0000;
+  border: none;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  width: 100%;
+  height: 40px;
+
+  border-radius: 4px;
+
+  border: 1px solid #868686;
+
+  color: #d4d4d4;
+  :hover {
+    background-color: #86868613;
+  }
+`;
+
+const ExampleLayout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+`;
+
+const AddExampleButton = styled(AddConditionButton)``;
+
+const ChoiceLayout = styled(ExampleLayout)``;
+
+const AddChoiceButton = styled(AddConditionButton)``;

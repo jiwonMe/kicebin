@@ -1,7 +1,21 @@
 import { createGlobalStyle } from 'styled-components';
-import SM신명조03 from './assets/SM3신명조-03.woff';
-import SM3중명조 from './assets/SM3중명조.woff';
-import HYHwpEQ from './assets/HYHWPEQ.otf';
+import SM신명조03 from './assets/fonts/SM3신명조-03.woff';
+import SM3중명조 from './assets/fonts/SM3중명조.woff';
+import HYHwpEQ from './assets/fonts/HYHWPEQ.otf';
+
+import lmBold from './assets/fonts/latinmodernroman_10bold_macroman/lmroman10-bold-webfont.woff';
+import lmBoldItalic from './assets/fonts/latinmodernroman_10bolditalic_macroman/lmroman10-bolditalic-webfont.woff';
+import lmItalic from './assets/fonts/latinmodernroman_10italic_macroman/lmroman10-italic-webfont.woff';
+import lmRegular from './assets/fonts/latinmodernroman_10regular_macroman/lmroman10-regular-webfont.woff';
+import lmCapsOblique from './assets/fonts/latinmodernromancaps_10oblique_macroman/lmromancaps10-oblique-webfont.woff';
+import lmCapsRegular from './assets/fonts/latinmodernromancaps_10regular_macroman/lmromancaps10-regular-webfont.woff';
+import lmDemiBold from './assets/fonts/latinmodernroman_10bold_macroman/lmroman10-bold-webfont.woff';
+import lmDemiRegular from './assets/fonts/latinmodernromandemi_10regular_macroman/lmromandemi10-regular-webfont.woff';
+import lmDunhillOblique from './assets/fonts/latinmodernromandunhill_10oblique_macroman/lmromandunh10-oblique-webfont.woff';
+import lmDunhillRegular from './assets/fonts/latinmodernromandunhill_10regular_macroman/lmromandunh10-regular-webfont.woff';
+import lmSlanted from './assets/fonts/latinmodernromanslanted_10regular_macroman/lmromanslant10-regular-webfont.woff';
+import lmSlantedBold from './assets/fonts/latinmodernromanslanted_10bold_macroman/lmromanslant10-bold-webfont.woff';
+
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -87,6 +101,92 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
+
+  @font-face {
+    font-family: 'Latin Modern Roman';
+    src: url(${lmBold}) format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman';
+    src: url(${lmBoldItalic}) format('woff');
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman';
+    src: url(${lmItalic}) format('woff');
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman';
+    src: url(${lmRegular}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman Caps';
+    src: url(${lmCapsOblique}) format('woff');
+    font-weight: normal;
+    font-style: oblique;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman Caps';
+    src: url(${lmCapsRegular}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman Demi';
+    src: url(${lmDemiRegular}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman Demi';
+    src: url(${lmDemiBold}) format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman Dunhill';
+    src: url(${lmDunhillOblique}) format('woff');
+    font-weight: normal;
+    font-style: oblique;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman Dunhill';
+    src: url(${lmDunhillRegular}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman Slanted';
+    src: url(${lmSlantedBold}) format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'Latin Modern Roman Slanted';
+    src: url(${lmSlanted}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
 
   font-family: 'Pretendard';
 `;

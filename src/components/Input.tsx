@@ -20,8 +20,10 @@ const Input = styled.input`
   }
 `;
 
-const InputWithLabel = ({ label, type, value, onChange }: { label: string, type: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void }) => (
-  <InputWithLabelLayout>
+const InputWithLabel = ({ label, type, value, onChange, className }: { label: string, type: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void, className?: string }) => (
+  <InputWithLabelLayout
+    className={className}
+  >
     <label>{label}</label>
     <Input
       type={type}
@@ -42,6 +44,8 @@ const InputWithLabel = ({ label, type, value, onChange }: { label: string, type:
 );
 
 const InputWithLabelLayout = styled.div`
+  flex-grow: 1;
+
   display: flex;
   flex-direction: row;
   align-items: center;

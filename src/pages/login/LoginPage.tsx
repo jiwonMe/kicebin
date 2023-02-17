@@ -62,7 +62,6 @@ const LoginPage = () => {
             userAgent.match('everytimeApp') ||
             userAgent.match('FB') ||
             userAgent.match('INSTAGRAM')
-            // true
           ) {
             // copy url to clipboard
             const url = window.location.href;
@@ -79,6 +78,15 @@ const LoginPage = () => {
             logEvent(analytics, 'move_to_external_browser');
 
             alert('인앱브라우저에서는 로그인이 되지 않습니다. 현재 URL이 복사되었으니 외부 브라우저에서 접속해주세요.');
+
+            window.location.assign('x-github-client://openRepo/');
+
+            // // check if user agent is android
+            // if (userAgent.match('Android')) {
+            //   // 'intent://www.test.com#Intent;scheme=http;package=com.android.chrome;end'
+            //   window.location.assign('intent://www.naver.com#Intent;scheme=http;package=com.android.chrome;end');
+            // }
+
             return;
           }
 
@@ -144,8 +152,15 @@ const LoginPage = () => {
       </GoogleLoginButton>
       <VSpace />
       <SubTitle>
-        created by hanpanic
+        developed by park@jiwon.me
       </SubTitle>
+      {/* <SubTitle>
+        Aldeve.Inc © 2023
+      </SubTitle>
+      <VSpace />
+      <SubTitle>
+        학원/기업 도입문의: <Link href="mailto:park@jiwon.me">park@jiwon.me</Link>
+      </SubTitle> */}
     </LoginPageLayout>
   );
 };
@@ -160,6 +175,10 @@ const LoginPageLayout = styled.div`
   height: 100vh;
 
   background-color: #232327;
+`;
+
+const Link = styled.a`
+  color: #BABAC2;
 `;
 
 const Title = styled.div`
