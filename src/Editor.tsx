@@ -116,7 +116,7 @@ const Editor = () => {
   );
 };
 
-export default Editor;
+export default React.memo(Editor);
 
 const EditorLayout = styled.div`
   display: flex;

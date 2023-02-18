@@ -42,6 +42,8 @@ const EditorPage = () => {
   const { documentId } = useParams();
   const { document, setDocument, currentProblemId: _currProbId, setCurrentProblemId } = useEditorStore();
 
+  const [isPrintMode, setIsPrintMode] = useState(false);
+
   const currentProblemId = useMemo(() => {
     return _currProbId || document.problems[0]?.id;
   }, [_currProbId, document.problems]);
@@ -65,6 +67,15 @@ const EditorPage = () => {
   };
 
   const printViewerRef = useRef<HTMLIFrameElement>(null);
+
+  const handlePrint = () => {
+    setIsPrintMode(true);
+
+    setTimeout(() => {
+      print();
+      setIsPrintMode(false);
+    }, 10000);
+  };
 
   const print = () => {
     if (printViewerRef.current) {
@@ -148,6 +159,13 @@ const EditorPage = () => {
 
   return (
     <EntireLayout>
+      {
+        isPrintMode && (
+          <LoadingLayout>
+            <div>인쇄 로딩중...</div>
+          </LoadingLayout>
+        )
+      }
       <TopLayout>
         <TopBar
           actionButtons={[
@@ -170,7 +188,7 @@ const EditorPage = () => {
                   user: user.email,
                   documentId: documentId,
                 });
-                print();
+                handlePrint();
               }}>
               <FiPrinter size={16}/>
           프린트
@@ -211,53 +229,59 @@ const EditorPage = () => {
           problems={document.problems}
           currentProblemId={currentProblemId}
         />
-      </MainLayout>
-      <Frame
-        style={{
-          // display: 'none',
-          backgroundColor: 'white',
-        }}
-        ref={printViewerRef}
-        head={
-          <>
-            <link
-              rel="stylesheet"
-              href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-              integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
-              crossOrigin="anonymous"
-            />
-            <link
-              rel="stylesheet"
-              href="./assets/index.css"
-            />
-            <script
-              src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
-              integrity='sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4'
-              crossOrigin='anonymous'
-            />
-            <style>
-              {/* css */`
-              html, body {
-                padding: 0;
-                margin: 0;
-                height: 100%;
-                page-break-inside: avoid;
-                break-inside: avoid-page;
+      </MainLayout>{
+        <Frame
+          style={{
+            // display: 'none',
+            backgroundColor: 'white',
+          }}
+          ref={printViewerRef}
+          head={
+            <>
+              <link
+                rel="stylesheet"
+                href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+                integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
+                crossOrigin="anonymous"
+              />
+              <link
+                rel="stylesheet"
+                href="./assets/index.css"
+              />
+              <script
+                src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+                integrity='sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4'
+                crossOrigin='anonymous'
+              />
+              <style>
+                {/* css */`
+                  html, body {
+                    padding: 0;
+                    margin: 0;
+                    height: 100%;
+                    page-break-inside: avoid;
+                    break-inside: avoid-page;
+                  }
+                  `}
+              </style>
+            </>
+          }
+        >
+          <InjectFrameStyles>
+            <>
+              <GlobalStyle />
+              {
+                isPrintMode && (
+                  <PrintViewer
+                    document={document}
+                  />
+                )
               }
-              `}
-            </style>
-          </>
-        }
-      >
-        <InjectFrameStyles>
-          <>
-            <GlobalStyle />
-            <PrintViewer
-              document={document}
-            />
-          </>
-        </InjectFrameStyles>
-      </Frame>
+            </>
+          </InjectFrameStyles>
+        </Frame>
+
+      }
     </EntireLayout>
   );
 };
@@ -291,4 +315,18 @@ const SaveButton = styled(ActionButton)`
   /* blue */
   background-color: #003ee8 !important;
   color: #FFFFFF !important;
+`;
+
+const LoadingLayout = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #FFFFFF;
+  background-color: #00000055;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

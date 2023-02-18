@@ -32,7 +32,7 @@ const _mapProps = (props: ReactMarkdownOptions): ReactMarkdownOptions => ({
       },
       globalGroup: true,
     }],
-    // rehypeLog,
+    rehypeLog,
   ]
 });
 

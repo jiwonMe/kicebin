@@ -106,7 +106,7 @@ const Viewer = ({ problems, currentProblemId } : { problems: ProblemScheme[], cu
   );
 };
 
-export default Viewer;
+export default React.memo(Viewer);
 
 const ViewerLayout = styled.div`
   display: flex;

@@ -339,7 +339,7 @@ const EditorBlock = ({
   );
 };
 
-export default EditorBlock;
+export default React.memo(EditorBlock);
 
 const EditorBlockLayout = styled(Reorder.Item)`
   font-family: 'Pretendard';

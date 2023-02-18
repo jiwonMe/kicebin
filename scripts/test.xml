@@ -1,0 +1,621 @@
+<html xmlns="http://www.w3.org/TR/REC-html40" xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word">
+  <head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type" /><!--[if
+    !mso]>
+  <style>
+  v\:* {behavior:url(#default#vml);}
+  o\:* {behavior:url(#default#vml);}
+  w\:* {behavior:url(#default#vml);}
+  .shape {behavior:url(#default#vml);}
+  </style>
+  <![endif]
+  -->
+    <title></title>
+    <style type="text/css"><!--p.1
+      {mso-style-name:"문제";line-height:145%;margin-left:20.0pt;margin-right:0pt;text-indent:-10.0pt;margin-top:0pt;margin-bottom:3.0pt;text-align:justify;word-break:break-hangul;layout-grid-mode:none;vertical-align:baseline;mso-pagination:none;text-autospace:none;mso-padding-alt:0pt
+      0pt 0pt
+      0pt;mso-ascii-font-family:함초롬바탕;mso-ascii-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;font-size:11.5pt;color:#000000;mso-font-kerning:0pt;}
+  @list l0
+  {mso-list-type:numberic;
+  mso-style-name:"@list l0";}
+  @list l0:level1
+  {mso-level-text:%1\.;
+  mso-level-start-at:23;
+  margin-left:0pt;
+  mso-level-number-position:left;
+  text-indent:0pt;
+  mso-fareast-font-family:한컴바탕;
+  font-family:한컴바탕;
+  mso-font-width:100%;
+  mso-ansi-font-weight:bold;
+  mso-ansi-font-style:italic;
+  mso-ansi-font-size:14.0pt;
+  color:#000000;
+  text-underline:none;
+  mso-level-suffix:space;
+  mso-style-name:"@list l0:level1";}
+  @list l0:level2
+  {mso-level-number-format:ganada;
+  mso-level-text:%2\.;
+  margin-left:0pt;
+  mso-level-number-position:left;
+  text-indent:0pt;
+  mso-level-suffix:space;
+  mso-style-name:"@list l0:level2";}
+  @list l0:level3
+  {mso-level-text:%3\);
+  mso-level-number-position:left;
+  text-indent:0pt;
+  margin-left:0pt;
+  mso-level-suffix:space;
+  mso-style-name:"@list l0:level3";}
+  @list l0:level4
+  {mso-level-number-format:ganada;
+  mso-level-text:%4\);
+  mso-level-number-position:left;
+  text-indent:0pt;
+  margin-left:0pt;
+  mso-level-suffix:space;
+  mso-style-name:"@list l0:level4";}
+  @list l0:level5
+  {mso-level-text:\(%5\);
+  mso-level-number-position:left;
+  text-indent:0pt;
+  margin-left:0pt;
+  mso-level-suffix:space;
+  mso-style-name:"@list l0:level5";}
+  @list l0:level6
+  {mso-level-number-format:ganada;
+  mso-level-text:\(%6\);
+  mso-level-number-position:left;
+  text-indent:0pt;
+  margin-left:0pt;
+  mso-level-suffix:space;
+  mso-style-name:"@list l0:level6";}
+  @list l0:level7
+  {mso-level-number-format:decimal-enclosed-circle;
+  mso-level-text:%7;
+  mso-level-number-position:left;
+  text-indent:0pt;
+  margin-left:0pt;
+  mso-level-suffix:space;
+  mso-style-name:"@list l0:level7";}
+  -->
+    </style>
+  </head>
+  <body><!--StartFragment-->
+    <p class="1"
+      style="mso-pagination:none;text-autospace:none;mso-padding-alt:0pt 0pt 0pt 0pt;mso-list:l0 level1 lfo1;font-size:1.0pt;color:#ffffff;">
+      <span lang="EN-US" style="mso-fareast-font-family:함초롬바탕;"> </span>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">그림과 같이 길이가 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30708704" style="v-text-anchor:top;width:4.72pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32f6"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32f6.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32f6.png"
+        v:shapes="_x30708704" width="4pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">인 선분 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x98401424" style="v-text-anchor:top;width:13.49pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32f7"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32f7.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32f7.png"
+        v:shapes="_x98401424" width="13pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">를 지름으로 하는 반원이 있다</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        . </span>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">호 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x98400864" style="v-text-anchor:top;width:13.49pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32f8"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32f8.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32f8.png"
+        v:shapes="_x98400864" width="13pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">위에 두점 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x98399744" style="v-text-anchor:top;width:19.03pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32f9"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32f9.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32f9.png"
+        v:shapes="_x98399744" width="19pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">를 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30719680"
+      style="v-text-anchor:top;width:103.15pt;height:11.25pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c32fa"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fa.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fa.png"
+        v:shapes="_x30719680" width="103pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">가 되도록 잡고</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        , </span>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">두 선분 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30708816" style="v-text-anchor:top;width:35.26pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32fb"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fb.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fb.png"
+        v:shapes="_x30708816" width="35pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">의 교점을 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30704896" style="v-text-anchor:top;width:6.07pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32fc"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fc.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fc.png"
+        v:shapes="_x30704896" width="6pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">라 하자</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        .</span>
+      <br>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">선분 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30691760" style="v-text-anchor:top;width:13.49pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32fd"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fd.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fd.png"
+        v:shapes="_x30691760" width="13pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">위의 점 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30700272" style="v-text-anchor:top;width:6.07pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32fe"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fe.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32fe.png"
+        v:shapes="_x30700272" width="6pt" />
+      <![endif]>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        , </span>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">선분 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x98399856" style="v-text-anchor:top;width:12.14pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c32ff"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32ff.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c32ff.png"
+        v:shapes="_x98399856" width="12pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">위의 점 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30692208" style="v-text-anchor:top;width:7.42pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c3300"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3300.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3300.png"
+        v:shapes="_x30692208" width="7pt" />
+      <![endif]>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        , </span>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">선분 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30679184" style="v-text-anchor:top;width:13.49pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c3301"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3301.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3301.png"
+        v:shapes="_x30679184" width="13pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">위의 점 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30671792" style="v-text-anchor:top;width:7.42pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c3302"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3302.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3302.png"
+        v:shapes="_x30671792" width="7pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">를 선분 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30678288" style="v-text-anchor:top;width:14.84pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c3303"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3303.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3303.png"
+        v:shapes="_x30678288" width="14pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">가 선분 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30682432" style="v-text-anchor:top;width:13.49pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c3304"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3304.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3304.png"
+        v:shapes="_x30682432" width="13pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">에 평행하고 삼각형 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x30686128" style="v-text-anchor:top;width:20.91pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c3305"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3305.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3305.png"
+        v:shapes="_x30686128" width="20pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">가 정삼각형이 되도록 잡는다</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        . </span>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">두 선분 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166728112"
+      style="v-text-anchor:top;width:35.26pt;height:11.25pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c3306"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3306.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3306.png"
+        v:shapes="_x166728112" width="35pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">와 호 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166728672"
+      style="v-text-anchor:top;width:14.17pt;height:11.25pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c3307"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3307.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3307.png"
+        v:shapes="_x166728672" width="14pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">로 둘러싸인 부분의 넓이를 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166730128"
+      style="v-text-anchor:top;width:17.62pt;height:11.25pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c3308"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3308.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3308.png"
+        v:shapes="_x166730128" width="17pt" />
+      <![endif]>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        , </span>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">삼각형 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166734832"
+      style="v-text-anchor:top;width:20.91pt;height:11.25pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c3309"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3309.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c3309.png"
+        v:shapes="_x166734832" width="20pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">의 넓이를 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166736064"
+      style="v-text-anchor:top;width:16.94pt;height:11.25pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c330a"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330a.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330a.png"
+        v:shapes="_x166736064" width="16pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">라 할 때</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        ,</span>
+      <br> <!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166729008"
+      style="v-text-anchor:top;width:97.03pt;height:27.15pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c330b"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330b.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="27pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330b.png"
+        v:shapes="_x166729008" width="97pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">이다</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        . </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166903376"
+      style="v-text-anchor:top;width:19.27pt;height:11.25pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c330c"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330c.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330c.png"
+        v:shapes="_x166903376" width="19pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">의 값을 구하시오</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        .</span>
+      <br>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        (</span>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">단</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        , </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166891616"
+      style="v-text-anchor:top;width:45.88pt;height:25.80pt;" type="#_x0000_t75"><v:imagedata
+      o:title="DRW0000219c330d"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330d.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="25pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330d.png"
+        v:shapes="_x166891616" width="45pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">이고</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">
+        , </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166892064" style="v-text-anchor:top;width:4.72pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c330e"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330e.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330e.png"
+        v:shapes="_x166892064" width="4pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">와 </span><!--[if
+      gte vml 1]><v:shapetype id="_x0000_t75"		coordsize="21600,21600" o:spt="75"
+      o:preferrelative="t" path="m@4@5l@4@11@9@11@9@5xe"		filled="f" stroked="f">		<v:stroke
+      joinstyle="miter"/>		<v:formulas>		<v:f eqn="if lineDrawn pixelLineWidth 0"/>		<v:f eqn="sum @0 1
+      0"/>		<v:f eqn="sum 0 0 @1"/>		<v:f eqn="prod @2 1 2"/>		<v:f eqn="prod @3 21600 pixelWidth"/>
+      <v:f eqn="prod @3 21600 pixelHeight"/>		<v:f eqn="sum @0 0 1"/>		<v:f eqn="prod @6 1 2"/>		<v:f
+      eqn="prod @7 21600 pixelWidth"/>		<v:f eqn="sum @8 21600 0"/>		<v:f eqn="prod @7 21600
+      pixelHeight"/>		<v:f eqn="sum @10 21600 0"/>		</v:formulas>		<v:path o:extrusionok="f"
+      gradientshapeok="t" o:connecttype="rect"/>		<o:lock v:ext="edit" aspectratio="t"/>
+      </v:shapetype><v:shape id="_x166892624" style="v-text-anchor:top;width:4.05pt;height:11.25pt;"
+      type="#_x0000_t75"><v:imagedata o:title="DRW0000219c330f"
+      src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330f.png"/><w:wrap
+      type="topAndBottom"/></v:shape><![endif]-->
+      <![if !vml]>
+      <img alt="" height="11pt"
+        src="file:////var/folders/wt/7_f5pr854wz3bzqcbfyfwqh40000gn/T//DRW0000219c330f.png"
+        v:shapes="_x166892624" width="4pt" />
+      <![endif]>
+      <span style="font-family:함초롬바탕;mso-fareast-font-family:함초롬바탕;">는 서로소인 자연수이다</span>
+      <span lang="EN-US"
+        style="mso-fareast-font-family:함초롬바탕;mso-font-width:95%;letter-spacing:-0.3pt;mso-text-raise:0pt;">.)
+        [</span>
+    </p><!--EndFragment-->
+  </body>
+</html>

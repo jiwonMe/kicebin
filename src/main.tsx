@@ -12,6 +12,7 @@ import LoginPage from './pages/login/LoginPage';
 import AdminPage from './pages/admin/AdminPage';
 import HomePage from './pages/home/HomePage';
 import IndexPage from './pages/index/IndexPage';
+import TestPage from './pages/test/TestPage';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: '/admin',
     element: <AdminPage />
+  },
+  {
+    path: '/test',
+    element: <TestPage />
   }
 ]);
 
