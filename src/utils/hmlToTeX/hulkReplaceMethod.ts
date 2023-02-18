@@ -1,26 +1,5 @@
 import ConvertMapJSON from './convertMap.json';
 
-interface ConvertMap {
-  'convertMap': {
-    [key: string]: string
-  },
-  'middleConvertMap': {
-    [key: string]: string
-  },
-  'BarConvertMap': {
-    [key: string]: string
-  },
-  'MatrixConvertMap': {
-    [key: string]: {
-      'begin': string,
-      'end': string
-      'removeOutterBrackets': boolean
-    }
-  },
-  'BraceConvertMap': {
-    [key: string]: string,
-  },
-}
 const convertMap = ConvertMapJSON as ConvertMap;
 
 const barDict = convertMap['BarConvertMap'];
@@ -78,7 +57,7 @@ function _findBrackets(eqString: string, startIdx: number, direction: number): B
   } else {
     // reverse string and convert brackets.
     eqString = eqString.split('').reverse().join('');
-    eqString = eqString.replace(/\{/g, '}').replace(/\}/g, '{');
+    eqString = eqString.replaceAll(/\{/g, '}').replaceAll(/\}/g, '{');
 
     // find brackets with new cursor
     const newStartIdx = eqString.length - (startIdx + 1);
@@ -136,8 +115,8 @@ interface MatrixElement {
 function replaceAllMatrix(eqString: string): string {
   function replaceElementsOfMatrix(bracketStr: string): string {
     bracketStr = bracketStr.slice(1, -1); // remove brackets
-    bracketStr = bracketStr.replace(/#/g, ' \\\\ ');
-    bracketStr = bracketStr.replace(/&amp;/g, '&');
+    bracketStr = bracketStr.replaceAll(/#/g, ' \\\\ ');
+    bracketStr = bracketStr.replaceAll(/&amp;/g, '&');
     return bracketStr;
   }
 

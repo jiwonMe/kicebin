@@ -8,7 +8,7 @@
     </DOCSUMMARY>
     <DOCSETTING>
       <BEGINNUMBER Endnote="1" Equation="1" Footnote="1" Page="1" Picture="1" Table="1" />
-      <CARETPOS List="0" Para="2" Pos="5" />
+      <CARETPOS List="0" Para="5" Pos="8" />
     </DOCSETTING>
     <MAPPINGTABLE>
       <FACENAMELIST>
@@ -55,7 +55,7 @@
           <FONT Id="3" Name="HY견명조" Type="ttf" />
         </FONTFACE>
       </FACENAMELIST>
-      <BORDERFILLLIST Count="6">
+      <BORDERFILLLIST Count="4">
         <BORDERFILL BackSlash="0" BreakCellSeparateLine="0" CenterLine="0" CounterBackSlash="0"
           CounterSlash="0" CrookedSlash="0" Id="1" Shadow="false" Slash="0" ThreeD="false">
           <LEFTBORDER Type="None" Width="0.1mm" />
@@ -96,22 +96,6 @@
           <FILLBRUSH>
             <WINDOWBRUSH Alpha="0" FaceColor="4294967295" HatchColor="0" />
           </FILLBRUSH>
-        </BORDERFILL>
-        <BORDERFILL BackSlash="0" BreakCellSeparateLine="0" CenterLine="0" CounterBackSlash="0"
-          CounterSlash="0" CrookedSlash="0" Id="5" Shadow="false" Slash="0" ThreeD="false">
-          <LEFTBORDER Type="Solid" Width="0.12mm" />
-          <RIGHTBORDER Type="Solid" Width="0.12mm" />
-          <TOPBORDER Type="Solid" Width="0.12mm" />
-          <BOTTOMBORDER Type="Solid" Width="0.12mm" />
-          <DIAGONAL Type="Solid" Width="0.1mm" />
-        </BORDERFILL>
-        <BORDERFILL BackSlash="0" BreakCellSeparateLine="0" CenterLine="0" CounterBackSlash="0"
-          CounterSlash="0" CrookedSlash="0" Id="6" Shadow="false" Slash="0" ThreeD="false">
-          <LEFTBORDER Type="None" Width="0.12mm" />
-          <RIGHTBORDER Type="None" Width="0.12mm" />
-          <TOPBORDER Type="None" Width="0.12mm" />
-          <BOTTOMBORDER Type="None" Width="0.12mm" />
-          <DIAGONAL Type="Solid" Width="0.1mm" />
         </BORDERFILL>
       </BORDERFILLLIST>
       <CHARSHAPELIST Count="14">
@@ -265,6 +249,26 @@
         <TABDEF AutoTabLeft="true" AutoTabRight="false" Id="1" />
         <TABDEF AutoTabLeft="false" AutoTabRight="true" Id="2" />
         <TABDEF AutoTabLeft="false" AutoTabRight="false" Id="3">
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
+          <TABITEM Leader="None" Pos="0" Type="Left" />
           <TABITEM Leader="None" Pos="2832" Type="Left" />
           <TABITEM Leader="None" Pos="5664" Type="Left" />
           <TABITEM Leader="None" Pos="8496" Type="Left" />
@@ -284,30 +288,10 @@
           <TABITEM Leader="None" Pos="48144" Type="Left" />
           <TABITEM Leader="None" Pos="50976" Type="Left" />
           <TABITEM Leader="None" Pos="53808" Type="Left" />
-          <TABITEM Leader="None" Pos="56640" Type="Left" />
-          <TABITEM Leader="None" Pos="59472" Type="Left" />
-          <TABITEM Leader="None" Pos="62304" Type="Left" />
-          <TABITEM Leader="None" Pos="65136" Type="Left" />
-          <TABITEM Leader="None" Pos="67968" Type="Left" />
-          <TABITEM Leader="None" Pos="70800" Type="Left" />
-          <TABITEM Leader="None" Pos="73632" Type="Left" />
-          <TABITEM Leader="None" Pos="76464" Type="Left" />
-          <TABITEM Leader="None" Pos="79296" Type="Left" />
-          <TABITEM Leader="None" Pos="82128" Type="Left" />
-          <TABITEM Leader="None" Pos="84960" Type="Left" />
-          <TABITEM Leader="None" Pos="87792" Type="Left" />
-          <TABITEM Leader="None" Pos="90624" Type="Left" />
-          <TABITEM Leader="None" Pos="93456" Type="Left" />
-          <TABITEM Leader="None" Pos="96288" Type="Left" />
-          <TABITEM Leader="None" Pos="99120" Type="Left" />
-          <TABITEM Leader="None" Pos="101952" Type="Left" />
-          <TABITEM Leader="None" Pos="104784" Type="Left" />
-          <TABITEM Leader="None" Pos="107616" Type="Left" />
-          <TABITEM Leader="None" Pos="110448" Type="Left" />
         </TABDEF>
         <TABDEF AutoTabLeft="false" AutoTabRight="false" Id="4">
+          <TABITEM Leader="None" Pos="0" Type="Left" />
           <TABITEM Leader="None" Pos="22792" Type="Left" />
-          <TABITEM Leader="None" Pos="43600" Type="Left" />
         </TABDEF>
       </TABDEFLIST>
       <NUMBERINGLIST Count="2">
@@ -777,206 +761,22 @@
           <CHAR>를 다음과 같이 정의한다.</CHAR>
         </TEXT>
       </P>
-      <P ParaShape="20" Style="21">
+      <P ParaShape="19" Style="21">
         <TEXT CharShape="7">
-          <CHAR>
-            <TAB />
-          </CHAR>
-          <TABLE BorderFill="5" CellSpacing="0" ColCount="3" PageBreak="Cell" RepeatHeader="true"
-            RowCount="2">
-            <SHAPEOBJECT InstId="1135520471" Lock="false" NumberingType="Table" ZOrder="2">
-              <SIZE Height="4046" HeightRelTo="Absolute" Protect="false" Width="17690"
+          <EQUATION BaseLine="67" BaseUnit="1000" LineMode="false" TextColor="0"
+            Version="Equation Version 60">
+            <SHAPEOBJECT InstId="1141968703" Lock="false" NumberingType="Equation" ZOrder="42">
+              <SIZE Height="2150" HeightRelTo="Absolute" Protect="false" Width="15497"
                 WidthRelTo="Absolute" />
               <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
                 HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
                 TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-              <OUTSIDEMARGIN Bottom="0" Left="0" Right="0" Top="0" />
+              <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
+              <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
             </SHAPEOBJECT>
-            <INSIDEMARGIN Bottom="0" Left="0" Right="0" Top="0" />
-            <ROW>
-              <CELL BorderFill="6" ColAddr="0" ColSpan="1" Dirty="false" Editable="false"
-                HasMargin="false" Header="false" Height="4046" Protect="false" RowAddr="0"
-                RowSpan="2" Width="3727">
-                <CELLMARGIN Bottom="141" Left="510" Right="510" Top="141" />
-                <PARALIST LineWrap="Break" LinkListID="0" LinkListIDNext="0" TextDirection="0"
-                  VertAlign="Center">
-                  <P ParaShape="0" Style="0">
-                    <TEXT CharShape="13">
-                      <EQUATION BaseLine="85" BaseUnit="1100" LineMode="false" TextColor="0"
-                        Version="Equation Version 60">
-                        <SHAPEOBJECT InstId="1135520472" Lock="false" NumberingType="Equation"
-                          ZOrder="5">
-                          <SIZE Height="1125" HeightRelTo="Absolute" Protect="false" Width="1762"
-                            WidthRelTo="Absolute" />
-                          <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
-                            HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
-                            TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-                          <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
-                          <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
-                        </SHAPEOBJECT>
-                        <SCRIPT> g LEFT ( x RIGHT )</SCRIPT>
-                      </EQUATION>
-                      <EQUATION BaseLine="85" BaseUnit="1100" LineMode="false" TextColor="0"
-                        Version="Equation Version 60">
-                        <SHAPEOBJECT InstId="1135520473" Lock="false" NumberingType="Equation"
-                          ZOrder="3">
-                          <SIZE Height="1125" HeightRelTo="Absolute" Protect="false" Width="742"
-                            WidthRelTo="Absolute" />
-                          <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
-                            HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
-                            TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-                          <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
-                          <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
-                        </SHAPEOBJECT>
-                        <SCRIPT> =</SCRIPT>
-                      </EQUATION>
-                      <EQUATION BaseLine="61" BaseUnit="1100" LineMode="false" TextColor="0"
-                        Version="Equation Version 60">
-                        <SHAPEOBJECT InstId="1135520474" Lock="false" NumberingType="Equation"
-                          ZOrder="4">
-                          <SIZE Height="3630" HeightRelTo="Absolute" Protect="false" Width="525"
-                            WidthRelTo="Absolute" />
-                          <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
-                            HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
-                            TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-                          <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
-                          <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
-                        </SHAPEOBJECT>
-                        <SCRIPT>LEFT { pile{it#it#it} RIGHT .</SCRIPT>
-                      </EQUATION>
-                      <CHAR />
-                    </TEXT>
-                  </P>
-                </PARALIST>
-              </CELL>
-              <CELL BorderFill="6" ColAddr="1" ColSpan="1" Dirty="false" Editable="false"
-                HasMargin="false" Header="false" Height="2052" Protect="false" RowAddr="0"
-                RowSpan="1" Width="3585">
-                <CELLMARGIN Bottom="141" Left="510" Right="510" Top="141" />
-                <PARALIST LineWrap="Break" LinkListID="0" LinkListIDNext="0" TextDirection="0"
-                  VertAlign="Center">
-                  <P ParaShape="0" Style="0">
-                    <TEXT CharShape="13">
-                      <EQUATION BaseLine="85" BaseUnit="1100" LineMode="false" TextColor="0"
-                        Version="Equation Version 60">
-                        <SHAPEOBJECT InstId="1135520475" Lock="false" NumberingType="Equation"
-                          ZOrder="6">
-                          <SIZE Height="1125" HeightRelTo="Absolute" Protect="false" Width="540"
-                            WidthRelTo="Absolute" />
-                          <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
-                            HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
-                            TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-                          <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
-                          <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
-                        </SHAPEOBJECT>
-                        <SCRIPT> x </SCRIPT>
-                      </EQUATION>
-                      <CHAR />
-                    </TEXT>
-                  </P>
-                </PARALIST>
-              </CELL>
-              <CELL BorderFill="6" ColAddr="2" ColSpan="1" Dirty="false" Editable="false"
-                HasMargin="false" Header="false" Height="2052" Protect="false" RowAddr="0"
-                RowSpan="1" Width="10378">
-                <CELLMARGIN Bottom="141" Left="510" Right="510" Top="141" />
-                <PARALIST LineWrap="Break" LinkListID="0" LinkListIDNext="0" TextDirection="0"
-                  VertAlign="Center">
-                  <P ParaShape="0" Style="0">
-                    <TEXT CharShape="13">
-                      <CHAR>(</CHAR>
-                      <EQUATION BaseLine="85" BaseUnit="1100" LineMode="false" TextColor="0"
-                        Version="Equation Version 60">
-                        <SHAPEOBJECT InstId="1135520476" Lock="false" NumberingType="Equation"
-                          ZOrder="8">
-                          <SIZE Height="1125" HeightRelTo="Absolute" Protect="false" Width="3180"
-                            WidthRelTo="Absolute" />
-                          <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
-                            HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
-                            TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-                          <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
-                          <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
-                        </SHAPEOBJECT>
-                        <SCRIPT> x&lt; it-1</SCRIPT>
-                      </EQUATION>
-                      <CHAR> 또는 </CHAR>
-                      <EQUATION BaseLine="85" BaseUnit="1100" LineMode="false" TextColor="0"
-                        Version="Equation Version 60">
-                        <SHAPEOBJECT InstId="1135520477" Lock="false" NumberingType="Equation"
-                          ZOrder="9">
-                          <SIZE Height="1125" HeightRelTo="Absolute" Protect="false" Width="2284"
-                            WidthRelTo="Absolute" />
-                          <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
-                            HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
-                            TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-                          <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
-                          <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
-                        </SHAPEOBJECT>
-                        <SCRIPT> x&gt;1</SCRIPT>
-                      </EQUATION>
-                      <CHAR>)</CHAR>
-                    </TEXT>
-                  </P>
-                </PARALIST>
-              </CELL>
-            </ROW>
-            <ROW>
-              <CELL BorderFill="6" ColAddr="1" ColSpan="1" Dirty="false" Editable="false"
-                HasMargin="false" Header="false" Height="1994" Protect="false" RowAddr="1"
-                RowSpan="1" Width="3585">
-                <CELLMARGIN Bottom="141" Left="510" Right="510" Top="141" />
-                <PARALIST LineWrap="Break" LinkListID="0" LinkListIDNext="0" TextDirection="0"
-                  VertAlign="Center">
-                  <P ParaShape="0" Style="0">
-                    <TEXT CharShape="13">
-                      <EQUATION BaseLine="85" BaseUnit="1100" LineMode="false" TextColor="0"
-                        Version="Equation Version 60">
-                        <SHAPEOBJECT InstId="1135520478" Lock="false" NumberingType="Equation"
-                          ZOrder="7">
-                          <SIZE Height="1125" HeightRelTo="Absolute" Protect="false" Width="1830"
-                            WidthRelTo="Absolute" />
-                          <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
-                            HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
-                            TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-                          <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
-                          <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
-                        </SHAPEOBJECT>
-                        <SCRIPT> f LEFT ( x RIGHT )</SCRIPT>
-                      </EQUATION>
-                      <CHAR />
-                    </TEXT>
-                  </P>
-                </PARALIST>
-              </CELL>
-              <CELL BorderFill="6" ColAddr="2" ColSpan="1" Dirty="false" Editable="false"
-                HasMargin="false" Header="false" Height="1994" Protect="false" RowAddr="1"
-                RowSpan="1" Width="10378">
-                <CELLMARGIN Bottom="141" Left="510" Right="510" Top="141" />
-                <PARALIST LineWrap="Break" LinkListID="0" LinkListIDNext="0" TextDirection="0"
-                  VertAlign="Center">
-                  <P ParaShape="0" Style="0">
-                    <TEXT CharShape="13">
-                      <EQUATION BaseLine="85" BaseUnit="1100" LineMode="false" TextColor="0"
-                        Version="Equation Version 60">
-                        <SHAPEOBJECT InstId="1135520479" Lock="false" NumberingType="Equation"
-                          ZOrder="10">
-                          <SIZE Height="1125" HeightRelTo="Absolute" Protect="false" Width="5944"
-                            WidthRelTo="Absolute" />
-                          <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="true"
-                            HoldAnchorAndSO="false" HorzAlign="Left" HorzOffset="0" HorzRelTo="Para"
-                            TreatAsChar="true" VertAlign="Top" VertOffset="0" VertRelTo="Para" />
-                          <OUTSIDEMARGIN Bottom="0" Left="56" Right="56" Top="0" />
-                          <SHAPECOMMENT>수식입니다.</SHAPECOMMENT>
-                        </SHAPEOBJECT>
-                        <SCRIPT> LEFT ( -1 le x le 1 RIGHT )</SCRIPT>
-                      </EQUATION>
-                      <CHAR />
-                    </TEXT>
-                  </P>
-                </PARALIST>
-              </CELL>
-            </ROW>
-          </TABLE>
+            <SCRIPT>g(x)= {cases{`````x&amp;(x`&lt;`-1`````또는`````x&gt;1)#``f(x)&amp;(-1 LEQ x` LEQ
+              1)}}</SCRIPT>
+          </EQUATION>
           <CHAR />
         </TEXT>
       </P>
@@ -1003,8 +803,7 @@
       <P ParaShape="24" Style="0">
         <TEXT CharShape="13">
           <RECTANGLE Ratio="0" X0="0" X1="8504" X2="8504" X3="0" Y0="0" Y1="0" Y2="8504" Y3="8504">
-            <SHAPEOBJECT InstId="1135520481" Lock="false" NumberingType="Figure" TextFlow="LeftOnly"
-              ZOrder="12">
+            <SHAPEOBJECT InstId="1135520481" Lock="false" NumberingType="Figure" ZOrder="12">
               <SIZE Height="4433" HeightRelTo="Absolute" Protect="false" Width="9889"
                 WidthRelTo="Column" />
               <POSITION AffectLSpacing="false" AllowOverlap="false" FlowWithText="false"
@@ -1020,6 +819,14 @@
                 <RENDERINGINFO>
                   <TRANSMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000" E5="1.00000"
                     E6="-2.00000" />
+                  <SCAMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000" E5="1.00000"
+                    E6="0.00000" />
+                  <ROTMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000" E5="1.00000"
+                    E6="0.00000" />
+                  <SCAMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000" E5="1.00000"
+                    E6="0.00000" />
+                  <ROTMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000" E5="1.00000"
+                    E6="0.00000" />
                   <SCAMATRIX E1="4.94450" E2="0.00000" E3="0.00000" E4="0.00000" E5="1.13217"
                     E6="2.00000" />
                   <ROTMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000" E5="1.00000"
@@ -1028,7 +835,7 @@
               </SHAPECOMPONENT>
               <LINESHAPE Alpha="0" EndCap="Flat" Style="None" Width="33" />
               <SHADOW Alpha="0" Color="0" OffsetX="0" OffsetY="0" Type="0" />
-              <DRAWTEXT Editable="false" LastWidth="42048" Name="">
+              <DRAWTEXT Editable="false" LastWidth="42048">
                 <TEXTMARGIN Bottom="0" Left="0" Right="0" Top="0" />
                 <PARALIST LineWrap="Break" LinkListID="0" LinkListIDNext="0" TextDirection="0"
                   VertAlign="Top">
@@ -1053,6 +860,14 @@
                             <ROTATIONINFO Angle="0" CenterX="2126" CenterY="783" Rotate="1" />
                             <RENDERINGINFO>
                               <TRANSMATRIX E1="1.00000" E2="0.00000" E3="304.00000" E4="0.00000"
+                                E5="1.00000" E6="0.00000" />
+                              <SCAMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
+                                E5="1.00000" E6="0.00000" />
+                              <ROTMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
+                                E5="1.00000" E6="0.00000" />
+                              <SCAMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
+                                E5="1.00000" E6="0.00000" />
+                              <ROTMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
                                 E5="1.00000" E6="0.00000" />
                               <SCAMATRIX E1="0.50000" E2="0.00000" E3="-304.00000" E4="0.00000"
                                 E5="0.18415" E6="0.00000" />
@@ -1082,7 +897,7 @@
                       <RECTANGLE Ratio="2" X0="0" X1="8504" X2="8504" X3="0" Y0="0" Y1="0" Y2="8504"
                         Y3="8504">
                         <SHAPEOBJECT InstId="1135520485" Lock="false" NumberingType="Figure"
-                          TextFlow="LeftOnly" ZOrder="13">
+                          ZOrder="13">
                           <SIZE Height="3206" HeightRelTo="Absolute" Protect="false" Width="9920"
                             WidthRelTo="Column" />
                           <POSITION AffectLSpacing="false" AllowOverlap="true" FlowWithText="true"
@@ -1098,6 +913,14 @@
                             <RENDERINGINFO>
                               <TRANSMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
                                 E5="1.00000" E6="-6.00000" />
+                              <SCAMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
+                                E5="1.00000" E6="0.00000" />
+                              <ROTMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
+                                E5="1.00000" E6="0.00000" />
+                              <SCAMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
+                                E5="1.00000" E6="0.00000" />
+                              <ROTMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"
+                                E5="1.00000" E6="0.00000" />
                               <SCAMATRIX E1="4.90499" E2="0.00000" E3="0.00000" E4="0.00000"
                                 E5="1.01693" E6="6.00000" />
                               <ROTMATRIX E1="1.00000" E2="0.00000" E3="0.00000" E4="0.00000"

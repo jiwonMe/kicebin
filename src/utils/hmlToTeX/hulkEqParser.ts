@@ -35,10 +35,15 @@ function hmlEquation2latex(hmlEqStr: string): string {
     return strList;
   }
 
-  let strConverted = hmlEqStr.replace('`', ' ');
-  strConverted = strConverted.replace('{', ' { ');
-  strConverted = strConverted.replace('}', ' } ');
-  strConverted = strConverted.replace('&', ' & ');
+  let strConverted = hmlEqStr.replaceAll('`', ' \\, ');
+  strConverted = strConverted.replaceAll('{', ' { ');
+  strConverted = strConverted.replaceAll('}', ' } ');
+  strConverted = strConverted.replaceAll('(', ' ( ');
+  strConverted = strConverted.replaceAll(')', ' ) ');
+  strConverted = strConverted.replaceAll('[', ' [ ');
+  strConverted = strConverted.replaceAll(']', ' ] ');
+  strConverted = strConverted.replaceAll('&', ' & ');
+  strConverted = strConverted.replaceAll('->', ' \\to ');
 
   let strList = strConverted.split(' ');
 
