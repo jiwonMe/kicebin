@@ -151,9 +151,16 @@ const ProblemLayout = styled.div`
   font-family: 'Times New Roman', "SM3중명조";
 
   line-height: 150%;
-  font-stretch: 0.95em;
+
+  word-break: keep-all;
+  text-align: justify;
+
+  font-stretch: 0.95%;
   word-spacing: 0.05em;
   letter-spacing: -0.05em;
+
+  /* transform: scaleX(0.95); */
+
 
   p {
     margin: 0;
@@ -167,10 +174,11 @@ const ProblemLayout = styled.div`
 
   .katex {
     font-stretch: 1em;
-    letter-spacing: 0.1em;
+    letter-spacing: 0em;
     line-height: 1.2;
     text-rendering: auto;
     font: normal 1.21em 'Latin Modern Roman', 'Times New Roman', serif;
+    white-space: nowrap;
   }
 
   .katex .mathnormal {
@@ -213,63 +221,63 @@ const ProblemConditions = styled.div`
   }
 
   ol > li {
-    margin: 0.5em;
+    margin: 0.2em 1em;
   }
 
   li:nth-child(1) {
-    list-style-type: "(가) ";
+    list-style-type: "(가)  ";
   }
 
   li:nth-child(2) {
-    list-style-type: "(나) ";
+    list-style-type: "(나)  ";
   }
 
   li:nth-child(3) {
-    list-style-type: "(다) ";
+    list-style-type: "(다)  ";
   }
 
   li:nth-child(4) {
-    list-style-type: "(라) ";
+    list-style-type: "(라)  ";
   }
 
   li:nth-child(5) {
-    list-style-type: "(마) ";
+    list-style-type: "(마)  ";
   }
 
   li:nth-child(6) {
-    list-style-type: "(바) ";
+    list-style-type: "(바)  ";
   }
 
   li:nth-child(7) {
-    list-style-type: "(사) ";
+    list-style-type: "(사)  ";
   }
 
   li:nth-child(8) {
-    list-style-type: "(아) ";
+    list-style-type: "(아)  ";
   }
 
   li:nth-child(9) {
-    list-style-type: "(자) ";
+    list-style-type: "(자)  ";
   }
 
   li:nth-child(10) {
-    list-style-type: "(차) ";
+    list-style-type: "(차)  ";
   }
 
   li:nth-child(11) {
-    list-style-type: "(카) ";
+    list-style-type: "(카)  ";
   }
 
   li:nth-child(12) {
-    list-style-type: "(타) ";
+    list-style-type: "(타)  ";
   }
 
   li:nth-child(13) {
-    list-style-type: "(파) ";
+    list-style-type: "(파)  ";
   }
 
   li:nth-child(14) {
-    list-style-type: "(하) ";
+    list-style-type: "(하)  ";
   }
 `;
 
@@ -305,7 +313,7 @@ const ProblemExample = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  padding-left: 1em;
+  padding-left: 0.5em;
   /* height: 100%; */
 
   box-sizing: border-box;
@@ -316,11 +324,11 @@ const ProblemExample = styled.div`
 
   ol {
     padding: 0 1.75em;
-    margin: 0;
+    margin: 0.5em 0;
   }
 
   ol > li {
-    margin: 0.75em 0;
+    margin: 0;
   }
 
   li:nth-child(1) {

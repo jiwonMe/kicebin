@@ -105,11 +105,12 @@ const HomePage = () => {
       <NoticeLayout>
         <NoticeContent>
           <NoticeTitle>
-            [Update] 2023-02-17 문항 보기/조건/선지 개수 추가 기능 구현
+            [Update] 2023-02-17
           </NoticeTitle>
           <NoticeDescription>
-            문항 보기/조건/선지 개수를 추가할 수 있습니다.
-            (보기 최대 14개, 조건 최대 14개, 선지 최대 9개)
+            1. 문항 보기/조건/선지 개수를 추가할 수 있습니다.
+            (보기 최대 14개, 조건 최대 14개, 선지 최대 9개) <br/>
+            2. 수식 폰트를 인쇄에 적합하도록 변경했습니다.
           </NoticeDescription>
         </NoticeContent>
       </NoticeLayout>

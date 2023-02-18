@@ -100,6 +100,9 @@ const GlobalStyle = createGlobalStyle`
     src: url(${HYHwpEQ}) format('otf');
     font-weight: normal;
     font-style: normal;
+
+    /* A-Z */
+    unicode-range: U+0041-005A;
   }
 
   @font-face {
@@ -185,7 +188,6 @@ const GlobalStyle = createGlobalStyle`
     font-weight: normal;
     font-style: normal;
   }
-
 
 
   font-family: 'Pretendard';

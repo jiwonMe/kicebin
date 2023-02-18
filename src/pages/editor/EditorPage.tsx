@@ -144,7 +144,7 @@ const EditorPage = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  });
+  }, [user]);
 
   return (
     <EntireLayout>

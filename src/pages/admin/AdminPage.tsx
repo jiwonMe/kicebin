@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
-import { collection, getDocs, doc, updateDoc, setDoc, getDoc } from 'firebase/firestore';
-import { db } from '../../service/firebase';
+import { collection, getDocs, doc, updateDoc, setDoc, getDoc, Timestamp } from 'firebase/firestore';
+import { db, storage } from '../../service/firebase';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import { User } from 'firebase/auth';
@@ -10,6 +10,9 @@ import { DocumentScheme } from '../../types/Document';
 import styled from 'styled-components';
 import TopBar from '../../components/TopBar';
 import _DocumentListContainer from '../../components/DocumentListContainer';
+import { v4 as uuid } from 'uuid';
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+
 
 const AdminPage = () => {
   const { user } = useAuthStore();
@@ -86,6 +89,59 @@ const AdminPage = () => {
     console.log('backup created');
   };
 
+  const copyDocumentToUser = async (document: DocumentScheme, user: UserScheme) => {
+    const newDocumentId = uuid();
+    const newDocument: DocumentScheme = {
+      ...document,
+      id: newDocumentId,
+      meta: {
+        ...document.meta,
+        createdAt: new Timestamp(new Date().getTime() / 1000, 0),
+        updatedAt: new Timestamp(new Date().getTime() / 1000, 0),
+      }};
+    await setDoc(doc(db, 'users', user.email!, 'docs', newDocumentId), newDocument);
+  };
+
+  const handleCopyDocumentToUser = () => {
+    const documentId = prompt('document id');
+    const userId = prompt('user id');
+
+    if (documentId && userId) {
+      const document = docs.find((doc) => doc.id === documentId);
+      console.log(document);
+
+      // if image in document, copy image to user's image folder
+
+      document?.problems.forEach(async (problem) => {
+        problem.content.forEach(async (content) => {
+          if (content.type === 'IMAGE') {
+            const imageDoc = await getDoc(doc(db, 'images', content.id));
+            const image = imageDoc.data();
+
+            if (image) {
+              const newImageId = uuid();
+
+              const storageRef = ref(storage, `images/${newImageId}`);
+              const response = uploadBytes(storageRef, image.data);
+              response.then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                  // change image url
+                  content.content = url;
+                });
+              });
+            }
+          }
+        });
+      });
+
+      const user = users.find((user) => user.email === userId);
+
+      if (document && user) {
+        copyDocumentToUser(document, user);
+      }
+    }
+  };
+
   return (
     <EntireLayout>
       <TopLayout>
@@ -104,13 +160,18 @@ const AdminPage = () => {
                   console.log(docsByUser);
                 }}
               >log docs</Button>
+            ),
+            (
+              <Button
+                key={2}
+                onClick={handleCopyDocumentToUser}
+              >copy doc</Button>
             )
           ]}
         />
       </TopLayout>
       <TopLayoutPadding />
       <MainLayout>
-
         <UserContainerLayout>
           {users.sort(
             (a, b) => {

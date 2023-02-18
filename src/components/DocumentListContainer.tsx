@@ -145,6 +145,9 @@ const DocumentListCell = ({
         )} 전 · ${
           document.problems.length
         }문항`}</DocumentListCellDescription>
+      <DocumentListCellSmallDescription>
+        {document.id}
+      </DocumentListCellSmallDescription>
     </DocumentListCellLayout>
   );
 };
@@ -231,4 +234,9 @@ const OptionsDropdownItem = styled.div`
 
 const OptionsDropdownItemText = styled.div`
   font-size: 14px;
+`;
+
+const DocumentListCellSmallDescription = styled.div`
+  font-size: 12px;
+  color: #48484d;
 `;

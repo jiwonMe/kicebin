@@ -32,6 +32,5 @@ def delete_backup_collections(start, end):
 
         print('delete backup-' + str(i))
 
-
 if __name__ == '__main__':
     delete_backup_collections(1676250279535, 1676250279602)
