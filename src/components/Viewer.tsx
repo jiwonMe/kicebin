@@ -187,6 +187,11 @@ const ProblemLayout = styled.div`
     font-family: 'HYHwpEQ_Partial', 'Latin Modern Roman';
   }
 
+  .size4, .size5 {
+    font-size: 1.21em;
+    font-family: 'Latin Modern Math';
+  }
+
   .katex-display {
     display: flex;
     margin: 0.5em 0 !important;

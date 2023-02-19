@@ -16,6 +16,8 @@ import lmDunhillRegular from './assets/fonts/latinmodernromandunhill_10regular_m
 import lmSlanted from './assets/fonts/latinmodernromanslanted_10regular_macroman/lmromanslant10-regular-webfont.woff';
 import lmSlantedBold from './assets/fonts/latinmodernromanslanted_10bold_macroman/lmromanslant10-bold-webfont.woff';
 
+import lmMath from './assets/fonts/latinmodern-math.woff';
+
 
 const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -198,6 +200,10 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
   }
 
+  @font-face {
+    font-family: 'Latin Modern Math';
+    src: url(${lmMath}) format('woff');
+  }
 
   font-family: 'Pretendard';
 `;

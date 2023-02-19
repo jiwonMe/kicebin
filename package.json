@@ -28,9 +28,12 @@
     "react-simple-code-editor": "^0.13.1",
     "rehype-katex": "^6.0.2",
     "rehype-mathjax": "^4.0.2",
+    "rehype-raw": "^6.1.1",
+    "rehype-sanitize": "^5.0.1",
     "remark-math": "^5.1.1",
     "sort-by": "^1.2.0",
     "styled-components": "^5.3.6",
+    "temml": "^0.10.10",
     "uuid": "^9.0.0",
     "zustand": "^4.3.2"
   },

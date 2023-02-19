@@ -3,8 +3,11 @@ import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import rehypeMathJax from 'rehype-mathjax';
+import rehypeSanitize from 'rehype-sanitize';
+import rehypeRaw from 'rehype-raw';
 import 'katex/dist/katex.min.css';
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
+import temml from '../utils/temml/temml';
 
 const _mapProps = (props: any): ReactMarkdownOptions => ({
   ...props,
@@ -12,34 +15,42 @@ const _mapProps = (props: any): ReactMarkdownOptions => ({
     remarkMath,
   ],
   rehypePlugins: [
-    [ rehypeKatex, {
-      output: 'html',
-      displayMode: true,
-      minRuleThickness: 0.04,
-      strict: false,
-      macros: {
-        '\\RR': '\\mathbb{R}',
-        '\\ZZ': '\\mathbb{Z}',
-        '\\CC': '\\mathbb{C}',
-        '\\QQ': '\\mathbb{Q}',
-        '\\mrm': '\\mathrm',
-        '\\eps': '\\varepsilon',
-        '\\dsum': '\\displaystyle\\sum',
-        '\\dprod': '\\displaystyle\\prod',
-        '\\dint': '\\displaystyle\\int',
-        '\\dlim': '\\displaystyle\\lim',
-      },
-      globalGroup: true,
-      // throwOnError: false,
-    }],
-    [rehypeLog, {
-      mode: props.mode,
-    }],
+    [rehypeTemml],
+    // rehypeSanitize,
   ]
   // rehypePlugins: [
+  //   [ rehypeKatex, {
+  //     output: 'html',
+  //     displayMode: true,
+  //     minRuleThickness: 0.04,
+  //     strict: false,
+  //     macros: {
+  //       '\\RR': '\\mathbb{R}',
+  //       '\\ZZ': '\\mathbb{Z}',
+  //       '\\CC': '\\mathbb{C}',
+  //       '\\QQ': '\\mathbb{Q}',
+  //       '\\mrm': '\\mathrm',
+  //       '\\eps': '\\varepsilon',
+  //       '\\dsum': '\\displaystyle\\sum',
+  //       '\\dprod': '\\displaystyle\\prod',
+  //       '\\dint': '\\displaystyle\\int',
+  //       '\\dlim': '\\displaystyle\\lim',
+  //     },
+  //     globalGroup: true,
+  //     // throwOnError: false,
+  //   }],
+  //   // [rehypeLog, {
+  //   //   mode: props.mode,
+  //   // }],
+  // ]
+  // rehypePlugins: [
   //   [rehypeMathJax, {
+  //     jax: ['input/TeX','output/HTML-CSS'],
   //     chtml: {
   //       fontURL: '[mathjax]/components/output/chtml/fonts/woff-v2'
+  //     },
+  //     Hub: {
+  //       webfont: 'Latin-Modern'
   //     }
   //   }]
   // ],
@@ -50,11 +61,93 @@ const _mapProps = (props: any): ReactMarkdownOptions => ({
 
 // console.log(htmlGenerator.domFragment());
 
-const Markdown = (props: any) => <ReactMarkdown {..._mapProps(props)} />;
+
+const Markdown = (props: any) => <ReactMarkdown {..._mapProps(props)}/>;
 
 export default Markdown;
 
 // rehype plugin that console logs the tree
+
+// rehype plugin that converts <span class='math'> tags to <img> tags
+const rehypeTeX = (options: any) => (tree: any) => {
+  const visit = (node: any) => {
+    if (node.type === 'element' && node.tagName === 'span' && node.properties.className.includes('math')) {
+      node.tagName = 'img';
+      node.properties.src = `https://latex.codecogs.com/svg.latex?${encodeURIComponent(node.children[0].value)}`;
+      node.properties.alt = node.children[0].value;
+      delete node.properties.className;
+      delete node.children;
+
+      return node;
+    }
+  };
+  visit(tree);
+};
+
+
+const rehypeTemml = (options: any) => (tree: any) => {
+  // console.log(tree);
+  const visit = (node: any) => {
+    if (node.type === 'element' && node.tagName === 'span' && node.properties.className.includes('math')) {
+
+      // console.log(node);
+
+      const element = document.createElement('span');
+      temml.render(node.children[0].value, element);
+      temml.postProcess(element);
+
+      // console.log(element);
+      // convert html element to rehype node
+      const convert = (element: Element) => {
+        const node: any = {
+          type: 'element',
+          tagName: element.tagName.toLowerCase(),
+          properties: {},
+          children: [],
+        };
+
+        if (element.attributes) {
+          for (let i = 0; i < element.attributes.length; i++) {
+            const attribute = element.attributes[i];
+            node.properties[attribute.name] = attribute.value;
+          }
+        }
+
+        if (element.childNodes) {
+          for (let i = 0; i < element.childNodes.length; i++) {
+            const child = element.childNodes[i];
+            if (child instanceof Element) {
+              node.children.push(convert(child));
+            } else if (child instanceof Text) {
+              node.children.push({
+                type: 'text',
+                value: child.textContent,
+              });
+            }
+          }
+        }
+
+        return node;
+      };
+
+      const newNode = convert(element.children.item(0) as HTMLElement);
+
+      node.children = [newNode];
+
+      // node.children[0].value = element.innerHTML;
+      // return newNode;
+    } else if (node.children) {
+      node.children.forEach((child: any) => {
+        visit(child);
+      });
+    }
+  };
+
+  visit(tree);
+  console.log(tree);
+};
+
+
 
 const rehypeLog = (options: any) => (tree: any) => {
   // console.log(tree);

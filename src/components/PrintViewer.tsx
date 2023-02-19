@@ -171,7 +171,7 @@ const DocumentLayout = styled.div`
   line-height: 150%;
 
   font-family: 'Times New Roman', /* 'MaruBuri'*/"SM3중명조";
-  font-size: 14pt;
+  font-size: 12pt;
 
   font-stretch: 0.95%;
   word-spacing: 0.05em;
