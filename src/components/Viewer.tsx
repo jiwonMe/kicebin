@@ -168,6 +168,11 @@ const ProblemLayout = styled.div`
     margin: 0;
   }
 
+  math {
+    zoom: 120%;
+    font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
+  }
+
   .math {
     /* transform: scale(0.826) !important; */
     zoom: 0.826;
@@ -179,12 +184,12 @@ const ProblemLayout = styled.div`
     letter-spacing: 0em;
     line-height: 1.2;
     text-rendering: auto;
-    font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Roman', serif;
+    font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Math', serif;
     white-space: nowrap;
   }
 
   .katex .mathnormal {
-    font-family: 'HYHwpEQ_Partial', 'Latin Modern Roman';
+    font-family: 'HYHwpEQ_Partial', 'Latin Modern Math';
   }
 
   .size4, .size5 {

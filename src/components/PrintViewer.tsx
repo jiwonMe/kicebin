@@ -188,6 +188,11 @@ const DocumentLayout = styled.div`
     line-break: strict;
   }
 
+  math {
+    /* zoom: 120%; */
+    font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
+  }
+
   .katex {
     /* transform: scale(0.826); */
     zoom: 82.6%;

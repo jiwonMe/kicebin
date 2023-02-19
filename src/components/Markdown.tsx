@@ -88,12 +88,25 @@ const rehypeTeX = (options: any) => (tree: any) => {
 const rehypeTemml = (options: any) => (tree: any) => {
   // console.log(tree);
   const visit = (node: any) => {
-    if (node.type === 'element' && node.tagName === 'span' && node.properties.className.includes('math')) {
+    if (node.type === 'element' && node.properties.className?.includes('math')) {
 
       // console.log(node);
 
+      const macros = temml.definePreamble(
+        `\\newcommand\\d[0]{\\operatorname{d}\\!}
+        \\renewcommand{\\vec}[1]{\\vv{#1}}
+\\let\\nvec\\vec
+\\let\\nsqrt\\sqrt
+\\def\\vec#1{\\nvec{\\vphantom A\\smash{#1}}} %%%% 낮추려면 vphantom t
+\\def\\SQRT#1{\\nsqrt{\\vphantom{B}\\smash{#1}}} %%%% 낮추려면 vphantom t
+        `
+      );
+
       const element = document.createElement('span');
-      temml.render(node.children[0].value, element);
+      temml.render(node.children[0].value, element, {
+        displayMode: true,
+        macros,
+      });
       temml.postProcess(element);
 
       // console.log(element);
