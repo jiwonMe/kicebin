@@ -322,8 +322,8 @@ const TwoColumnLayout = styled.div`
   width: 100%;
   height: 100%;
 
-  border-top: 0.5pt solid #524dd9;
-  border-bottom: 0.5pt solid #524dd9;
+  border-top: 1px solid #524dd9;
+  border-bottom: 1px solid #524dd9;
 
   padding-top: 0.5cm;
 
@@ -332,7 +332,7 @@ const TwoColumnLayout = styled.div`
     position: absolute;
     left: 50%;
     top: 2cm;
-    width: 0.5pt;
+    width: 1px;
     height: calc(100% - 4cm);
     background-color: #524dd9;
   }
