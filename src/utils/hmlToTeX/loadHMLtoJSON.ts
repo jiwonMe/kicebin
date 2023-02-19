@@ -19,7 +19,7 @@ function loadHmlFile(file: File): Promise<any> {
           childNodes: [],
         };
 
-        const parseNode = (node: Node, obj: XMLJSONNode): void => {
+        const parseNode = (node: Node, obj: XMLJSONNode, pwd: string[]): void => {
           // console.log(node);
           if (node.nodeType === Node.ELEMENT_NODE) {
             const element = node as Element;
@@ -28,6 +28,7 @@ function loadHmlFile(file: File): Promise<any> {
               '@attributes': {},
               tagName: element.tagName,
               childNodes: [],
+              pwd: [...pwd, element.tagName],
             };
             obj.childNodes?.push(childObj);
 
@@ -42,7 +43,7 @@ function loadHmlFile(file: File): Promise<any> {
 
             const childNodes = element.childNodes;
             for (let i = 0; i < childNodes.length; i++) {
-              parseNode(childNodes.item(i), childObj);
+              parseNode(childNodes.item(i), childObj, [...pwd, element.tagName]);
             }
           } else if (node.nodeType === Node.TEXT_NODE) {
             const textNode = node as Text;
@@ -50,7 +51,8 @@ function loadHmlFile(file: File): Promise<any> {
             const childObj: XMLJSONNode = {
               '@attributes': {},
               tagName: 'LITERAL',
-              value: textNode.data,
+              value: textNode.data.trim(),
+              pwd: [...pwd, 'LITERAL'],
             };
             obj.childNodes?.push(childObj);
           } else if (node.nodeType === Node.CDATA_SECTION_NODE) {
@@ -60,6 +62,7 @@ function loadHmlFile(file: File): Promise<any> {
               '@attributes': {},
               tagName: 'LITERAL',
               value: cdataNode.data,
+              pwd: [...pwd, 'LITERAL'],
             };
             obj.childNodes?.push(childObj);
           }
@@ -67,7 +70,7 @@ function loadHmlFile(file: File): Promise<any> {
 
         const childNodes = xml.childNodes;
         for (let i = 0; i < childNodes.length; i++) {
-          parseNode(childNodes.item(i), obj);
+          parseNode(childNodes.item(i), obj, []);
         }
 
         console.log(obj);

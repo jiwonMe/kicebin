@@ -62,7 +62,9 @@ const PrintViewer = ({ document }: {
                       case 'STATEMENT':
                         return (
                           <ProblemStatement key={blockIndex}>
-                            <Markdown>
+                            <Markdown
+                              mode='print'
+                            >
                               {block.content}
                             </Markdown>
                           </ProblemStatement>
@@ -74,7 +76,9 @@ const PrintViewer = ({ document }: {
                               {
                                 (block.content as string[]).map((condition, conditionIndex) => (
                                   <li key={conditionIndex}>
-                                    <Markdown>
+                                    <Markdown
+                                      mode='print'
+                                    >
                                       {condition}
                                     </Markdown>
                                   </li>
@@ -86,7 +90,9 @@ const PrintViewer = ({ document }: {
                       case 'BOXED':
                         return (
                           <ProblemBoxed key={blockIndex}>
-                            <Markdown>
+                            <Markdown
+                              mode='print'
+                            >
                               {block.content}
                             </Markdown>
                           </ProblemBoxed>
@@ -98,7 +104,9 @@ const PrintViewer = ({ document }: {
                               {
                                 (block.content as string[]).map((example, exampleIndex) => (
                                   <li key={exampleIndex}>
-                                    <Markdown>
+                                    <Markdown
+                                      mode='print'
+                                    >
                                       {example}
                                     </Markdown>
                                   </li>
@@ -163,7 +171,7 @@ const DocumentLayout = styled.div`
   line-height: 150%;
 
   font-family: 'Times New Roman', /* 'MaruBuri'*/"SM3중명조";
-  font-size: 9pt;
+  font-size: 14pt;
 
   font-stretch: 0.95%;
   word-spacing: 0.05em;
@@ -186,12 +194,21 @@ const DocumentLayout = styled.div`
     font-stretch: 1em;
     letter-spacing: 0.05em;
     line-height: 100%;
-    font: normal 1.21em 'Latin Modern Roman',Times New Roman,serif;
+    font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Roman', 'Times New Roman', serif;
+
     white-space: nowrap;
+
+    margin: 0.5em 0;
   }
 
   .katex .mathnormal {
-    font-family: 'Latin Modern Roman';
+    font-family: 'HYHwpEQ_Partial', 'Latin Modern Roman', 'Times New Roman', serif;
+    /* font-style: normal; */
+    font-weight: normal;
+  }
+
+  .katex .mathgreek {
+    font-style: normal !important;
   }
 
   .katex-display {
@@ -235,8 +252,10 @@ const CoverPage = styled.div`
 
   text-align: left;
 
-  width: 210mm !important;
-  height: 297mm !important;
+  /* width: 210mm !important; */
+  /* height: 297mm !important; */
+  width: 1134px;
+  height: 1602px;
 `;
 
 const CoverPageTitle = styled.div`
@@ -271,8 +290,8 @@ const PageLayout = styled.div`
 
   box-sizing: border-box;
 
-  width: 595pt !important;
-  height: 840pt !important;
+  width: 1134px;
+  height: 1602px;
 `;
 
 const PageHeader = styled.div<{ align: 'left' | 'right' }>`
@@ -321,7 +340,7 @@ const TwoColumnLayout = styled.div`
 
 const ProblemNumber = styled.div`
   font-family: 'Pretendard-Regular';
-  font-size: 15pt;
+  font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 0.5em;
   color: #2721d8;
@@ -537,7 +556,9 @@ const ProblemChoices = ({
             key={index}
             ref={choiceRef}
           >
-            <Markdown>
+            <Markdown
+              mode='print'
+            >
               {choice}
             </Markdown>
           </li>

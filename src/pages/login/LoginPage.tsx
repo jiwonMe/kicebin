@@ -54,7 +54,7 @@ const LoginPage = () => {
         onClick={async () => {
           // check user agent
           const userAgent = navigator.userAgent;
-          console.log(userAgent);
+          // console.log(userAgent);
 
           if (
             userAgent.match('KAKAOTALK') ||

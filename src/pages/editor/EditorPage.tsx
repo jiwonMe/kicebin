@@ -74,7 +74,7 @@ const EditorPage = () => {
     setTimeout(() => {
       print();
       setIsPrintMode(false);
-    }, 10000);
+    }, 1000);
   };
 
   const print = () => {

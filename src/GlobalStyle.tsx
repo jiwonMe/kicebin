@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 import SM신명조03 from './assets/fonts/SM3신명조-03.woff';
 import SM3중명조 from './assets/fonts/SM3중명조.woff';
-import HYHwpEQ from './assets/fonts/HYHWPEQ.otf';
+import HYHwpEQ_Partial from './assets/fonts/HYHWPEQ.woff';
 
 import lmBold from './assets/fonts/latinmodernroman_10bold_macroman/lmroman10-bold-webfont.woff';
 import lmBoldItalic from './assets/fonts/latinmodernroman_10bolditalic_macroman/lmroman10-bolditalic-webfont.woff';
@@ -96,14 +96,23 @@ const GlobalStyle = createGlobalStyle`
   }
 
   @font-face {
-    font-family: 'HYHwpEQ';
-    src: url(${HYHwpEQ}) format('otf');
+    font-family: 'HYHwpEQ_Partial';
+    src: url(${HYHwpEQ_Partial}) format('woff');
     font-weight: normal;
     font-style: normal;
-
-    /* A-Z */
-    unicode-range: U+0041-005A;
+    /* unicode-range: U+E09D-E0C4, U+E0E5-E0FE; */
+    unicode-range: U+E09D-E0C4;
   }
+
+  @font-face {
+    font-family: 'HYHwpEQ_Partial_Print';
+    src: url(${HYHwpEQ_Partial}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+    /* unicode-range: U+E09D-E0C4, U+E0E5-E0FE; */
+    unicode-range: U+E09D-E0C4;
+  }
+
 
   @font-face {
     font-family: 'Latin Modern Roman';

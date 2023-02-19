@@ -1,13 +1,12 @@
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkMath from 'remark-math';
-import { BlockMath, InlineMath } from 'react-katex';
 import rehypeKatex from 'rehype-katex';
 import rehypeMathJax from 'rehype-mathjax';
 import 'katex/dist/katex.min.css';
 import { ReactMarkdownOptions } from 'react-markdown/lib/react-markdown';
 
-const _mapProps = (props: ReactMarkdownOptions): ReactMarkdownOptions => ({
+const _mapProps = (props: any): ReactMarkdownOptions => ({
   ...props,
   remarkPlugins: [
     remarkMath,
@@ -19,7 +18,7 @@ const _mapProps = (props: ReactMarkdownOptions): ReactMarkdownOptions => ({
     [ rehypeKatex, {
       output: 'html',
       displayMode: true,
-      // minRuleThickness: 0.001,
+      minRuleThickness: 0.04,
       strict: false,
       macros: {
         '\\RR': '\\mathbb{R}',
@@ -27,13 +26,24 @@ const _mapProps = (props: ReactMarkdownOptions): ReactMarkdownOptions => ({
         '\\CC': '\\mathbb{C}',
         '\\QQ': '\\mathbb{Q}',
         '\\mrm': '\\mathrm',
+        '\\eps': '\\varepsilon',
         // '\\nvec': '\\vec',
         // '\\vec': '\\nvec{\\vphantom A\\smash{#1}}',
       },
       globalGroup: true,
+      // throwOnError: false,
     }],
-    rehypeLog,
+    [rehypeLog, {
+      mode: props.mode,
+    }],
   ]
+  // rehypePlugins: [
+  //   [rehypeMathJax, {
+  //     chtml: {
+  //       fontURL: '[mathjax]/components/output/chtml/fonts/woff-v2'
+  //     }
+  //   }]
+  // ],
 });
 
 
@@ -54,7 +64,7 @@ const rehypeLog = (options: any) => (tree: any) => {
     let isKaTeX = isInKaTeX;
     let isText = false;
     let isCorrect = false;
-    if (node.children) {
+    if (node.children && isKaTeX) {
       node.children.forEach((child: any) => {
         if (child.type === 'text') {
           isText = true;
@@ -63,13 +73,23 @@ const rehypeLog = (options: any) => (tree: any) => {
         if (child.value === '−' || child.value === '+') {
           isCorrect = true;
           // style = { color: 'red' };
-          node.properties.style = 'margin: 0 0.1em;';
+          node.properties.style = 'margin: 0 0.1em; font: normal 1.21em KaTeX_Main, Times New Roman, serif; zoom: 0.8';
           // console.log(node);
         } else {
           // regex a-z
           if (child.value?.match(/[a-z]/)) {
             isCorrect = true;
             node.properties.style = 'margin-right: 0.05em;';
+
+            // if (options.mode === 'print') {
+            //   node.children[0].value = child.value.replaceAll(/[A-z]/g, (match: string) => {
+            //     const charCode = match.charCodeAt(0);
+            //     return String.fromCharCode(charCode + (
+            //       // U+0061 to U+E0E5
+            //       0xE0E5 - 0x0061
+            //     ));
+            //   });
+            // }
             // console.log(node);
           } else if (child.value?.match(/[A-Z]/)) {
             isCorrect = true;
@@ -79,6 +99,43 @@ const rehypeLog = (options: any) => (tree: any) => {
             isCorrect = true;
             node.properties.style = 'font: normal 1.21em KaTeX_Main, Times New Roman, serif; zoom: 0.8';
             // console.log(node);
+          } else if (child.value?.match(/α|β|γ|δ|ε|ζ|η|θ|ι|κ|λ|μ|ν|ξ|ο|π|ρ|σ|τ|υ|φ|χ|ψ|ω/)) {
+            isCorrect = true;
+            // console.log(node);
+            // add unicode value + 10
+            node.children[0].value = child.value.replaceAll(/α|β|γ|δ|ϵ|ε|ζ|η|θ|ι|κ|λ|μ|ν|ξ|ο|π|ρ|σ|τ|υ|φ|ϕ|χ|ψ|ω/g, (match: string) => {
+              return {
+                'α': '',
+                'β': '',
+                'γ': '',
+                'δ': '',
+                'ϵ': '',
+                'ε': '',
+                'ζ': '',
+                'η': '',
+                'θ': '',
+                'ι': '',
+                'κ': '',
+                'λ': '',
+                'μ': '',
+                'ν': '',
+                'ξ': '',
+                'ο': '',
+                'π': '',
+                'ρ': '',
+                'σ': '',
+                'τ': '',
+                'υ': '',
+                'φ': '',
+                'ϕ': '',
+                'χ': '',
+                'ψ': '',
+                'ω': '',
+              }[match];
+            });
+            console.log(node);
+            node.properties.className.push('mathgreek');
+            // node.child.value = child.value.replace(/[ɑ-ɯ]/, '');
           }
         }
       });

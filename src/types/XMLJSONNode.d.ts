@@ -5,4 +5,5 @@ interface XMLJSONNode {
   tagName: string;
   value?: string;
   childNodes?: XMLJSONNode[];
+  pwd?: string[];
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ProblemScheme } from '../types/Problem';
 import Markdown from './Markdown';
 
-const Viewer = ({ problems, currentProblemId } : { problems: ProblemScheme[], currentProblemId: string }) => {
+const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemScheme[], currentProblemId: string, className?: string }) => {
 
   const currentProblem = useMemo(() => {
     return problems.find((problem) => problem.id === currentProblemId) as ProblemScheme;
@@ -14,7 +14,9 @@ const Viewer = ({ problems, currentProblemId } : { problems: ProblemScheme[], cu
   }, [problems, currentProblemId]);
 
   return (
-    <ViewerLayout>
+    <ViewerLayout
+      className={className}
+    >
       <ProblemLayout>
         <ProblemNumber>
           {currentProblemNumber.toString().padStart(2, '0')}
@@ -177,12 +179,12 @@ const ProblemLayout = styled.div`
     letter-spacing: 0em;
     line-height: 1.2;
     text-rendering: auto;
-    font: normal 1.21em 'Latin Modern Roman', 'Times New Roman', serif;
+    font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Roman', serif;
     white-space: nowrap;
   }
 
   .katex .mathnormal {
-    font-family: 'Latin Modern Roman';
+    font-family: 'HYHwpEQ_Partial', 'Latin Modern Roman';
   }
 
   .katex-display {
