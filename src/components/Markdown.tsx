@@ -132,10 +132,18 @@ const rehypeTemml = (options: any) => (tree: any) => {
             if (child instanceof Element) {
               node.children.push(convert(child));
             } else if (child instanceof Text) {
-              node.children.push({
+              const textNode = {
                 type: 'text',
                 value: child.textContent,
-              });
+                properties: {
+                  style: ''
+                },
+              };
+
+              // if (child.textContent?.includes('\'')) {
+              //   textNode.properties.style = 'font-family: "Times New Roman", Times, serif;';
+              // }
+              node.children.push(textNode);
             }
           }
         }

@@ -188,6 +188,13 @@ const DocumentLayout = styled.div`
     line-break: strict;
   }
 
+  mo.tml-prime {
+    transform: translateY(200%);
+    zoom: 150%;
+    font-family: Temml;
+    margin-right: -0.2em;
+  }
+
   math {
     /* zoom: 120%; */
     font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';

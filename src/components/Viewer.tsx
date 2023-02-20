@@ -168,6 +168,10 @@ const ProblemLayout = styled.div`
     margin: 0;
   }
 
+  mo.tml-prime {
+    font-family: Temml;
+  }
+
   math {
     zoom: 120%;
     font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
