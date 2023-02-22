@@ -72,19 +72,9 @@ const EditorPage = () => {
     setIsPrintMode(true);
 
     setTimeout(() => {
-      print();
+      window.print();
       setIsPrintMode(false);
     }, 1000);
-  };
-
-  const print = () => {
-    if (printViewerRef.current) {
-      const win = printViewerRef.current.contentWindow;
-      if (win) {
-        win.focus();
-        win.print();
-      }
-    }
   };
 
   const { user: _user } = useAuthStore();
@@ -248,15 +238,6 @@ const EditorPage = () => {
                 rel="stylesheet"
                 href="./assets/index.css"
               />
-              <link
-                rel="stylesheet"
-                href="./assets/prism.css"
-              />
-              <script
-                src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
-                integrity='sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4'
-                crossOrigin='anonymous'
-              />
               <style>
                 {/* css */`
                   html, body {
@@ -284,13 +265,31 @@ const EditorPage = () => {
             </>
           </InjectFrameStyles>
         </Frame>
-
+      }
+      {
+        <PrintPreviewLayout>
+          <PrintViewer
+            document={document}
+          />
+        </PrintPreviewLayout>
       }
     </EntireLayout>
   );
 };
 
 export default EditorPage;
+
+const PrintPreviewLayout = styled.div`
+@media print {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-color: #00000055; */
+  z-index: 1000;
+}
+`;
 
 const EntireLayout = styled.div`
   height: 100vh;
@@ -322,15 +321,17 @@ const SaveButton = styled(ActionButton)`
 `;
 
 const LoadingLayout = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: #FFFFFF;
-  background-color: #00000055;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @media screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #FFFFFF;
+    background-color: #00000055;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 `;

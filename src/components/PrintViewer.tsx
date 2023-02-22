@@ -12,7 +12,7 @@ const PrintViewer = ({ document }: {
 
   // [a, b, c, d, ...] => [[a, b], [c, d], ...]
   const chunk = <T,>(arr: T[], size: number) => {
-    const chunked_arr = [];
+    const chunked_arr: any[] = [];
     let index = 0;
     while (index < arr.length) {
       chunked_arr.push(arr.slice(index, size + index));
@@ -158,11 +158,15 @@ const PrintViewer = ({ document }: {
 export default PrintViewer;
 
 const DocumentLayout = styled.div`
+  @media screen {
+    display: none;
+  }
   @media print and (min-resolution: 600dpi) {
     @page {
       /* size 210mm 297mm; */
       size: 210mm 297mm;
     }
+    display: block;
   }
 
   print-color-adjust: exact;
@@ -170,7 +174,7 @@ const DocumentLayout = styled.div`
 
   line-height: 150%;
 
-  font-family: 'Times New Roman', /* 'MaruBuri'*/"SM3중명조";
+  font-family: 'Times New Roman', "SM3중명조";
   font-size: 12pt;
 
   font-stretch: 0.95%;
@@ -188,16 +192,22 @@ const DocumentLayout = styled.div`
     line-break: strict;
   }
 
-  mo.tml-prime {
-    transform: translateY(200%);
-    zoom: 150%;
-    font-family: Temml;
-    margin-right: -0.2em;
-  }
-
   math {
     /* zoom: 120%; */
     font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
+  }
+
+  mo.tml-prime {
+    margin-left: 0.1em;
+  }
+
+  /* mfrac mroot mn:first-child {
+    transform: translateY(25%);
+  } */
+
+  /* if twin, no margin between */
+  .tml-prime + .tml-prime {
+    margin-left: 0;
   }
 
   .katex {
@@ -351,7 +361,7 @@ const TwoColumnLayout = styled.div`
 `;
 
 const ProblemNumber = styled.div`
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard';
   font-size: 1.5em;
   font-weight: bold;
   margin-bottom: 0.5em;

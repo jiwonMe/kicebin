@@ -168,14 +168,24 @@ const ProblemLayout = styled.div`
     margin: 0;
   }
 
-  mo.tml-prime {
-    font-family: Temml;
-  }
-
   math {
     zoom: 120%;
     font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
   }
+
+  mo.tml-prime {
+    margin-left: 0.1em;
+  }
+/*
+  mfrac mroot mn {
+    transform: translateY(25%);
+  } */
+
+  /* if twin, no margin between */
+  .tml-prime + .tml-prime {
+    margin-left: 0;
+  }
+
 
   .math {
     /* transform: scale(0.826) !important; */

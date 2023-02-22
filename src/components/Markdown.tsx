@@ -95,10 +95,9 @@ const rehypeTemml = (options: any) => (tree: any) => {
       const macros = temml.definePreamble(
         `\\newcommand\\d[0]{\\operatorname{d}\\!}
         \\renewcommand{\\vec}[1]{\\vv{#1}}
-\\let\\nvec\\vec
-\\let\\nsqrt\\sqrt
-\\def\\vec#1{\\nvec{\\vphantom A\\smash{#1}}} %%%% 낮추려면 vphantom t
-\\def\\SQRT#1{\\nsqrt{\\vphantom{B}\\smash{#1}}} %%%% 낮추려면 vphantom t
+       \\newcommand{\\abs}[1]{\\left\\lvert #1 \\right\\rvert}
+       \\newcommand{\\SQRT}[1]{\\sqrt{\\vphantom{B^2}\\smash{#1}}}
+       \\newcommand{\\NSQRT}[2]{\\sqrt[#1]{\\vphantom{B^2}\\smash{#2}}}
         `
       );
 
@@ -165,7 +164,6 @@ const rehypeTemml = (options: any) => (tree: any) => {
   };
 
   visit(tree);
-  console.log(tree);
 };
 
 
