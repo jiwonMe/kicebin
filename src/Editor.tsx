@@ -13,6 +13,7 @@ import { FiPlus } from 'react-icons/fi';
 import { InputWithLabel } from './components/Input';
 import { ProblemScheme } from './types/Problem';
 import { Reorder } from 'framer-motion';
+import { TagsInput } from './components/TagInputComponent';
 
 const Editor = () => {
   const { document, setDocument, currentProblemId: _currProbId } = useEditorStore();
@@ -69,6 +70,9 @@ const Editor = () => {
             });
           }}
         />
+        {/* <TagsInput
+          value={[]}
+        /> */}
       </FormBox>
       {
         <EditorBlockContainerLayout
