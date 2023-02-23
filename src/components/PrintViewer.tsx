@@ -33,7 +33,7 @@ const PrintViewer = ({ document }: {
           {document.meta?.description || ''}
         </CoverPageDescription>
       </CoverPage>
-      {chunk<ProblemScheme>(document.problems,2).map((problemSet, problemSetIndex) => (
+      {chunk<ProblemScheme>(document.problems || [],2).map((problemSet, problemSetIndex) => (
         <PageLayout key={problemSetIndex}>
           {
             problemSetIndex % 2 === 0 ? (

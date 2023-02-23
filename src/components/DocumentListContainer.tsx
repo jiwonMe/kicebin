@@ -143,6 +143,7 @@ const DocumentListCell = ({
           new Date(),
           new Timestamp(document.meta.updatedAt.seconds, document.meta.updatedAt.nanoseconds).toDate(),
         )} 전 · ${
+          document.problems &&
           document.problems.length
         }문항`}</DocumentListCellDescription>
       <DocumentListCellSmallDescription>

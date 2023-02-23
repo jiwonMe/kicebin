@@ -70,7 +70,7 @@ interface EditorState {
     }
   };
   currentProblemId: string | null;
-  setCurrentProblemId: (problemId: string) => void;
+  setCurrentProblemId: (problemId: string | null) => void;
 }
 
 export const useEditorStore = create<EditorState>()(
@@ -103,13 +103,13 @@ export const useEditorStore = create<EditorState>()(
       } })),
       setMeta: (meta) => set((state) => ({ document: { ...state.document, meta } })),
       setProblems: {
-        add: (problem) => set((state) => ({ document: { ...state.document, problems: [...state.document.problems, problem] } })),
-        remove: (problemId) => set((state) => ({ document: { ...state.document, problems: state.document.problems.filter((problem) => problem.id !== problemId) } })),
+        add: (problem) => set((state) => ({ document: { ...state.document, problems: [...state.document.problems || [], problem] } })),
+        remove: (problemId) => set((state) => ({ document: { ...state.document, problems: (state.document.problems || []).filter((problem) => problem.id !== problemId) } })),
         update: (problemId) => ({
           setMeta: (meta) => set((state) => ({
             document: {
               ...state.document,
-              problems: state.document.problems.map((problem) => {
+              problems: state.document.problems?.map((problem) => {
                 if (problem.id === problemId) {
                   return { ...problem, meta };
                 }
@@ -120,7 +120,7 @@ export const useEditorStore = create<EditorState>()(
           setContent: (content) => set((state) => ({
             document: {
               ...state.document,
-              problems: state.document.problems.map((problem) => {
+              problems: state.document.problems?.map((problem) => {
                 if (problem.id === problemId) {
                   return { ...problem, content };
                 }

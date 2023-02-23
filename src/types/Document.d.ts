@@ -10,5 +10,5 @@ export interface DocumentScheme {
     createdAt: Timestamp;
     updatedAt: Timestamp;
   }
-  problems: ProblemScheme[];
+  problems?: ProblemScheme[];
 }

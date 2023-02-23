@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { ProblemScheme } from '../types/Problem';
 import Markdown from './Markdown';
 
-const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemScheme[], currentProblemId: string, className?: string }) => {
+const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemScheme[], currentProblemId: string | null, className?: string }) => {
 
   const currentProblem = useMemo(() => {
     return problems.find((problem) => problem.id === currentProblemId) as ProblemScheme;

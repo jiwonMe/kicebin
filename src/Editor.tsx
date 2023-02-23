@@ -18,17 +18,20 @@ import { TagsInput } from './components/TagInputComponent';
 const Editor = () => {
   const { document, setDocument, currentProblemId: _currProbId } = useEditorStore();
 
-  const currentProblemId = _currProbId || document.problems[0]?.id;
+  const currentProblemId = _currProbId || document.problems?.[0]?.id || null;
 
-  const currentProblem = document.problems.find((p) => p.id === currentProblemId);
+  const currentProblem = document.problems?.find((p) => p.id === currentProblemId);
 
   const deleteBlock = (blockId: string) => {
+    if (!currentProblemId || !currentProblem) {
+      return;
+    }
     setDocument.setProblems.update(currentProblemId).setContent((currentProblem as ProblemScheme).content.filter((block) => block.id !== blockId)
     );
   };
 
   const addBlockAfter = (blockId: string) => {
-    if (!currentProblem) {
+    if (!currentProblemId || !currentProblem) {
       return;
     }
     setDocument.setProblems.update(currentProblemId).setContent([
@@ -53,6 +56,9 @@ const Editor = () => {
           type="text"
           value={currentProblem.meta.title}
           onChange={(e) => {
+            if (!currentProblemId) {
+              return;
+            }
             setDocument.setProblems.update(currentProblemId).setMeta({
               ...currentProblem.meta,
               title: e.target.value,
@@ -64,6 +70,9 @@ const Editor = () => {
           type='text'
           value={currentProblem.meta.description || ''}
           onChange={(e) => {
+            if (!currentProblemId) {
+              return;
+            }
             setDocument.setProblems.update(currentProblemId).setMeta({
               ...currentProblem.meta,
               description: e.target.value,
@@ -78,13 +87,21 @@ const Editor = () => {
         <EditorBlockContainerLayout
           axis='y'
           values={currentProblem.content}
-          onReorder={setDocument.setProblems.update(currentProblemId).setContent}
+          onReorder={(newOrder) => {
+            if (!currentProblemId) {
+              return;
+            }
+
+            return setDocument.setProblems.update(currentProblemId).setContent(newOrder);}}
         >
           {currentProblem.content.map((block) => (
             <EditorBlock
               key={block.id}
               block={block}
               setBlock={(newBlock) => {
+                if (!currentProblemId) {
+                  return;
+                }
                 setDocument.setProblems.update(currentProblemId).setContent(
                   currentProblem.content.map((b) => (b.id === newBlock.id ? newBlock : b)),
                 );
@@ -102,6 +119,9 @@ const Editor = () => {
         <AddBlockButton
           type="button"
           onClick={() => {
+            if (!currentProblemId) {
+              return;
+            }
             setDocument.setProblems.update(currentProblemId).setContent([
               ...currentProblem.content,
               {

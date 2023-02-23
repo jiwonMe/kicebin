@@ -118,8 +118,11 @@ const documentIntegrityCorrection = (
   }
 
   if (!document.meta.description) {
-
     document.meta.description = '';
+  }
+
+  if (!document.problems) {
+    document.problems = [];
   }
 
   // update document to firebase

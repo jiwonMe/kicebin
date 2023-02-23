@@ -14,7 +14,7 @@ const ProblemListContainer = ({
 }: {
   problems: ProblemScheme[],
   setProblems: (problems: ProblemScheme[]) => void,
-  currentProblemId: string,
+  currentProblemId: string | null,
   createNewProblem: () => void,
   deleteProblem: (problemId: string) => void,
   onClick: (problemId: string) => void,

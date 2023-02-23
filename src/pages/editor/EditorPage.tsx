@@ -45,7 +45,7 @@ const EditorPage = () => {
   const [isPrintMode, setIsPrintMode] = useState(false);
 
   const currentProblemId = useMemo(() => {
-    return _currProbId || document.problems[0]?.id;
+    return _currProbId || document?.problems?.[0]?.id || null;
   }, [_currProbId, document.problems]);
 
   const [isDocumentLoaded, setIsDocumentLoaded] = useState(false);
@@ -53,7 +53,7 @@ const EditorPage = () => {
   const deleteProblem = (problemId: string) => {
     setDocument.setProblems.remove(problemId);
 
-    const problem = document.problems.find((p) => p.id === problemId);
+    const problem = document.problems?.find((p) => p.id === problemId);
     if (problem) {
       problem.content.forEach((block) => {
         if (block.type === 'IMAGE') {
@@ -63,7 +63,7 @@ const EditorPage = () => {
       });
     }
 
-    setCurrentProblemId(document.problems[0].id);
+    setCurrentProblemId(document.problems?.[0].id || null);
   };
 
   const printViewerRef = useRef<HTMLIFrameElement>(null);
@@ -203,9 +203,9 @@ const EditorPage = () => {
       </TopLayout>
       <MainLayout>
         <ProblemListContainer
-          problems={document.problems}
+          problems={document.problems || []}
           setProblems={setDocument.setProblems.all}
-          currentProblemId={currentProblemId}
+          currentProblemId={currentProblemId || null}
           createNewProblem={() => {
             setDocument.setProblems.add(createNewProblem());
           }}
@@ -216,8 +216,8 @@ const EditorPage = () => {
         />
         <Editor/>
         <Viewer
-          problems={document.problems}
-          currentProblemId={currentProblemId}
+          problems={document.problems || []}
+          currentProblemId={currentProblemId || null}
         />
       </MainLayout>{
         <Frame
