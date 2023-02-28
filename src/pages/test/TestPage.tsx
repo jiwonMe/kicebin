@@ -110,6 +110,8 @@ const TestPage = () => {
                 description: 'test',
               },
               content: [],
+              answer: '',
+              explanation: [],
             };
 
             problem.content.push({
@@ -138,6 +140,7 @@ const TestPage = () => {
       {
         problem &&
           <Viewer
+            mode='PROBLEM'
             problems={[problem]}
             currentProblemId={problem.id}
           />

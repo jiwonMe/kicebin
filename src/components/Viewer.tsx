@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { ProblemScheme } from '../types/Problem';
 import Markdown from './Markdown';
 
-const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemScheme[], currentProblemId: string | null, className?: string }) => {
+const Viewer = ({ problems, currentProblemId, mode, className } : { problems: ProblemScheme[], currentProblemId: string | null,
+mode: 'PROBLEM' | 'EXPLANATION',
+  className?: string }) => {
 
   const currentProblem = useMemo(() => {
     return problems.find((problem) => problem.id === currentProblemId) as ProblemScheme;
@@ -12,6 +14,16 @@ const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemS
   const currentProblemNumber = useMemo(() => {
     return problems.findIndex((problem) => problem.id === currentProblemId) + 1;
   }, [problems, currentProblemId]);
+
+  const content = useMemo(() => {
+    if (!currentProblem) {
+      return [];
+    } else if (mode === 'PROBLEM') {
+      return currentProblem.content || [];
+    } else {
+      return currentProblem.explanation || [];
+    }
+  }, [currentProblem, mode]);
 
   return (
     <ViewerLayout
@@ -22,9 +34,7 @@ const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemS
           {currentProblemNumber.toString().padStart(2, '0')}
         </ProblemNumber>
         {
-          currentProblem &&
-          currentProblem.content &&
-          currentProblem.content.map((block, blockIndex) => {
+          content.map((block, blockIndex) => {
             switch (block.type) {
             case 'STATEMENT':
               return (

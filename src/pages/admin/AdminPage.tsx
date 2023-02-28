@@ -45,7 +45,7 @@ const AdminPage = () => {
       const numberOfDocs = docsQuerySnapshot.docs.length;
       const numberOfProblems = docsQuerySnapshot.docs.reduce((acc, cur) => {
         const data = cur.data() as DocumentScheme;
-        return acc + data.problems.length;
+        return acc + (data.problems?.length || 0);
       }, 0);
 
       // console.log(userDoc.id, numberOfDocs, numberOfProblems, docsQuerySnapshot.docs.map((doc) => doc.data() as DocumentScheme));
@@ -112,7 +112,7 @@ const AdminPage = () => {
 
       // if image in document, copy image to user's image folder
 
-      document?.problems.forEach(async (problem) => {
+      document?.problems?.forEach(async (problem) => {
         problem.content.forEach(async (content) => {
           if (content.type === 'IMAGE') {
             const imageDoc = await getDoc(doc(db, 'images', content.id));
@@ -176,8 +176,8 @@ const AdminPage = () => {
           {users.sort(
             (a, b) => {
               // sort by number of problems
-              const aNumberOfProblems = docsByUser.get(a.email!)?.reduce((acc, cur) => acc + cur.problems.length, 0) || 0;
-              const bNumberOfProblems = docsByUser.get(b.email!)?.reduce((acc, cur) => acc + cur.problems.length, 0) || 0;
+              const aNumberOfProblems = docsByUser.get(a.email!)?.reduce((acc, cur) => acc + (cur.problems?.length || 0), 0) || 0;
+              const bNumberOfProblems = docsByUser.get(b.email!)?.reduce((acc, cur) => acc + (cur.problems?.length || 0), 0) || 0;
 
               return bNumberOfProblems - aNumberOfProblems;
             },
@@ -317,7 +317,7 @@ const UserListCell = ({
     >
       <UserListCellTitle>{user.email}</UserListCellTitle>
       <UserListCellDescription>
-        {docsByUser.get(user.email!)?.length ?? 0} Documents, {docsByUser.get(user.email!)?.reduce((acc, cur) => acc + cur.problems.length, 0) ?? 0} Problems
+        {docsByUser.get(user.email!)?.length ?? 0} Documents, {docsByUser.get(user.email!)?.reduce((acc, cur) => acc + (cur.problems?.length || 0), 0) ?? 0} Problems
       </UserListCellDescription>
     </UserListCellLayout>
   );

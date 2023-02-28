@@ -20,7 +20,7 @@ const provider = new GoogleAuthProvider();
 
 auth.onAuthStateChanged((user) => {
   if (user) {
-    console.log('user is logged in', user);
+    console.log('user is logged in');
   } else {
     console.log('user is not logged in');
   }
@@ -152,15 +152,12 @@ const LoginPage = () => {
       </GoogleLoginButton>
       <VSpace />
       <SubTitle>
-        developed by park@jiwon.me
-      </SubTitle>
-      {/* <SubTitle>
         Aldeve.Inc © 2023
       </SubTitle>
       <VSpace />
       <SubTitle>
-        학원/기업 도입문의: <Link href="mailto:park@jiwon.me">park@jiwon.me</Link>
-      </SubTitle> */}
+        학원/기업 도입문의: <Link href="mailto:vega@aldeve.com">vega@aldeve.com</Link>
+      </SubTitle>
     </LoginPageLayout>
   );
 };

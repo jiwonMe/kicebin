@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import CodeEditor from 'react-simple-code-editor';
 // import { highlight, languages } from 'prismjs';
@@ -14,35 +14,63 @@ import { InputWithLabel } from './components/Input';
 import { ProblemScheme } from './types/Problem';
 import { Reorder } from 'framer-motion';
 import { TagsInput } from './components/TagInputComponent';
+import ModeTab from './components/ModeTab';
 
 const Editor = () => {
-  const { document, setDocument, currentProblemId: _currProbId } = useEditorStore();
+  const { document, setDocument, currentProblemId: _currProbId, mode, setMode } = useEditorStore();
 
   const currentProblemId = _currProbId || document.problems?.[0]?.id || null;
 
   const currentProblem = document.problems?.find((p) => p.id === currentProblemId);
 
+  const content = useMemo(() => {
+    if (!currentProblem) {
+      return [];
+    } else if (mode === 'PROBLEM') {
+      return currentProblem.content || [];
+    } else {
+      return currentProblem.explanation || [];
+    }
+  }, [currentProblem, mode]);
+
   const deleteBlock = (blockId: string) => {
     if (!currentProblemId || !currentProblem) {
       return;
     }
-    setDocument.setProblems.update(currentProblemId).setContent((currentProblem as ProblemScheme).content.filter((block) => block.id !== blockId)
-    );
+    if (mode === 'PROBLEM') {
+      setDocument.setProblems.update(currentProblemId).setContent((currentProblem as ProblemScheme).content.filter((block) => block.id !== blockId)
+      );
+    } else {
+      setDocument.setProblems.update(currentProblemId).setExplanation((currentProblem as ProblemScheme).explanation.filter((block) => block.id !== blockId)
+      );
+    }
   };
 
   const addBlockAfter = (blockId: string) => {
     if (!currentProblemId || !currentProblem) {
       return;
     }
-    setDocument.setProblems.update(currentProblemId).setContent([
-      ...currentProblem.content.splice(0, currentProblem.content.findIndex((block) => block.id === blockId) + 1),
-      {
-        id: uuid(),
-        type: 'STATEMENT',
-        content: '',
-      },
-      ...currentProblem.content.splice(currentProblem.content.findIndex((block) => block.id === blockId) + 1),
-    ]);
+    if (mode === 'PROBLEM') {
+      setDocument.setProblems.update(currentProblemId).setContent([
+        ...currentProblem.content.splice(0, currentProblem.content.findIndex((block) => block.id === blockId) + 1),
+        {
+          id: uuid(),
+          type: 'STATEMENT',
+          content: '',
+        },
+        ...currentProblem.content.splice(currentProblem.content.findIndex((block) => block.id === blockId) + 1),
+      ]);
+    } else {
+      setDocument.setProblems.update(currentProblemId).setExplanation([
+        ...currentProblem.explanation.splice(0, currentProblem.explanation.findIndex((block) => block.id === blockId) + 1),
+        {
+          id: uuid(),
+          type: 'STATEMENT',
+          content: '',
+        },
+        ...currentProblem.explanation.splice(currentProblem.explanation.findIndex((block) => block.id === blockId) + 1),
+      ]);
+    }
   };
 
   if (!currentProblem) {
@@ -50,6 +78,7 @@ const Editor = () => {
   }
   return (
     <EditorLayout>
+      <ModeTab onChange={(value) => setMode(value as 'PROBLEM' | 'EXPLANATION')} value={mode} />
       <FormBox>
         <InputWithLabel
           label="title"
@@ -79,6 +108,17 @@ const Editor = () => {
             });
           }}
         />
+        <InputWithLabel
+          label="answer"
+          type='text'
+          value={currentProblem.answer || ''}
+          onChange={(e) => {
+            if (!currentProblemId) {
+              return;
+            }
+            setDocument.setProblems.update(currentProblemId).setAnswer(e.target.value);
+          }}
+        />
         {/* <TagsInput
           value={[]}
         /> */}
@@ -91,10 +131,14 @@ const Editor = () => {
             if (!currentProblemId) {
               return;
             }
-
-            return setDocument.setProblems.update(currentProblemId).setContent(newOrder);}}
+            if (mode === 'PROBLEM') {
+              return setDocument.setProblems.update(currentProblemId).setContent(newOrder);
+            } else {
+              return setDocument.setProblems.update(currentProblemId).setContent(newOrder);
+            }
+          }}
         >
-          {currentProblem.content.map((block) => (
+          {content.map((block) => (
             <EditorBlock
               key={block.id}
               block={block}
@@ -102,9 +146,15 @@ const Editor = () => {
                 if (!currentProblemId) {
                   return;
                 }
-                setDocument.setProblems.update(currentProblemId).setContent(
-                  currentProblem.content.map((b) => (b.id === newBlock.id ? newBlock : b)),
-                );
+                if (mode === 'PROBLEM') {
+                  setDocument.setProblems.update(currentProblemId).setContent(
+                    currentProblem.content.map((b) => (b.id === newBlock.id ? newBlock : b)),
+                  );
+                } else {
+                  setDocument.setProblems.update(currentProblemId).setExplanation(
+                    currentProblem.explanation.map((b) => (b.id === newBlock.id ? newBlock : b)),
+                  );
+                }
               }}
               deleteBlock={deleteBlock}
               addBlockAfter={addBlockAfter}
@@ -122,14 +172,25 @@ const Editor = () => {
             if (!currentProblemId) {
               return;
             }
-            setDocument.setProblems.update(currentProblemId).setContent([
-              ...currentProblem.content,
-              {
-                id: uuid(),
-                type: 'STATEMENT',
-                content: '',
-              }
-            ]);
+            if (mode === 'PROBLEM') {
+              return setDocument.setProblems.update(currentProblemId).setContent([
+                ...currentProblem.content,
+                {
+                  id: uuid(),
+                  type: 'STATEMENT',
+                  content: '',
+                },
+              ]);
+            } else {
+              setDocument.setProblems.update(currentProblemId).setExplanation([
+                ...(currentProblem.explanation || []),
+                {
+                  id: uuid(),
+                  type: 'STATEMENT',
+                  content: '',
+                }
+              ]);
+            }
           }}
         >
           <FiPlus size={16}/>

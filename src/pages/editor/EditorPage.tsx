@@ -29,7 +29,9 @@ const createNewProblem = (): ProblemScheme => {
       title: '새 문제',
       description: '새 문제입니다.',
     },
+    answer: '',
     content: [],
+    explanation: [],
   };
 };
 
@@ -40,7 +42,7 @@ const InjectFrameStyles = (props: any) => {
 
 const EditorPage = () => {
   const { documentId } = useParams();
-  const { document, setDocument, currentProblemId: _currProbId, setCurrentProblemId } = useEditorStore();
+  const { document, setDocument, currentProblemId: _currProbId, setCurrentProblemId, mode, setMode } = useEditorStore();
 
   const [isPrintMode, setIsPrintMode] = useState(false);
 
@@ -218,6 +220,7 @@ const EditorPage = () => {
         <Viewer
           problems={document.problems || []}
           currentProblemId={currentProblemId || null}
+          mode={mode}
         />
       </MainLayout>{
         <Frame
