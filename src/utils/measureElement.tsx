@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import ReactDOM, { createPortal } from 'react-dom';
 import { createRoot } from 'react-dom/client';
 
 const MeasureComponent = ({ children, widthLimit, onMeasure }: { children: React.ReactNode; widthLimit: number, onMeasure: ({
@@ -28,43 +27,54 @@ const MeasureComponent = ({ children, widthLimit, onMeasure }: { children: React
   >{children}</div>;
 };
 
-const useMeasureElement = (widthLimit = -1, element: React.ReactNode) => {
-  const [height, setHeight] = React.useState(-1);
-  const [width, setWidth] = React.useState(-1);
+const useMeasureElements = (widthLimit = -1, elements: React.ReactNode[]) => {
+  const [measurements, setMeasurements] = React.useState<{ [key: string]: { height: number; width: number } }>({});
 
   const measure = ({
     height, width,
   }: {
     height: number;
     width: number;
-  }) => {
-    setHeight(height);
-    setWidth(width);
-
-    console.log(height, width);
+  }, key: string) => {
+    setMeasurements((prev) => ({
+      ...prev,
+      [key]: {
+        height,
+        width,
+      },
+    }));
   };
 
   useEffect(() => {
     const tempRoot = document.createElement('div');
     document.body.appendChild(tempRoot);
     const root = createRoot(tempRoot);
-    root.render(
-      <MeasureComponent
-        onMeasure={measure}
+
+    const elementsWithKeys = React.Children.map(elements, (element, index) => {
+      const key = `measure-${index}`;
+      return <MeasureComponent
+        onMeasure={(measurements) => measure(measurements, key)}
         widthLimit={widthLimit}
+        key={key}
       >
         {element}
-      </MeasureComponent>
+      </MeasureComponent>;
+    });
+
+    root.render(
+      <React.Fragment>
+        {elementsWithKeys}
+      </React.Fragment>
     );
-    // root.unmount();
-    setTimeout(() => {
+
+    queueMicrotask(() => {
       root.unmount();
       document.body.removeChild(tempRoot);
-    }, 1000);
-    // tempRoot.style.display = 'none';
-  }, [element]);
+    });
 
-  return { height, width };
+  }, [elements]);
+
+  return { measurements };
 };
 
-export default useMeasureElement;
+export default useMeasureElements;

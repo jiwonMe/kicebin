@@ -1,5 +1,6 @@
 import React, { ComponentType } from 'react';
 import styled from 'styled-components';
+import useMeasureElements from '../utils/measureElement';
 import useMeasureElement from '../utils/measureElement';
 import measureElement from '../utils/measureElement';
 
@@ -19,8 +20,10 @@ const splitToColumns = ({
   let currentHeight = 0;
   let currentColumn: React.ReactNode[] = [];
 
-  React.Children.forEach(children, (child) => {
-    const { height } = useMeasureElement(widthLimit, child);
+  const { measurements } = useMeasureElements(widthLimit, React.Children.map(children, (child) => child) as React.ReactNode[]);
+
+  React.Children.forEach(children, (child, index) => {
+    const { height } = measurements[`measure-${index}`] || { height: 0 };
 
     if (currentHeight + height <= maxHeight) {
       currentHeight += height;
