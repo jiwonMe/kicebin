@@ -21,6 +21,7 @@ import { ProblemScheme } from '../../types/Problem';
 import { getDocument as getDocumentFromFirestore, updateDocument } from '../../utils/documentCRUD';
 import { User } from 'firebase/auth';
 import { logEvent } from 'firebase/analytics';
+import PrintDefaultTheme from '../../components/PrintDefaultTheme';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -222,56 +223,13 @@ const EditorPage = () => {
           currentProblemId={currentProblemId || null}
           mode={mode}
         />
-      </MainLayout>{
-        <Frame
-          style={{
-            // display: 'none',
-            backgroundColor: 'white',
-          }}
-          ref={printViewerRef}
-          head={
-            <>
-              {/* <link
-                rel="stylesheet"
-                href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-                integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
-                crossOrigin="anonymous"
-              /> */}
-              <link
-                rel="stylesheet"
-                href="./assets/index.css"
-              />
-              <style>
-                {/* css */`
-                  html, body {
-                    padding: 0;
-                    margin: 0;
-                    height: 100%;
-                    page-break-inside: avoid;
-                    break-inside: avoid-page;
-                  }
-                  `}
-              </style>
-            </>
-          }
-        >
-          <InjectFrameStyles>
-            <>
-              <GlobalStyle />
-              {
-                isPrintMode && (
-                  <PrintViewer
-                    document={document}
-                  />
-                )
-              }
-            </>
-          </InjectFrameStyles>
-        </Frame>
-      }
+      </MainLayout>
       {
         <PrintPreviewLayout>
-          <PrintViewer
+          {/* <PrintViewer
+            document={document}
+          /> */}
+          <PrintDefaultTheme
             document={document}
           />
         </PrintPreviewLayout>

@@ -5,6 +5,85 @@ import 'katex/dist/katex.min.css';
 import GlobalStyle from '../GlobalStyle';
 import { DocumentScheme } from '../types/Document';
 import { ProblemScheme } from '../types/Problem';
+import { BlockScheme } from '../types/Block';
+
+const renderBlock = (block: BlockScheme) => {
+  switch (block.type) {
+  case 'STATEMENT':
+    return (
+      <ProblemStatement>
+        <Markdown
+          mode='print'
+        >
+          {block.content}
+        </Markdown>
+      </ProblemStatement>
+    );
+  case 'CONDITIONS':
+    return (
+      <ProblemConditions>
+        <ol>
+          {
+            (block.content as string[]).map((condition, conditionIndex) => (
+              <li key={conditionIndex}>
+                <Markdown
+                  mode='print'
+                >
+                  {condition}
+                </Markdown>
+              </li>
+            ))
+          }
+        </ol>
+      </ProblemConditions>
+    );
+  case 'BOXED':
+    return (
+      <ProblemBoxed>
+        <Markdown
+          mode='print'
+        >
+          {block.content}
+        </Markdown>
+      </ProblemBoxed>
+    );
+  case 'EXAMPLES':
+    return (
+      <ProblemExample>
+        <ol>
+          {
+            (block.content as string[]).map((example, exampleIndex) => (
+              <li key={exampleIndex}>
+                <Markdown
+                  mode='print'
+                >
+                  {example}
+                </Markdown>
+              </li>
+            ))
+          }
+        </ol>
+      </ProblemExample>
+    );
+  case 'CHOICES':
+    return (
+      <ProblemChoices
+        choices={block.content as string[]}
+      />
+    );
+  case 'IMAGE':
+    return (
+      block.content && (
+        <ProblemImageContainer>
+          <ProblemImage
+            src={block.content as string}
+            alt="uploaded"
+          />
+        </ProblemImageContainer>
+      )
+    );
+  }
+};
 
 const PrintViewer = ({ document }: {
   document: DocumentScheme,
@@ -57,86 +136,7 @@ const PrintViewer = ({ document }: {
                     ).toString().padStart(2, '0')}
                   </ProblemNumber>
                   {
-                    problem.content.map((block, blockIndex) => {
-                      switch (block.type) {
-                      case 'STATEMENT':
-                        return (
-                          <ProblemStatement key={blockIndex}>
-                            <Markdown
-                              mode='print'
-                            >
-                              {block.content}
-                            </Markdown>
-                          </ProblemStatement>
-                        );
-                      case 'CONDITIONS':
-                        return (
-                          <ProblemConditions key={blockIndex}>
-                            <ol>
-                              {
-                                (block.content as string[]).map((condition, conditionIndex) => (
-                                  <li key={conditionIndex}>
-                                    <Markdown
-                                      mode='print'
-                                    >
-                                      {condition}
-                                    </Markdown>
-                                  </li>
-                                ))
-                              }
-                            </ol>
-                          </ProblemConditions>
-                        );
-                      case 'BOXED':
-                        return (
-                          <ProblemBoxed key={blockIndex}>
-                            <Markdown
-                              mode='print'
-                            >
-                              {block.content}
-                            </Markdown>
-                          </ProblemBoxed>
-                        );
-                      case 'EXAMPLES':
-                        return (
-                          <ProblemExample key={blockIndex}>
-                            <ol>
-                              {
-                                (block.content as string[]).map((example, exampleIndex) => (
-                                  <li key={exampleIndex}>
-                                    <Markdown
-                                      mode='print'
-                                    >
-                                      {example}
-                                    </Markdown>
-                                  </li>
-                                ))
-                              }
-                            </ol>
-                          </ProblemExample>
-                        );
-                      case 'CHOICES':
-                        return (
-                          <ProblemChoices
-                            key={blockIndex}
-                            choices={block.content as string[]}
-                          />
-                        );
-                      case 'IMAGE':
-                        return (
-                          block.content && (
-                            <ProblemImageContainer
-                              key={blockIndex}
-                            >
-                              <ProblemImage
-                                src={block.content as string}
-                                alt="uploaded"
-                              />
-                            </ProblemImageContainer>
-                          )
-                        );
-                      }
-                    })
+                    problem.content.map(renderBlock)
                   }
                 </ProblemLayout>
               ))
@@ -168,7 +168,11 @@ const DocumentLayout = styled.div`
     }
     display: block;
   }
+  
 
+  -ms-print-color-adjust: exact;
+  -moz-print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   text-rendering: geometricPrecision;
 
