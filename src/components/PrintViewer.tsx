@@ -5,6 +5,85 @@ import 'katex/dist/katex.min.css';
 import GlobalStyle from '../GlobalStyle';
 import { DocumentScheme } from '../types/Document';
 import { ProblemScheme } from '../types/Problem';
+import { BlockScheme } from '../types/Block';
+
+const renderBlock = (block: BlockScheme) => {
+  switch (block.type) {
+  case 'STATEMENT':
+    return (
+      <ProblemStatement>
+        <Markdown
+          mode='print'
+        >
+          {block.content}
+        </Markdown>
+      </ProblemStatement>
+    );
+  case 'CONDITIONS':
+    return (
+      <ProblemConditions>
+        <ol>
+          {
+            (block.content as string[]).map((condition, conditionIndex) => (
+              <li key={conditionIndex}>
+                <Markdown
+                  mode='print'
+                >
+                  {condition}
+                </Markdown>
+              </li>
+            ))
+          }
+        </ol>
+      </ProblemConditions>
+    );
+  case 'BOXED':
+    return (
+      <ProblemBoxed>
+        <Markdown
+          mode='print'
+        >
+          {block.content}
+        </Markdown>
+      </ProblemBoxed>
+    );
+  case 'EXAMPLES':
+    return (
+      <ProblemExample>
+        <ol>
+          {
+            (block.content as string[]).map((example, exampleIndex) => (
+              <li key={exampleIndex}>
+                <Markdown
+                  mode='print'
+                >
+                  {example}
+                </Markdown>
+              </li>
+            ))
+          }
+        </ol>
+      </ProblemExample>
+    );
+  case 'CHOICES':
+    return (
+      <ProblemChoices
+        choices={block.content as string[]}
+      />
+    );
+  case 'IMAGE':
+    return (
+      block.content && (
+        <ProblemImageContainer>
+          <ProblemImage
+            src={block.content as string}
+            alt="uploaded"
+          />
+        </ProblemImageContainer>
+      )
+    );
+  }
+};
 
 const PrintViewer = ({ document }: {
   document: DocumentScheme,
@@ -57,86 +136,7 @@ const PrintViewer = ({ document }: {
                     ).toString().padStart(2, '0')}
                   </ProblemNumber>
                   {
-                    problem.content.map((block, blockIndex) => {
-                      switch (block.type) {
-                      case 'STATEMENT':
-                        return (
-                          <ProblemStatement key={blockIndex}>
-                            <Markdown
-                              mode='print'
-                            >
-                              {block.content}
-                            </Markdown>
-                          </ProblemStatement>
-                        );
-                      case 'CONDITIONS':
-                        return (
-                          <ProblemConditions key={blockIndex}>
-                            <ol>
-                              {
-                                (block.content as string[]).map((condition, conditionIndex) => (
-                                  <li key={conditionIndex}>
-                                    <Markdown
-                                      mode='print'
-                                    >
-                                      {condition}
-                                    </Markdown>
-                                  </li>
-                                ))
-                              }
-                            </ol>
-                          </ProblemConditions>
-                        );
-                      case 'BOXED':
-                        return (
-                          <ProblemBoxed key={blockIndex}>
-                            <Markdown
-                              mode='print'
-                            >
-                              {block.content}
-                            </Markdown>
-                          </ProblemBoxed>
-                        );
-                      case 'EXAMPLES':
-                        return (
-                          <ProblemExample key={blockIndex}>
-                            <ol>
-                              {
-                                (block.content as string[]).map((example, exampleIndex) => (
-                                  <li key={exampleIndex}>
-                                    <Markdown
-                                      mode='print'
-                                    >
-                                      {example}
-                                    </Markdown>
-                                  </li>
-                                ))
-                              }
-                            </ol>
-                          </ProblemExample>
-                        );
-                      case 'CHOICES':
-                        return (
-                          <ProblemChoices
-                            key={blockIndex}
-                            choices={block.content as string[]}
-                          />
-                        );
-                      case 'IMAGE':
-                        return (
-                          block.content && (
-                            <ProblemImageContainer
-                              key={blockIndex}
-                            >
-                              <ProblemImage
-                                src={block.content as string}
-                                alt="uploaded"
-                              />
-                            </ProblemImageContainer>
-                          )
-                        );
-                      }
-                    })
+                    problem.content.map(renderBlock)
                   }
                 </ProblemLayout>
               ))
@@ -163,18 +163,21 @@ const DocumentLayout = styled.div`
   }
   @media print and (min-resolution: 600dpi) {
     @page {
-      /* size 210mm 297mm; */
       size: 210mm 297mm;
     }
     display: block;
   }
+  
 
+  -ms-print-color-adjust: exact;
+  -moz-print-color-adjust: exact;
+  -webkit-print-color-adjust: exact;
   print-color-adjust: exact;
   text-rendering: geometricPrecision;
 
   line-height: 150%;
 
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   font-size: 12pt;
 
   font-stretch: 0.95%;
@@ -185,25 +188,15 @@ const DocumentLayout = styled.div`
   text-align: justify;
 
   .math {
-    /* zoom: 82.6%; */
     word-break: keep-all;
     white-space: nowrap;
     break-inside: avoid;
     line-break: strict;
   }
 
-  math {
-    /* zoom: 120%; */
-    font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
-  }
-
   mo.tml-prime {
     margin-left: 0.1em;
   }
-
-  /* mfrac mroot mn:first-child {
-    transform: translateY(25%);
-  } */
 
   /* if twin, no margin between */
   .tml-prime + .tml-prime {
@@ -211,37 +204,23 @@ const DocumentLayout = styled.div`
   }
 
   .katex {
-    /* transform: scale(0.826); */
     zoom: 82.6%;
     font-stretch: 1em;
     letter-spacing: 0.05em;
     line-height: 100%;
-    font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Roman', 'Times New Roman', serif;
 
     white-space: nowrap;
 
     margin: 0.5em 0;
   }
 
-  .katex .mathnormal {
-    font-family: 'HYHwpEQ_Partial', 'Latin Modern Roman', 'Times New Roman', serif;
-    /* font-style: normal; */
-    font-weight: normal;
-  }
-
-  .katex .mathgreek {
-    font-style: normal !important;
-  }
-
   .katex-display {
-    /* zoom: 82.6%; */
     display: flex;
     margin: 0.5em 0;
     margin-left: 0.5cm;
     text-align: left;
   }
 
-  /* word-break: keep-all; */
   padding: 0;
 
   position: absolute;
@@ -256,8 +235,6 @@ const DocumentLayout = styled.div`
 const CoverPage = styled.div`
   break-inside: avoid !important;
   position: relative;
-  /* page-break-before: always !important; */
-  /* break-before: page; */
   padding: 2cm 1.5cm 2.5cm 1.5cm;
   margin: 0;
 
@@ -274,8 +251,6 @@ const CoverPage = styled.div`
 
   text-align: left;
 
-  /* width: 210mm !important; */
-  /* height: 297mm !important; */
   width: 1134px;
   height: 1602px;
 `;
@@ -303,8 +278,7 @@ const CoverPageDescription = styled.div`
 const PageLayout = styled.div`
   break-inside: avoid !important;
   position: relative;
-  /* page-break-before: always !important; */
-  /* break-before: page; */
+  
   padding: 2cm 1.5cm 2.5cm 1.5cm;
   margin: 0;
 
@@ -373,7 +347,7 @@ const ProblemStatement = styled.div`
 `;
 
 const ProblemBoxed = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   width: 100%;
   padding: 1em;
   border: 1px solid black;
@@ -383,7 +357,7 @@ const ProblemBoxed = styled.div`
 `;
 
 const ProblemConditions = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -463,7 +437,7 @@ const ProblemConditions = styled.div`
 `;
 
 const ProblemExample = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -591,7 +565,7 @@ const ProblemChoices = ({
 };
 
 const ProblemChoicesLayout = styled.div<{ cols: number }>`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   justify-content: center;
   align-items: flex-start;

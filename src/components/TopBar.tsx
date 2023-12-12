@@ -12,13 +12,15 @@ const TopBar = ({ actionButtons }: {
 }) => {
 
   const { user, removeUser } = useAuthStore();
-  const { setDocument } = useEditorStore();
+  const { setDocument, setMode } = useEditorStore();
   const navigate = useNavigate();
   return (
     <TopBarLayout>
       <Title
         onClick={() => {
           navigate('/');
+          setMode('PROBLEM');
+          setDocument.setAll(null);
         }}
       >
         <b>KICE</b>ditor

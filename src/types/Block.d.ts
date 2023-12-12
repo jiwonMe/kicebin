@@ -1,10 +1,11 @@
 type BlockType =
-  'STATEMENT'
+  | 'STATEMENT'
   | 'CONDITIONS'
   | 'BOXED'
   | 'EXAMPLES'
   | 'CHOICES'
   | 'IMAGE'
+  | 'NUMBER';
 
 interface BlockContent {
   STATEMENT: string;

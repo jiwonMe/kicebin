@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import { ProblemScheme } from '../types/Problem';
 import Markdown from './Markdown';
 
-const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemScheme[], currentProblemId: string | null, className?: string }) => {
+const Viewer = ({ problems, currentProblemId, mode, className } : { problems: ProblemScheme[], currentProblemId: string | null,
+mode: 'PROBLEM' | 'EXPLANATION',
+  className?: string }) => {
 
   const currentProblem = useMemo(() => {
     return problems.find((problem) => problem.id === currentProblemId) as ProblemScheme;
@@ -12,6 +14,16 @@ const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemS
   const currentProblemNumber = useMemo(() => {
     return problems.findIndex((problem) => problem.id === currentProblemId) + 1;
   }, [problems, currentProblemId]);
+
+  const content = useMemo(() => {
+    if (!currentProblem) {
+      return [];
+    } else if (mode === 'PROBLEM') {
+      return currentProblem.content || [];
+    } else {
+      return currentProblem.explanation || [];
+    }
+  }, [currentProblem, mode]);
 
   return (
     <ViewerLayout
@@ -22,9 +34,7 @@ const Viewer = ({ problems, currentProblemId, className } : { problems: ProblemS
           {currentProblemNumber.toString().padStart(2, '0')}
         </ProblemNumber>
         {
-          currentProblem &&
-          currentProblem.content &&
-          currentProblem.content.map((block, blockIndex) => {
+          content.map((block, blockIndex) => {
             switch (block.type) {
             case 'STATEMENT':
               return (
@@ -150,7 +160,7 @@ const ProblemLayout = styled.div`
 
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
 
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
 
   line-height: 150%;
 
@@ -170,7 +180,7 @@ const ProblemLayout = styled.div`
 
   math {
     zoom: 120%;
-    font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
+    font-family: 'Latin Modern Math', 'Times New Roman', "KoPubWorld Batang";
   }
 
   mo.tml-prime {
@@ -198,17 +208,8 @@ const ProblemLayout = styled.div`
     letter-spacing: 0em;
     line-height: 1.2;
     text-rendering: auto;
-    font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Math', serif;
+    /* font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Math', serif; */
     white-space: nowrap;
-  }
-
-  .katex .mathnormal {
-    font-family: 'HYHwpEQ_Partial', 'Latin Modern Math';
-  }
-
-  .size4, .size5 {
-    font-size: 1.21em;
-    font-family: 'Latin Modern Math';
   }
 
   .katex-display {
@@ -227,7 +228,7 @@ const ProblemNumber = styled.h2`
 `;
 
 const ProblemConditions = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -308,7 +309,7 @@ const ProblemConditions = styled.div`
 `;
 
 const ProblemStatement = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   font-weight: normal;
   display: flex;
   flex-direction: column;
@@ -321,7 +322,7 @@ const ProblemStatement = styled.div`
 `;
 
 const ProblemBoxed = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   padding: 1em;
   width: 100%;
 
@@ -333,7 +334,7 @@ const ProblemBoxed = styled.div`
   `;
 
 const ProblemExample = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -415,7 +416,7 @@ const ProblemExample = styled.div`
 `;
 
 const ProblemChoices = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

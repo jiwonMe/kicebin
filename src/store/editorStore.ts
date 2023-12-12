@@ -8,54 +8,9 @@ import { ProblemScheme } from '../types/Problem';
 import { dummyProblem } from './dummy';
 // import { immer } from 'zustand/middleware/immer';
 
-const sampleProblem: ProblemScheme = {
-  id: uuid(),
-  meta: {
-    title: 'Sample Problem',
-    description: 'This is a sample problem.',
-  },
-  content: [
-    {
-      id: uuid(),
-      type: 'STATEMENT',
-      content: 'This is a statement.',
-    },
-    {
-      id: uuid(),
-      type: 'CONDITIONS',
-      content: ['This is a condition (a).', 'This is a condition (b).'],
-    },
-    {
-      id: uuid(),
-      type: 'BOXED',
-      content: 'This is a boxed content.',
-    },
-    {
-      id: uuid(),
-      type: 'EXAMPLES',
-      content: [
-        'This is an example.',
-        'This is another example.',
-      ],
-    },
-    {
-      id: uuid(),
-      type: 'CHOICES',
-      content: [
-        'first choice',
-        'second choice',
-        'third choice',
-        'fourth choice',
-        'fifth choice'
-      ],
-    },
-  ]
-};
-
-
-
 interface EditorState {
   document: DocumentScheme;
+  mode: 'PROBLEM' | 'EXPLANATION';
   setDocument: {
     setAll: (document: DocumentScheme | null) => void;
     setMeta: (meta: DocumentScheme['meta']) => void;
@@ -64,11 +19,14 @@ interface EditorState {
       remove: (problemId: ProblemScheme['id']) => void;
       update: (problemId: ProblemScheme['id']) => ({
         setMeta: (meta: ProblemScheme['meta']) => void;
+        setAnswer: (answer: ProblemScheme['answer']) => void;
         setContent: (content: ProblemScheme['content']) => void;
+        setExplanation: (explanation: ProblemScheme['explanation']) => void;
       }),
       all: (problems: ProblemScheme[]) => void;
     }
   };
+  setMode: (mode: 'PROBLEM' | 'EXPLANATION') => void;
   currentProblemId: string | null;
   setCurrentProblemId: (problemId: string | null) => void;
 }
@@ -85,10 +43,9 @@ export const useEditorStore = create<EditorState>()(
         updatedAt: new Timestamp(new Date().getTime() / 1000, 0),
       },
       problems: [
-        // sampleProblem,
-        // dummyProblem,
       ],
     },
+    mode: 'PROBLEM',
     setDocument: {
       setAll: (document) => set((state) => ({ document: document ?? {
         id: uuid(),
@@ -117,6 +74,17 @@ export const useEditorStore = create<EditorState>()(
               }
               )},
           })),
+          setAnswer: (answer) => set((state) => ({
+            document: {
+              ...state.document,
+              problems: state.document.problems?.map((problem) => {
+                if (problem.id === problemId) {
+                  return { ...problem, answer };
+                }
+                return problem;
+              }
+              )},
+          })),
           setContent: (content) => set((state) => ({
             document: {
               ...state.document,
@@ -128,10 +96,22 @@ export const useEditorStore = create<EditorState>()(
               }
               )},
           })),
+          setExplanation: (explanation) => set((state) => ({
+            document: {
+              ...state.document,
+              problems: state.document.problems?.map((problem) => {
+                if (problem.id === problemId) {
+                  return { ...problem, explanation };
+                }
+                return problem;
+              }
+              )},
+          })),
         }),
         all: (problems) => set((state) => ({ document: { ...state.document, problems } })),
       },
     },
+    setMode: (mode) => set((state) => ({ mode })),
     currentProblemId: null,
     setCurrentProblemId: (problemId) => set((state) => ({ currentProblemId: problemId })),
   })),

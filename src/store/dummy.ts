@@ -7,6 +7,8 @@ export const dummyProblem: ProblemScheme = {
     title: 'Dummy Problem',
     description: 'This is a dummy problem.',
   },
+  answer: '1',
+  explanation: [],
   content: [
     {
       id: uuid(),

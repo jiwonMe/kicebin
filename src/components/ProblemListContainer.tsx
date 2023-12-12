@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { FiPlusSquare, FiX } from 'react-icons/fi';
 import { ProblemScheme } from '../types/Problem';
-import { motion, Reorder } from 'framer-motion';
+import { Reorder } from 'framer-motion';
 
 const ProblemListContainer = ({
   problems,
@@ -60,15 +60,10 @@ const ProblemListContainerLayout = styled(Reorder.Group)`
   padding: 0;
 
   border-right: 0.5px solid #484848;
-  /* padding: 8px; */
   display: flex;
   flex-direction: column;
-  /* gap: 8px; */
-  /* flex-wrap: 1; */
-  /* flex-grow: 1; */
   width: 20%;
 
-  /* min-width: 200px; */
   overflow-y: scroll;
   overflow-x: auto;
 
@@ -159,10 +154,10 @@ const ProblemListCellLayout = styled(Reorder.Item)<{
     border-bottom: 1px solid #37373A;
     background-color: #1A1A1C;
   `}
-  /* width: 200px; */
+
   color: #7E7E8C;
   height: fit-content;
-  /* min-height: 50px; */
+
   padding: 12px;
 `;
 
@@ -182,7 +177,7 @@ const CreateNewProblemButton = ({
 };
 
 const CreateNewProblemButtonLayout = styled.div`
-  /* border: 1px solid #d9d9d9; */
+
   background-color: #232327;
   height: 20px;
   padding: 8px;

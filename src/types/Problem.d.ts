@@ -6,5 +6,7 @@ export interface ProblemScheme {
     title: string;
     description: string;
   };
+  answer: string;
   content: BlockScheme[];
+  explanation: BlockScheme[];
 }

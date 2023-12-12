@@ -7,7 +7,6 @@ import ProblemListContainer from '../../components/ProblemListContainer';
 import TopBar from '../../components/TopBar';
 import GlobalStyle from '../../GlobalStyle';
 import Frame, { FrameContext } from 'react-frame-component';
-import PrintViewer from '../../components/PrintViewer';
 import { useEditorStore } from '../../store/editorStore';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -21,6 +20,8 @@ import { ProblemScheme } from '../../types/Problem';
 import { getDocument as getDocumentFromFirestore, updateDocument } from '../../utils/documentCRUD';
 import { User } from 'firebase/auth';
 import { logEvent } from 'firebase/analytics';
+import PrintDefaultTheme from '../../components/PrintDefaultTheme';
+import PrintViewer from '../../components/PrintViewer';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -29,7 +30,9 @@ const createNewProblem = (): ProblemScheme => {
       title: '새 문제',
       description: '새 문제입니다.',
     },
+    answer: '',
     content: [],
+    explanation: [],
   };
 };
 
@@ -40,7 +43,7 @@ const InjectFrameStyles = (props: any) => {
 
 const EditorPage = () => {
   const { documentId } = useParams();
-  const { document, setDocument, currentProblemId: _currProbId, setCurrentProblemId } = useEditorStore();
+  const { document, setDocument, currentProblemId: _currProbId, setCurrentProblemId, mode, setMode } = useEditorStore();
 
   const [isPrintMode, setIsPrintMode] = useState(false);
 
@@ -66,8 +69,6 @@ const EditorPage = () => {
     setCurrentProblemId(document.problems?.[0].id || null);
   };
 
-  const printViewerRef = useRef<HTMLIFrameElement>(null);
-
   const handlePrint = () => {
     setIsPrintMode(true);
 
@@ -92,7 +93,7 @@ const EditorPage = () => {
     if (!user) {
       navigate('/login');
     } else {
-      console.log('user is logged in', user);
+      // console.log('user is logged in', user);
     }
   }, [user]);
 
@@ -218,59 +219,22 @@ const EditorPage = () => {
         <Viewer
           problems={document.problems || []}
           currentProblemId={currentProblemId || null}
+          mode={mode}
         />
-      </MainLayout>{
-        <Frame
-          style={{
-            // display: 'none',
-            backgroundColor: 'white',
-          }}
-          ref={printViewerRef}
-          head={
-            <>
-              {/* <link
-                rel="stylesheet"
-                href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
-                integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0"
-                crossOrigin="anonymous"
-              /> */}
-              <link
-                rel="stylesheet"
-                href="./assets/index.css"
-              />
-              <style>
-                {/* css */`
-                  html, body {
-                    padding: 0;
-                    margin: 0;
-                    height: 100%;
-                    page-break-inside: avoid;
-                    break-inside: avoid-page;
-                  }
-                  `}
-              </style>
-            </>
-          }
-        >
-          <InjectFrameStyles>
-            <>
-              <GlobalStyle />
-              {
-                isPrintMode && (
-                  <PrintViewer
-                    document={document}
-                  />
-                )
-              }
-            </>
-          </InjectFrameStyles>
-        </Frame>
-      }
+      </MainLayout>
       {
         <PrintPreviewLayout>
-          <PrintViewer
+          {isPrintMode && <PrintDefaultTheme
             document={document}
-          />
+          />}
+          {
+            isPrintMode && <PrintViewer
+              document={document}
+            />
+          }
+          {/* <PrintDefaultTheme
+            document={document}
+          /> */}
         </PrintPreviewLayout>
       }
     </EntireLayout>
@@ -286,7 +250,7 @@ const PrintPreviewLayout = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  /* background-color: #00000055; */
+
   z-index: 1000;
 }
 `;

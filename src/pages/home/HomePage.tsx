@@ -105,12 +105,10 @@ const HomePage = () => {
       <NoticeLayout>
         <NoticeContent>
           <NoticeTitle>
-            [Update] 2023-02-17
+            [Update] 2023-12-11
           </NoticeTitle>
           <NoticeDescription>
-            1. 문항 보기/조건/선지 개수를 추가할 수 있습니다.
-            (보기 최대 14개, 조건 최대 14개, 선지 최대 9개) <br/>
-            2. 수식 폰트를 인쇄에 적합하도록 변경했습니다.
+            KICEditor의 새 운영사를 찾습니다 (<Link href="https://parkjiwon.notion.site/KICEditor-4b4f37a92ab546cdadddebaa535b9b21?pvs=4">더보기</Link>)
           </NoticeDescription>
         </NoticeContent>
       </NoticeLayout>
@@ -228,5 +226,9 @@ const Heading1 = styled.h1`
   font-family: 'Pretendard';
   font-size: 24px;
   font-weight: 700;
+  color: #BABAC2;
+`;
+
+const Link = styled.a`
   color: #BABAC2;
 `;
