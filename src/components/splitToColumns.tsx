@@ -1,8 +1,5 @@
 import React, { ComponentType } from 'react';
-import styled from 'styled-components';
 import useMeasureElements from '../utils/measureElement';
-import useMeasureElement from '../utils/measureElement';
-import measureElement from '../utils/measureElement';
 
 const splitToColumns = ({
   children,

@@ -160,7 +160,7 @@ const ProblemLayout = styled.div`
 
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.2);
 
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
 
   line-height: 150%;
 
@@ -180,7 +180,7 @@ const ProblemLayout = styled.div`
 
   math {
     zoom: 120%;
-    font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
+    font-family: 'Latin Modern Math', 'Times New Roman', "KoPubWorld Batang";
   }
 
   mo.tml-prime {
@@ -208,17 +208,8 @@ const ProblemLayout = styled.div`
     letter-spacing: 0em;
     line-height: 1.2;
     text-rendering: auto;
-    font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Math', serif;
+    /* font: normal 1.21em 'HYHwpEQ_Partial', 'Latin Modern Math', serif; */
     white-space: nowrap;
-  }
-
-  .katex .mathnormal {
-    font-family: 'HYHwpEQ_Partial', 'Latin Modern Math';
-  }
-
-  .size4, .size5 {
-    font-size: 1.21em;
-    font-family: 'Latin Modern Math';
   }
 
   .katex-display {
@@ -237,7 +228,7 @@ const ProblemNumber = styled.h2`
 `;
 
 const ProblemConditions = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -318,7 +309,7 @@ const ProblemConditions = styled.div`
 `;
 
 const ProblemStatement = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   font-weight: normal;
   display: flex;
   flex-direction: column;
@@ -331,7 +322,7 @@ const ProblemStatement = styled.div`
 `;
 
 const ProblemBoxed = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   padding: 1em;
   width: 100%;
 
@@ -343,7 +334,7 @@ const ProblemBoxed = styled.div`
   `;
 
 const ProblemExample = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -425,7 +416,7 @@ const ProblemExample = styled.div`
 `;
 
 const ProblemChoices = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

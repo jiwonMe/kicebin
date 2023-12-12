@@ -1,6 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import SM신명조03 from './assets/fonts/SM3신명조-03.woff';
-import SM3중명조 from './assets/fonts/SM3중명조.woff';
 import HYHwpEQ_Partial from './assets/fonts/HYHWPEQ.woff';
 
 import lmBold from './assets/fonts/latinmodernroman_10bold_macroman/lmroman10-bold-webfont.woff';
@@ -17,6 +15,10 @@ import lmSlanted from './assets/fonts/latinmodernromanslanted_10regular_macroman
 import lmSlantedBold from './assets/fonts/latinmodernromanslanted_10bold_macroman/lmromanslant10-bold-webfont.woff';
 
 import lmMath from './assets/fonts/latinmodern-math.woff';
+
+import kopubWorldBatangBold from './assets/fonts/KoPubWorld-Batang-Bold.woff';
+import kopubWorldBatangMedium from './assets/fonts/KoPubWorld-Batang-Medium.woff';
+import kopubWorldBatangLight from './assets/fonts/KoPubWorld-Batang-Light.woff';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -46,20 +48,6 @@ const GlobalStyle = createGlobalStyle`
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'SM신명조03';
-    src: local('SM신명조03'), local('SM신명조03');
-    font-style: normal;
-    src: url(${SM신명조03}) format('woff');
-  }
-
-  @font-face {
-    font-family: 'SM3중명조';
-    src: local('SM3중명조'), local('SM3중명조');
-    font-style: normal;
-    src: url(${SM3중명조}) format('woff');
   }
 
   @font-face {
@@ -205,6 +193,26 @@ const GlobalStyle = createGlobalStyle`
     src: url(${lmMath}) format('woff');
   }
 
+  @font-face {
+    font-family: 'KoPubWorld Batang';
+    src: local('KoPubWorld Batang'), local('KoPubWorldBatang'), url(${kopubWorldBatangBold}) format('woff');
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'KoPubWorld Batang';
+    src: local('KoPubWorld Batang'), local('KoPubWorldBatang'), url(${kopubWorldBatangMedium}) format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'KoPubWorld Batang';
+    src: local('KoPubWorld Batang'), local('KoPubWorldBatang'), url(${kopubWorldBatangLight}) format('woff');
+    font-weight: 300;
+    font-style: normal;
+  }
   font-family: 'Pretendard';
 `;
 

@@ -1,10 +1,5 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
-import CodeEditor from 'react-simple-code-editor';
-// import { highlight, languages } from 'prismjs';
-// import 'prismjs/components/prism-markdown';
-// import 'prismjs/components/prism-latex';
-// import 'prismjs/themes/prism-solarizedlight.css'; //Example style, you can use another
 import { useEditorStore } from './store/editorStore';
 import EditorBlock from './components/EditorBlock';
 import { v4 as uuid } from 'uuid';
@@ -13,7 +8,6 @@ import { FiPlus } from 'react-icons/fi';
 import { InputWithLabel } from './components/Input';
 import { ProblemScheme } from './types/Problem';
 import { Reorder } from 'framer-motion';
-import { TagsInput } from './components/TagInputComponent';
 import ModeTab from './components/ModeTab';
 
 const Editor = () => {

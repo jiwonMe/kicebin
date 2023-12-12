@@ -105,10 +105,10 @@ const HomePage = () => {
       <NoticeLayout>
         <NoticeContent>
           <NoticeTitle>
-            [Update] 2023-02-28
+            [Update] 2023-12-11
           </NoticeTitle>
           <NoticeDescription>
-            정답 및 해설을 추가할 수 있습니다. (정답 및 해설 인쇄는 추후 업데이트 예정)
+            KICEditor의 새 운영사를 찾습니다 (<Link href="https://parkjiwon.notion.site/KICEditor-4b4f37a92ab546cdadddebaa535b9b21?pvs=4">더보기</Link>)
           </NoticeDescription>
         </NoticeContent>
       </NoticeLayout>
@@ -226,5 +226,9 @@ const Heading1 = styled.h1`
   font-family: 'Pretendard';
   font-size: 24px;
   font-weight: 700;
+  color: #BABAC2;
+`;
+
+const Link = styled.a`
   color: #BABAC2;
 `;

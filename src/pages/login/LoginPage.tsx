@@ -157,6 +157,7 @@ const LoginPage = () => {
       <VSpace />
       <SubTitle>
         학원/기업 도입문의: <Link href="mailto:vega@aldeve.com">vega@aldeve.com</Link>
+        공지사항(2023.12.11.) <Link href="https://parkjiwon.notion.site/KICEditor-4b4f37a92ab546cdadddebaa535b9b21?pvs=4">더보기</Link>
       </SubTitle>
     </LoginPageLayout>
   );

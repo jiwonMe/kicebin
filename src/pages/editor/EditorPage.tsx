@@ -7,7 +7,6 @@ import ProblemListContainer from '../../components/ProblemListContainer';
 import TopBar from '../../components/TopBar';
 import GlobalStyle from '../../GlobalStyle';
 import Frame, { FrameContext } from 'react-frame-component';
-import PrintViewer from '../../components/PrintViewer';
 import { useEditorStore } from '../../store/editorStore';
 import { useAuthStore } from '../../store/AuthStore';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -22,6 +21,7 @@ import { getDocument as getDocumentFromFirestore, updateDocument } from '../../u
 import { User } from 'firebase/auth';
 import { logEvent } from 'firebase/analytics';
 import PrintDefaultTheme from '../../components/PrintDefaultTheme';
+import PrintViewer from '../../components/PrintViewer';
 
 const createNewProblem = (): ProblemScheme => {
   return {
@@ -69,8 +69,6 @@ const EditorPage = () => {
     setCurrentProblemId(document.problems?.[0].id || null);
   };
 
-  const printViewerRef = useRef<HTMLIFrameElement>(null);
-
   const handlePrint = () => {
     setIsPrintMode(true);
 
@@ -95,7 +93,7 @@ const EditorPage = () => {
     if (!user) {
       navigate('/login');
     } else {
-      console.log('user is logged in', user);
+      // console.log('user is logged in', user);
     }
   }, [user]);
 
@@ -226,12 +224,17 @@ const EditorPage = () => {
       </MainLayout>
       {
         <PrintPreviewLayout>
-          {/* <PrintViewer
+          {isPrintMode && <PrintDefaultTheme
+            document={document}
+          />}
+          {
+            isPrintMode && <PrintViewer
+              document={document}
+            />
+          }
+          {/* <PrintDefaultTheme
             document={document}
           /> */}
-          <PrintDefaultTheme
-            document={document}
-          />
         </PrintPreviewLayout>
       }
     </EntireLayout>
@@ -247,7 +250,7 @@ const PrintPreviewLayout = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  /* background-color: #00000055; */
+
   z-index: 1000;
 }
 `;

@@ -173,7 +173,7 @@ const DocumentLayout = styled.div`
 
   line-height: 150%;
 
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   font-size: 12pt;
 
   font-stretch: 0.95%;
@@ -196,7 +196,7 @@ const DocumentLayout = styled.div`
 
   math {
     /* zoom: 120%; */
-    font-family: 'Latin Modern Math', 'Times New Roman', 'SM3중명조';
+    font-family: 'Latin Modern Math', 'Times New Roman', "KoPubWorld Batang";
   }
 
   mo.tml-prime {
@@ -272,7 +272,7 @@ const ProblemStatement = styled.div`
 `;
 
 const ProblemBoxed = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   width: 100%;
   padding: 1em;
   border: 1px solid black;
@@ -282,7 +282,7 @@ const ProblemBoxed = styled.div`
 `;
 
 const ProblemConditions = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -362,7 +362,7 @@ const ProblemConditions = styled.div`
 `;
 
 const ProblemExample = styled.div`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -490,7 +490,7 @@ const ProblemChoices = ({
 };
 
 const ProblemChoicesLayout = styled.div<{ cols: number }>`
-  font-family: 'Times New Roman', "SM3중명조";
+  font-family: 'Times New Roman', "KoPubWorld Batang";
   display: flex;
   justify-content: center;
   align-items: flex-start;
