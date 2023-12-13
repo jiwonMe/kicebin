@@ -31,3 +31,5 @@ dist-ssr
 
 kicebin21-firebase-adminsdk-*.json
 hosting.*
+
+!.env.example

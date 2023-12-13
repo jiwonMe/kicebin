@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { DocumentScheme } from '../types/Document';
-import differenceInAppropriateUnits from '../utils/differenceInAppropriateUnits';
+import { DocumentScheme } from '../../types/Document';
+import differenceInAppropriateUnits from '../../utils/differenceInAppropriateUnits';
 
-import { db } from '../service/firebase';
+import { db } from '../../service/firebase';
 import { collection, getDoc, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { useAuthStore } from '../store/AuthStore';
+import { useAuthStore } from '../../store/AuthStore';
 
 const DocumentListContainer = ({
   updateDocument,

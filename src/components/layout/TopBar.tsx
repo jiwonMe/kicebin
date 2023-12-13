@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useAuthStore } from '../store/AuthStore';
+import { useAuthStore } from '../../store/AuthStore';
 import { signOut } from 'firebase/auth';
-import { auth } from '../service/firebase';
-import { useEditorStore } from '../store/editorStore';
-import { ActionButton } from './ActionButton';
+import { auth } from '../../service/firebase';
+import { useEditorStore } from '../../store/editorStore';
+import { ActionButton } from '../common/ActionButton';
 import { useNavigate } from 'react-router-dom';
 
 const TopBar = ({ actionButtons }: {

@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import GlobalStyle from '../GlobalStyle';
-import { BlockScheme } from '../types/Block';
-import { DocumentScheme } from '../types/Document';
-import Markdown from './Markdown';
+import GlobalStyle from '../../GlobalStyle';
+import { BlockScheme } from '../../types/Block';
+import { DocumentScheme } from '../../types/Document';
+import Markdown from '../common/Markdown';
 import splitToColumns from './splitToColumns';
 
 const chunk = <T,>(arr: T[], size: number): T[][] => {

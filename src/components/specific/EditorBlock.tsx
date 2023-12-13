@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
-import { InputWithLabel } from './Input';
+import { InputWithLabel } from '../common/Input';
 import LatexCodeEditor from './LatexCodeEditor';
 import { FiX, FiPlus, FiUpload } from 'react-icons/fi';
 
-import { storage } from '../service/firebase';
+import { storage } from '../../service/firebase';
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { BlockScheme, BlockType } from '../types/Block';
-import { motion, Reorder, useDragControls } from 'framer-motion';
+import { BlockScheme, BlockType } from '../../types/Block';
+import { Reorder, useDragControls } from 'framer-motion';
 
 import { RxDragHandleDots2 } from 'react-icons/rx';
 
@@ -370,13 +370,9 @@ const DragHandle = styled.div`
   justify-content: center;
   align-items: center;
 
-  /* width: 40px; */
   height: 40px;
 
   color: #d4d4d4;
-  /* :hover {
-    background-color: #86868613;
-  } */
 `;
 
 const BlockButton = styled.button`
@@ -420,31 +416,6 @@ const Select = styled.select`
 
 const ImageInput = styled.input`
   display: none;
-`;
-
-const ImageInputLabel = styled.label`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-
-  width: 100%;
-  height: 40px;
-
-  border: 1px solid #868686;
-  border-radius: 4px;
-
-  font-size: 14px;
-
-  color: #d4d4d4;
-
-  cursor: pointer;
-
-  margin-bottom: 8px;
-
-  :hover {
-    background-color: #86868613;
-  }
 `;
 
 const ImageDeleteButton = styled.button`
