@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
-import Markdown from './Markdown';
+import Markdown from '../common/Markdown';
 import 'katex/dist/katex.min.css';
-import GlobalStyle from '../GlobalStyle';
-import { DocumentScheme } from '../types/Document';
-import { ProblemScheme } from '../types/Problem';
-import { BlockScheme } from '../types/Block';
+import GlobalStyle from '../../GlobalStyle';
+import { DocumentScheme } from '../../types/Document';
+import { ProblemScheme } from '../../types/Problem';
+import { BlockScheme } from '../../types/Block';
 
 const renderBlock = (block: BlockScheme) => {
   switch (block.type) {
@@ -278,7 +278,7 @@ const CoverPageDescription = styled.div`
 const PageLayout = styled.div`
   break-inside: avoid !important;
   position: relative;
-  
+
   padding: 2cm 1.5cm 2.5cm 1.5cm;
   margin: 0;
 

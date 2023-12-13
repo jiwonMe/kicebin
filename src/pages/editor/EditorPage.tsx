@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import styled, { StyleSheetManager } from 'styled-components';
 import Editor from '../../Editor';
-import Viewer from '../../components/Viewer';
+import Viewer from '../../components/specific/Viewer';
 import { v4 as uuid } from 'uuid';
-import ProblemListContainer from '../../components/ProblemListContainer';
-import TopBar from '../../components/TopBar';
+import ProblemListContainer from '../../components/specific/ProblemListContainer';
+import TopBar from '../../components/layout/TopBar';
 import GlobalStyle from '../../GlobalStyle';
 import Frame, { FrameContext } from 'react-frame-component';
 import { useEditorStore } from '../../store/editorStore';
@@ -13,15 +13,15 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { analytics, storage } from '../../service/firebase';
 import { deleteObject, ref } from 'firebase/storage';
-import { ActionButton } from '../../components/ActionButton';
+import { ActionButton } from '../../components/common/ActionButton';
 import { RiKakaoTalkFill } from 'react-icons/ri';
 import { FiPrinter, FiUploadCloud } from 'react-icons/fi';
 import { ProblemScheme } from '../../types/Problem';
 import { getDocument as getDocumentFromFirestore, updateDocument } from '../../utils/documentCRUD';
 import { User } from 'firebase/auth';
 import { logEvent } from 'firebase/analytics';
-import PrintDefaultTheme from '../../components/PrintDefaultTheme';
-import PrintViewer from '../../components/PrintViewer';
+import PrintDefaultTheme from '../../components/specific/PrintDefaultTheme';
+import PrintViewer from '../../components/specific/PrintViewer';
 
 const createNewProblem = (): ProblemScheme => {
   return {

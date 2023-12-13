@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { UserScheme } from '../../types/User';
 import { DocumentScheme } from '../../types/Document';
 import styled from 'styled-components';
-import TopBar from '../../components/TopBar';
-import _DocumentListContainer from '../../components/DocumentListContainer';
+import TopBar from '../../components/layout/TopBar';
+import _DocumentListContainer from '../../components/specific/DocumentListContainer';
 import { v4 as uuid } from 'uuid';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 

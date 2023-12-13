@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react';
 import styled from 'styled-components';
 import { useEditorStore } from './store/editorStore';
-import EditorBlock from './components/EditorBlock';
+import EditorBlock from './components/specific/EditorBlock';
 import { v4 as uuid } from 'uuid';
 
 import { FiPlus } from 'react-icons/fi';
-import { InputWithLabel } from './components/Input';
+import { InputWithLabel } from './components/common/Input';
 import { ProblemScheme } from './types/Problem';
 import { Reorder } from 'framer-motion';
-import ModeTab from './components/ModeTab';
+import ModeTab from './components/specific/ModeTab';
 
 const Editor = () => {
   const { document, setDocument, currentProblemId: _currProbId, mode, setMode } = useEditorStore();

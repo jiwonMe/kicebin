@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import DocumentListContainer from '../../components/DocumentListContainer';
+import DocumentListContainer from '../../components/specific/DocumentListContainer';
 import { useAuthStore } from '../../store/AuthStore';
-import TopBar from '../../components/TopBar';
+import TopBar from '../../components/layout/TopBar';
 
 import { Timestamp } from 'firebase/firestore';
-import { ActionButton } from '../../components/ActionButton';
+import { ActionButton } from '../../components/common/ActionButton';
 import { FiPlus } from 'react-icons/fi';
 import { DocumentScheme } from '../../types/Document';
 import { createDocument, getDocuments } from '../../utils/documentCRUD';
